@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './Navigaion.module.scss';
+import styles from './Navigation.module.scss';
 
 const Navigation: React.FC = () => {
   return (
