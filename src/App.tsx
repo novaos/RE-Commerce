@@ -12,7 +12,7 @@ const App: React.FC = () => (
 
         <div className="container">
           <Switch>
-            {routes.map((route: any, i) => (
+            {routes.map((route, i) => (
               <Route exact={route.exact || false} path={route.path} component={route.component} key={i} />
             ))}
           </Switch>
