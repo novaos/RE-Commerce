@@ -12,10 +12,6 @@ const Navigation: React.FC = () => {
         <NavLink className="navbar-item" to="/counter" activeClassName={styles.selected}>
           Counter
         </NavLink>
-
-        <NavLink className="navbar-item" to="/context" activeClassName={styles.selected}>
-          Context
-        </NavLink>
       </div>
     </nav>
   );
