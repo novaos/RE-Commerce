@@ -1,5 +1,4 @@
 import React, { Suspense } from 'react';
-import './App.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import Loader from './components/Loader';
@@ -13,7 +12,7 @@ const App: React.FC = () => (
 
         <div className="container">
           <Switch>
-            {routes.map((route:any, i) => (
+            {routes.map((route: any, i) => (
               <Route exact={route.exact || false} path={route.path} component={route.component} key={i} />
             ))}
           </Switch>
