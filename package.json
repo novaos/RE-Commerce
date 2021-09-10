@@ -12,13 +12,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "lint:ts": "npx eslint . --ext .ts,.tsx"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "pre-push": "npm run test"
-    }
+    "lint:ts": "npx eslint . --ext .ts,.tsx",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@loadable/component": "^5.15.0",
