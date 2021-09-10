@@ -5,7 +5,6 @@ const Counter: React.FC = () => {
     <>
       <h1 className="title">
         Counter
-
         </h1>
     </>
   );
