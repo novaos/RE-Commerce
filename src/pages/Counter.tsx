@@ -3,7 +3,7 @@ import React from 'react';
 const Counter: React.FC = () => {
   return (
     <>
-      <h1 className="title">Counter page</h1>
+      <h1 className="title">Counter</h1>
     </>
   );
 };
