@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { getUsers } from './services/usersApiService';
-import { User } from './interfaces';
+import { IUser } from './interfaces';
+import User from './components/User';
 
 const Users: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<IUser[]>([]);
 
   // fetch a user from a fake backend API
   useEffect(() => {
     (async () => {
-      const users: User[] = await getUsers();
+      const users: IUser[] = await getUsers();
 
       setUsers(users);
     })();
@@ -18,23 +19,11 @@ const Users: React.FC = () => {
     <>
       <h1 className="title">Users</h1>
 
-      {users.map((user: any) => (
-        <div className="card mt-2" key={user.id}>
-          <div className="card-content">
-            <div className="media">
-              <div className="media-left">
-                <figure className="image is-48x48">
-                  <img src="https://picsum.photos/200" alt="" />
-                </figure>
-              </div>
-              <div className="media-content">
-                <p className="title is-4">{user.name}</p>
-                <p className="subtitle is-6">{user.email}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
+      <div className="container">
+        {users.map((user: IUser) => (
+          <User user={user} key={user.id} />
+        ))}
+      </div>
     </>
   );
 };
