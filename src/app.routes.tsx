@@ -2,6 +2,7 @@ import loadable from '@loadable/component';
 
 const LazyHome = loadable(() => import('./pages/Home'));
 const LazyCounter = loadable(() => import('./pages/Counter'));
+const LazyUsers = loadable(() => import('./pages/Users/Users'));
 const LazyNotFound = loadable(() => import('./components/NotFound'));
 
 export const routes = [
@@ -13,6 +14,10 @@ export const routes = [
   {
     path: '/counter',
     component: LazyCounter
+  },
+  {
+    path: '/users',
+    component: LazyUsers
   },
   {
     path: '*',

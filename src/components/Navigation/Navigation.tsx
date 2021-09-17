@@ -5,7 +5,7 @@ import { ThemeEnum } from '../../enums';
 import classNames from 'classnames';
 
 const Navigation: React.FC = () => {
-  const [theme, setTheme] = useState(ThemeEnum.LIGHT);
+  const [theme, setTheme] = useState<ThemeEnum>(ThemeEnum.LIGHT);
 
   return (
     <nav className={classNames('navbar', theme === ThemeEnum.LIGHT ? 'is-light' : 'is-dark', styles.navbar)}>
@@ -28,6 +28,12 @@ const Navigation: React.FC = () => {
               to="/counter"
               activeClassName={styles.selected}>
               Counter
+            </NavLink>
+            <NavLink
+              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
+              to="/users"
+              activeClassName={styles.selected}>
+              Users
             </NavLink>
           </div>
 
