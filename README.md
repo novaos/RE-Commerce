@@ -3,9 +3,9 @@
 - Tools
 - Architecture
 - Unit testing
-- Forms
+- Forms (Formik and react-hook-form)
 - i18n
-- async
+- async (React-query)
 - hooks
 - context
 - graphics
