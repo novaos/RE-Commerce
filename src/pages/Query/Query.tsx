@@ -1,14 +1,19 @@
 import React from 'react';
 import { getPosts } from './services/postsApiService';
 import { useQuery } from 'react-query';
-import Loader from '../../components/Loader';
 import Post from './components/Post';
+import Loader from '../../components/Loader';
+import { IPost } from './interfaces';
 
 const Query: React.FC = () => {
-  const { isLoading, data } = useQuery('key-for-getPosts-request', getPosts);
+  const { data, error, isLoading, isError } = useQuery<IPost[], Error>('key-for-getPosts-request', getPosts);
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (isError) {
+    return <span>Error: {error && error.message}</span>;
   }
 
   return (
