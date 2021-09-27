@@ -5,6 +5,7 @@
 - Unit testing
 - Forms (Formik and react-hook-form)
 - i18n
+- Auth
 - async (React-query)
 - hooks
 - context
