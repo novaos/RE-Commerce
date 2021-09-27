@@ -4,7 +4,7 @@
 - Architecture
 - Unit testing
 - Forms (Formik and react-hook-form)
-- i18n
+- i18n (react-intl - https://formatjs.io/docs/getting-started/installation/)
 - Auth
 - async (React-query)
 - hooks
