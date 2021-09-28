@@ -35,6 +35,12 @@ const Navigation: React.FC = () => {
               activeClassName={styles.selected}>
               Users
             </NavLink>
+            <NavLink
+              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
+              to="/query"
+              activeClassName={styles.selected}>
+              Query
+            </NavLink>
           </div>
 
           <div className="column is-flex is-justify-content-flex-end is-align-items-center">
