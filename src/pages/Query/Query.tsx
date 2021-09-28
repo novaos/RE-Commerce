@@ -6,7 +6,9 @@ import Loader from '../../components/Loader';
 import { IPost } from './interfaces';
 
 const Query: React.FC = () => {
-  const { data, error, isLoading, isError } = useQuery<IPost[], Error>('key-for-getPosts-request', getPosts);
+  const { data, error, isLoading, isError } = useQuery<IPost[], Error>('key-for-getPosts-request', getPosts, {
+    retry: 3 // Will retry failed requests 3 times before displaying an error
+  });
 
   if (isLoading) {
     return <Loader />;
@@ -19,7 +21,14 @@ const Query: React.FC = () => {
   return (
     <>
       <h1 className="title">React Query</h1>
-      {data && data.map(s => <Post key={s.id} post={s}></Post>)}
+      {!data?.length
+        ? 'No items yet...'
+        : data.map(s => (
+            <React.Fragment key={s.id}>
+              {' '}
+              <Post post={s}></Post>
+            </React.Fragment>
+          ))}
     </>
   );
 };
