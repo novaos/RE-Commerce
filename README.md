@@ -19,3 +19,6 @@
 - classnames (https://github.com/JedWatson/classnames)
 - React Router (https://reactrouter.com/web/guides/quick-start)
 - @loadable/component (https://github.com/gregberge/loadable-components)
+
+# Inspired from
+- https://github.com/react-boilerplate/react-boilerplate-cra-template
