@@ -15,6 +15,7 @@
 # List of libraries
 - React
 - TypeScript
+- React Query (https://react-query.tanstack.com/)
 - Bulma (https://bulma.io/)
 - classnames (https://github.com/JedWatson/classnames)
 - React Router (https://reactrouter.com/web/guides/quick-start)
