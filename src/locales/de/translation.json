@@ -1,1 +1,10 @@
-{}
+{
+  "Home": {
+    "title": "default value"
+  },
+  "a": {
+    "b": {
+      "c": ""
+    }
+  }
+}
