@@ -1,4 +1,8 @@
 {
   "extends": ["react-app", "react-app/jest"],
-  "rules": {}
+  "plugins": ["react-hooks"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error", // Перевіряє правила хуків
+    "react-hooks/exhaustive-deps": "warn" // Перевіряє ефект залежностей
+  }
 }
