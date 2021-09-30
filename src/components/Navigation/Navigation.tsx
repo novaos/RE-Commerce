@@ -3,9 +3,15 @@ import { NavLink } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 import { ThemeEnum } from '../../enums';
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
 
 const Navigation: React.FC = () => {
   const [theme, setTheme] = useState<ThemeEnum>(ThemeEnum.LIGHT);
+  const { i18n } = useTranslation();
+  const handleLanguageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const language = event.target.value;
+    i18n.changeLanguage(language);
+  };
 
   return (
     <nav className={classNames('navbar', theme === ThemeEnum.LIGHT ? 'is-light' : 'is-dark', styles.navbar)}>
@@ -41,6 +47,29 @@ const Navigation: React.FC = () => {
               activeClassName={styles.selected}>
               Query
             </NavLink>
+          </div>
+
+          <div className="column is-flex is-justify-content-flex-end is-align-items-center">
+            <label className="radio">
+              <input
+                type="radio"
+                value="en"
+                name="language"
+                onChange={handleLanguageChange}
+                checked={i18n.language === 'en'}
+              />
+              En
+            </label>
+            <label className="radio">
+              <input
+                type="radio"
+                value="de"
+                name="language"
+                onChange={handleLanguageChange}
+                checked={i18n.language === 'de'}
+              />
+              De
+            </label>
           </div>
 
           <div className="column is-flex is-justify-content-flex-end is-align-items-center">

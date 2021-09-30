@@ -1,6 +1,6 @@
 import loadable from '@loadable/component';
 
-const LazyHome = loadable(() => import('./pages/Home'));
+const LazyHome = loadable(() => import('./pages/Home/Home'));
 const LazyCounter = loadable(() => import('./pages/Counter'));
 const LazyUsers = loadable(() => import('./pages/Users/Users'));
 const LazyQuery = loadable(() => import('./pages/Query/Query'));

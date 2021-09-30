@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// Initialize languages
+import './locales/i18n';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
