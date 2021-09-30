@@ -12,7 +12,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "lint:ts": "npx eslint . --ext .ts,.tsx"
+    "eslint": "eslint --ext js,ts,tsx"
   },
   "dependencies": {
     "@loadable/component": "^5.15.0",
