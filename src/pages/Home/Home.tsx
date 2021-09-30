@@ -6,7 +6,7 @@ const Home: React.FC = () => {
   const { t } = useTranslation();
   return (
     <>
-      <h1 className="title">{t(...messages.homeTitle())}</h1>
+      <h1 className="title">{t(messages.homeTitle())}</h1>
     </>
   );
 };

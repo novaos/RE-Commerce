@@ -8,5 +8,5 @@ import { translations } from '../../locales/translations';
 import { _t } from '../../utils/messages';
 
 export const messages = {
-  homeTitle: () => _t(translations.Home.title, 'default value')
+  homeTitle: () => _t(translations.Home.title, 'Home')
 };
