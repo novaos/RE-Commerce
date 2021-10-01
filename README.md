@@ -10,7 +10,6 @@
 - context
 - graphics
 
-
 # List of libraries
 - React
 - TypeScript

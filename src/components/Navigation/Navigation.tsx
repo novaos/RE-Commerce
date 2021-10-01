@@ -5,6 +5,9 @@ import { ThemeEnum } from '../../enums';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
+import ThemeSwitch from '../ThemeSwitch';
+import LanguageSwitch from '../LanguageSwitch';
+
 const Navigation: React.FC = () => {
   const [theme, setTheme] = useState<ThemeEnum>(ThemeEnum.LIGHT);
   const { i18n } = useTranslation();
@@ -49,44 +52,8 @@ const Navigation: React.FC = () => {
             </NavLink>
           </div>
 
-          <div className="column is-flex is-justify-content-flex-end is-align-items-center">
-            <label className="radio">
-              <input
-                type="radio"
-                value="en"
-                name="language"
-                onChange={handleLanguageChange}
-                checked={i18n.language === 'en'}
-              />
-              En
-            </label>
-            <label className="radio">
-              <input
-                type="radio"
-                value="de"
-                name="language"
-                onChange={handleLanguageChange}
-                checked={i18n.language === 'de'}
-              />
-              De
-            </label>
-          </div>
-
-          <div className="column is-flex is-justify-content-flex-end is-align-items-center">
-            <div className="field">
-              <input
-                id="themeSwitch"
-                type="checkbox"
-                name="themeSwitch"
-                className="switch is-rounded is-outlined"
-                defaultChecked
-                onChange={() => setTheme(theme === ThemeEnum.LIGHT ? ThemeEnum.DARK : ThemeEnum.LIGHT)}
-              />
-              <label htmlFor="themeSwitch" className="is-capitalized">
-                {theme}
-              </label>
-            </div>
-          </div>
+          <LanguageSwitch i18n={i18n} handleLanguageChange={handleLanguageChange} />
+          <ThemeSwitch theme={theme} setTheme={setTheme} />
         </div>
       </div>
     </nav>
