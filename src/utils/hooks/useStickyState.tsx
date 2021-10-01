@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 
+// https://www.joshwcomeau.com/snippets/react-hooks/use-sticky-state/
+
 export const useStickyState = (defaultValue: any, key: string) => {
   const [value, setValue] = useState(() => {
     const stickyValue = localStorage.getItem(key);
