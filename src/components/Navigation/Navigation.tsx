@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './Navigation.module.scss';
-import { ThemeEnum } from '../../enums';
+
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
 
+import styles from './Navigation.module.scss';
+
+import { ThemeEnum } from '../../enums';
 import ThemeSwitch from '../ThemeSwitch';
 import LanguageSwitch from '../LanguageSwitch';
 
