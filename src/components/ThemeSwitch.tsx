@@ -3,10 +3,10 @@ import { ThemeEnum } from '../enums';
 
 type Props = {
   theme: ThemeEnum;
-  setTheme: React.Dispatch<React.SetStateAction<ThemeEnum>>;
+  handleThemeChange: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-const ThemeSwitch: React.FC<Props> = ({ theme, setTheme }) => {
+const ThemeSwitch: React.FC<Props> = ({ theme, handleThemeChange }) => {
   return (
     <div className="column is-flex is-justify-content-flex-end is-align-items-center">
       <div className="field">
@@ -16,7 +16,7 @@ const ThemeSwitch: React.FC<Props> = ({ theme, setTheme }) => {
           name="themeSwitch"
           className="switch is-rounded is-outlined"
           defaultChecked
-          onChange={() => setTheme(theme === ThemeEnum.LIGHT ? ThemeEnum.DARK : ThemeEnum.LIGHT)}
+          onChange={handleThemeChange}
         />
         <label htmlFor="themeSwitch" className="is-capitalized">
           {theme}

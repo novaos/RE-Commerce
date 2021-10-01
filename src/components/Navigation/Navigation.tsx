@@ -21,6 +21,13 @@ const Navigation: React.FC = () => {
     [i18n]
   );
 
+  const handleThemeChange = useCallback(
+    (_: React.ChangeEvent<HTMLInputElement>) => {
+      setTheme(theme === ThemeEnum.LIGHT ? ThemeEnum.DARK : ThemeEnum.LIGHT);
+    },
+    [theme]
+  );
+
   return (
     <nav className={classNames('navbar', theme === ThemeEnum.LIGHT ? 'is-light' : 'is-dark', styles.navbar)}>
       <div className="container">
@@ -58,7 +65,7 @@ const Navigation: React.FC = () => {
           </div>
 
           <LanguageSwitch i18n={i18n} handleLanguageChange={handleLanguageChange} />
-          <ThemeSwitch theme={theme} setTheme={setTheme} />
+          <ThemeSwitch theme={theme} handleThemeChange={handleThemeChange} />
         </div>
       </div>
     </nav>
