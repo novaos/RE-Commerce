@@ -4,7 +4,6 @@
 - Architecture
 - Unit testing
 - Forms (Formik and react-hook-form)
-- i18n (react-intl - https://formatjs.io/docs/getting-started/installation/)
 - Auth
 - async (React-query)
 - hooks
@@ -20,6 +19,7 @@
 - classnames (https://github.com/JedWatson/classnames)
 - React Router (https://reactrouter.com/web/guides/quick-start)
 - @loadable/component (https://github.com/gregberge/loadable-components)
+- react-i18next (https://github.com/i18next/react-i18next)
 
 # Inspired from
 - https://github.com/react-boilerplate/react-boilerplate-cra-template
