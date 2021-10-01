@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import classNames from 'classnames';
@@ -6,12 +6,13 @@ import { useTranslation } from 'react-i18next';
 
 import styles from './Navigation.module.scss';
 
+import { useStickyState } from '../../utils/hooks';
 import { ThemeEnum } from '../../enums';
 import ThemeSwitch from '../ThemeSwitch';
 import LanguageSwitch from '../LanguageSwitch';
 
 const Navigation: React.FC = () => {
-  const [theme, setTheme] = useState<ThemeEnum>(ThemeEnum.LIGHT);
+  const [theme, setTheme] = useStickyState(ThemeEnum.LIGHT, 'theme');
   const { i18n } = useTranslation();
 
   const handleLanguageChange = useCallback(
@@ -25,7 +26,7 @@ const Navigation: React.FC = () => {
     (_: React.ChangeEvent<HTMLInputElement>) => {
       setTheme(theme === ThemeEnum.LIGHT ? ThemeEnum.DARK : ThemeEnum.LIGHT);
     },
-    [theme]
+    [theme, setTheme]
   );
 
   return (

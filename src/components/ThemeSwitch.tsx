@@ -15,7 +15,7 @@ const ThemeSwitch: React.FC<Props> = ({ theme, handleThemeChange }) => {
           type="checkbox"
           name="themeSwitch"
           className="switch is-rounded is-outlined"
-          defaultChecked
+          checked={theme === ThemeEnum.LIGHT}
           onChange={handleThemeChange}
         />
         <label htmlFor="themeSwitch" className="is-capitalized">
