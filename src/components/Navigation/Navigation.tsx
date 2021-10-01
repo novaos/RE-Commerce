@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Navigation.module.scss';
 import { ThemeEnum } from '../../enums';
@@ -11,10 +11,14 @@ import LanguageSwitch from '../LanguageSwitch';
 const Navigation: React.FC = () => {
   const [theme, setTheme] = useState<ThemeEnum>(ThemeEnum.LIGHT);
   const { i18n } = useTranslation();
-  const handleLanguageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const language = event.target.value;
-    i18n.changeLanguage(language);
-  };
+
+  const handleLanguageChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const language = event.target.value;
+      i18n.changeLanguage(language);
+    },
+    [i18n]
+  );
 
   return (
     <nav className={classNames('navbar', theme === ThemeEnum.LIGHT ? 'is-light' : 'is-dark', styles.navbar)}>
