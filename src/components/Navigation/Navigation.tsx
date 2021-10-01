@@ -14,8 +14,7 @@ const Navigation: React.FC = () => {
 
   const handleLanguageChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
-      const language = event.target.value;
-      i18n.changeLanguage(language);
+      i18n.changeLanguage(event.target.value);
     },
     [i18n]
   );
