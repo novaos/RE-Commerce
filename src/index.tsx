@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+// Use consistent styling
+import 'sanitize.css/sanitize.css';
 // Initialize languages
 import './locales/i18n';
+// App styles
 import './index.scss';
+
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
