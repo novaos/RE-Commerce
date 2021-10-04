@@ -1,0 +1,19 @@
+{
+  "Home": {
+    "title": "Home"
+  },
+  "Counter":{
+    "title": "Counter"
+  },
+  "Users":{
+    "title": "Users"
+  },
+  "Query":{
+    "title": "React Query"
+  },
+  "a": {
+    "b": {
+      "c": ""
+    }
+  }
+}

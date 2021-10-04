@@ -1,11 +1,33 @@
-import React, { useState } from 'react';
+import React, { useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './Navigation.module.scss';
-import { ThemeEnum } from '../../enums';
+
 import classNames from 'classnames';
+import { useTranslation } from 'react-i18next';
+
+import styles from './Navigation.module.scss';
+
+import { useStickyState } from '../../utils/hooks';
+import { ThemeEnum } from '../../enums';
+import ThemeSwitch from '../ThemeSwitch';
+import LanguageSwitch from '../LanguageSwitch';
 
 const Navigation: React.FC = () => {
-  const [theme, setTheme] = useState<ThemeEnum>(ThemeEnum.LIGHT);
+  const [theme, setTheme] = useStickyState(ThemeEnum.LIGHT, 'theme');
+  const { i18n } = useTranslation();
+
+  const handleLanguageChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      i18n.changeLanguage(event.target.value);
+    },
+    [i18n]
+  );
+
+  const handleThemeChange = useCallback(
+    (_: React.ChangeEvent<HTMLInputElement>) => {
+      setTheme(theme === ThemeEnum.LIGHT ? ThemeEnum.DARK : ThemeEnum.LIGHT);
+    },
+    [theme, setTheme]
+  );
 
   return (
     <nav className={classNames('navbar', theme === ThemeEnum.LIGHT ? 'is-light' : 'is-dark', styles.navbar)}>
@@ -43,21 +65,8 @@ const Navigation: React.FC = () => {
             </NavLink>
           </div>
 
-          <div className="column is-flex is-justify-content-flex-end is-align-items-center">
-            <div className="field">
-              <input
-                id="themeSwitch"
-                type="checkbox"
-                name="themeSwitch"
-                className="switch is-rounded is-outlined"
-                defaultChecked
-                onChange={() => setTheme(theme === ThemeEnum.LIGHT ? ThemeEnum.DARK : ThemeEnum.LIGHT)}
-              />
-              <label htmlFor="themeSwitch" className="is-capitalized">
-                {theme}
-              </label>
-            </div>
-          </div>
+          <LanguageSwitch i18n={i18n} handleLanguageChange={handleLanguageChange} />
+          <ThemeSwitch theme={theme} handleThemeChange={handleThemeChange} />
         </div>
       </div>
     </nav>
