@@ -4,7 +4,6 @@ import { useQuery } from 'react-query';
 import Post from './components/Post';
 import Loader from '../../components/Loader';
 import { IPost } from './interfaces';
-import { messages } from './messages';
 import { useTranslation } from 'react-i18next';
 
 const Query: React.FC = () => {
@@ -23,7 +22,7 @@ const Query: React.FC = () => {
 
   return (
     <>
-      <h1 className="title">{t(messages.queryTitle())}</h1>
+      <h1 className="title">{t('Query.title')}</h1>
       {!data?.length
         ? 'No items yet...'
         : data.map(s => (
