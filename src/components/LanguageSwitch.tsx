@@ -8,7 +8,7 @@ type Props = {
 
 const LanguageSwitch: React.FC<Props> = ({ i18n, handleLanguageChange }) => {
   return (
-    <div className="column is-flex is-justify-content-flex-end is-align-items-center">
+    <div className="column is-flex is-align-items-center">
       <label className="radio">
         <input
           type="radio"

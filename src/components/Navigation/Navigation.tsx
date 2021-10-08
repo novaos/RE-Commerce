@@ -10,6 +10,7 @@ import { useStickyState } from '../../utils/hooks';
 import { ThemeEnum } from '../../enums';
 import ThemeSwitch from '../ThemeSwitch';
 import LanguageSwitch from '../LanguageSwitch';
+import UserMenu from '../UserMenu';
 
 const Navigation: React.FC = () => {
   const [theme, setTheme] = useStickyState(ThemeEnum.LIGHT, 'theme');
@@ -30,10 +31,17 @@ const Navigation: React.FC = () => {
   );
 
   return (
-    <nav className={classNames('navbar', theme === ThemeEnum.LIGHT ? 'is-light' : 'is-dark', styles.navbar)}>
+    <nav
+      role="navigation"
+      aria-label="dropdown navigation"
+      className={classNames(
+        'navbar is-transparent',
+        theme === ThemeEnum.LIGHT ? 'is-light' : 'is-dark',
+        styles.navbar
+      )}>
       <div className="container">
-        <div className={`columns ${styles.fullWidth}`}>
-          <div className="column is-flex is-four-fifths">
+        <div className={`columns m-0 ${styles.fullWidth}`}>
+          <div className="column is-flex is-two-thirds">
             <NavLink
               className={classNames(
                 'navbar-item',
@@ -67,6 +75,7 @@ const Navigation: React.FC = () => {
 
           <LanguageSwitch i18n={i18n} handleLanguageChange={handleLanguageChange} />
           <ThemeSwitch theme={theme} handleThemeChange={handleThemeChange} />
+          <UserMenu />
         </div>
       </div>
     </nav>
