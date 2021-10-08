@@ -17,6 +17,9 @@ const UserMenu: React.FC = () => {
           <NavLink className="navbar-item" to="/settings">
             Settings
           </NavLink>
+          <NavLink className="navbar-item" to="/notifications">
+            Notifications
+          </NavLink>
           <hr className="navbar-divider" />
           <button className="button is-ghost" onClick={() => console.log('Log Out')}>
             Log Out

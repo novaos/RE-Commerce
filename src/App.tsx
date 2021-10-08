@@ -6,6 +6,7 @@ import { routes } from './app.routes';
 
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import GlobalContext from './utils/providers/GlobalContext';
 
 // Create a client
 const queryClient = new QueryClient();
@@ -15,17 +16,19 @@ const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
     <Router>
       <Suspense fallback={<Loader />}>
-        <div className="App">
-          <Navigation />
+        <GlobalContext>
+          <div className="App">
+            <Navigation />
 
-          <div className="container">
-            <Switch>
-              {routes.map((route, i) => (
-                <Route exact={route.exact || false} path={route.path} component={route.component} key={i} />
-              ))}
-            </Switch>
+            <div className="container">
+              <Switch>
+                {routes.map((route, i) => (
+                  <Route exact={route.exact || false} path={route.path} component={route.component} key={i} />
+                ))}
+              </Switch>
+            </div>
           </div>
-        </div>
+        </GlobalContext>
       </Suspense>
     </Router>
 
