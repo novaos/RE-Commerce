@@ -3,6 +3,7 @@ import { getPosts } from './services/postsApiService';
 import { useQuery } from 'react-query';
 import Post from './components/Post';
 import Loader from '../../components/Loader';
+import Error from '../../components/Error';
 import { IPost } from './interfaces';
 import { useTranslation } from 'react-i18next';
 
@@ -12,13 +13,8 @@ const Query: React.FC = () => {
     retry: 3 // Will retry failed requests 3 times before displaying an error
   });
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (isError) {
-    return <span>Error: {error && error.message}</span>;
-  }
+  if (isLoading) return <Loader />;
+  if (isError) return <Error error={error} />;
 
   return (
     <>
