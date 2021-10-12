@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import classNames from 'classnames';
@@ -18,9 +18,14 @@ const Navigation: React.FC = () => {
   const [theme, setTheme] = useStickyState(ThemeEnum.LIGHT, 'theme');
   const { i18n } = useTranslation();
 
+  useEffect(() => {
+    localStorage.setItem('language', JSON.stringify(i18n.language));
+  }, [i18n.language]);
+
   const handleLanguageChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       i18n.changeLanguage(event.target.value);
+      // localStorage.setItem('language', JSON.stringify(i18n.language));
       dispatch({ type: 'SET_LANGUAGE', payload: i18n.language as LanguageEnum });
     },
     [i18n]

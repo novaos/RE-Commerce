@@ -11,8 +11,9 @@ interface Context {
   property_second: string;
 }
 
+const language = localStorage.getItem('language');
 const initialContext: Context = {
-  language: LanguageEnum.EN,
+  language: language !== null ? JSON.parse(language) : LanguageEnum.EN,
   property_first: 0,
   property_second: 'initial value'
 };
