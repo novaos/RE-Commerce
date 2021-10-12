@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import { LanguageEnum } from '../../enums';
+import { LanguageEnum, LocalStorageKeysEnum } from '../../enums';
 
 type Props = {
   children: React.ReactNode;
@@ -11,7 +11,7 @@ interface Context {
   property_second: string;
 }
 
-const language = localStorage.getItem('language');
+const language = localStorage.getItem(LocalStorageKeysEnum.LANGUAGE);
 const initialContext: Context = {
   language: language !== null ? JSON.parse(language) : LanguageEnum.EN,
   property_first: 0,

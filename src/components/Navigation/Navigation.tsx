@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import classNames from 'classnames';
@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import styles from './Navigation.module.scss';
 
 import { useStickyState } from '../../utils/hooks';
-import { LanguageEnum, ThemeEnum } from '../../enums';
+import { LanguageEnum, LocalStorageKeysEnum, ThemeEnum } from '../../enums';
 import ThemeSwitch from '../ThemeSwitch';
 import LanguageSwitch from '../LanguageSwitch';
 import UserMenu from '../UserMenu';
@@ -15,17 +15,13 @@ import { GlobalContext } from '../../utils/providers/GlobalContext';
 
 const Navigation: React.FC = () => {
   const { state, dispatch } = useContext(GlobalContext);
-  const [theme, setTheme] = useStickyState(ThemeEnum.LIGHT, 'theme');
+  const [theme, setTheme] = useStickyState(ThemeEnum.LIGHT, LocalStorageKeysEnum.THEME);
   const { i18n } = useTranslation();
-
-  useEffect(() => {
-    localStorage.setItem('language', JSON.stringify(i18n.language));
-  }, [i18n.language]);
 
   const handleLanguageChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       i18n.changeLanguage(event.target.value);
-      // localStorage.setItem('language', JSON.stringify(i18n.language));
+      localStorage.setItem(LocalStorageKeysEnum.LANGUAGE, JSON.stringify(i18n.language));
       dispatch({ type: 'SET_LANGUAGE', payload: i18n.language as LanguageEnum });
     },
     [i18n]
