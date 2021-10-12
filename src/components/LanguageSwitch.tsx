@@ -12,7 +12,7 @@ const LanguageSwitch: React.FC<Props> = ({ language, handleLanguageChange }) => 
       <label className="radio">
         <input
           type="radio"
-          value="en"
+          value={LanguageEnum.EN}
           name="language"
           onChange={handleLanguageChange}
           checked={language === LanguageEnum.EN}
@@ -22,7 +22,7 @@ const LanguageSwitch: React.FC<Props> = ({ language, handleLanguageChange }) => 
       <label className="radio">
         <input
           type="radio"
-          value="de"
+          value={LanguageEnum.DE}
           name="language"
           onChange={handleLanguageChange}
           checked={language === LanguageEnum.DE}
