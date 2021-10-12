@@ -24,7 +24,7 @@ const Navigation: React.FC = () => {
       localStorage.setItem(LocalStorageKeysEnum.LANGUAGE, JSON.stringify(i18n.language));
       dispatch({ type: 'SET_LANGUAGE', payload: i18n.language as LanguageEnum });
     },
-    [i18n]
+    [i18n, dispatch]
   );
 
   const handleThemeChange = useCallback(
