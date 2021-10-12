@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import classNames from 'classnames';
@@ -7,18 +7,21 @@ import { useTranslation } from 'react-i18next';
 import styles from './Navigation.module.scss';
 
 import { useStickyState } from '../../utils/hooks';
-import { ThemeEnum } from '../../enums';
+import { LanguageEnum, ThemeEnum } from '../../enums';
 import ThemeSwitch from '../ThemeSwitch';
 import LanguageSwitch from '../LanguageSwitch';
 import UserMenu from '../UserMenu';
+import { GlobalContext } from '../../utils/providers/GlobalContext';
 
 const Navigation: React.FC = () => {
+  const { state, dispatch } = useContext(GlobalContext);
   const [theme, setTheme] = useStickyState(ThemeEnum.LIGHT, 'theme');
   const { i18n } = useTranslation();
 
   const handleLanguageChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       i18n.changeLanguage(event.target.value);
+      dispatch({ type: 'SET_LANGUAGE', payload: i18n.language as LanguageEnum });
     },
     [i18n]
   );
@@ -73,7 +76,7 @@ const Navigation: React.FC = () => {
             </NavLink>
           </div>
 
-          <LanguageSwitch i18n={i18n} handleLanguageChange={handleLanguageChange} />
+          <LanguageSwitch language={state.language} handleLanguageChange={handleLanguageChange} />
           <ThemeSwitch theme={theme} handleThemeChange={handleThemeChange} />
           <UserMenu />
         </div>
