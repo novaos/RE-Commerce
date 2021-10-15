@@ -22,3 +22,7 @@
 
 # Inspired from
 - https://github.com/react-boilerplate/react-boilerplate-cra-template
+
+# Roadmap
+
+<img src="./public/1_-A9vh80AqLKLIyV4HIA02g.png" width="960">
