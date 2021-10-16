@@ -1,14 +1,4 @@
-export enum ThemeEnum {
-  'DARK' = 'dark',
-  'LIGHT' = 'light'
-}
-
-export enum LanguageEnum {
-  'EN' = 'en',
-  'DE' = 'de'
-}
-
-export enum LocalStorageKeysEnum {
-  LANGUAGE = 'language',
-  THEME = 'theme'
-}
+export * from './theme-enum';
+export * from './server-state-enum';
+export * from './language-enum';
+export * from './local-storage-keys-enum';

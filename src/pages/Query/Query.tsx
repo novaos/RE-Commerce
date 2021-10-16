@@ -1,6 +1,7 @@
 import React from 'react';
 import { getPosts } from './services/postsApiService';
 import { useQuery } from 'react-query';
+import { ServerStateKeysEnum } from '../../enums';
 import Post from './components/Post';
 import Loader from '../../components/Loader';
 import Error from '../../components/Error';
@@ -9,7 +10,7 @@ import { useTranslation } from 'react-i18next';
 
 const Query: React.FC = () => {
   const { t } = useTranslation();
-  const { data, error, isLoading, isError } = useQuery<IPost[], Error>('key-for-getPosts-request', getPosts, {
+  const { data, error, isLoading, isError } = useQuery<IPost[], Error>(ServerStateKeysEnum.GET_POSTS, getPosts, {
     retry: 3 // Will retry failed requests 3 times before displaying an error
   });
 
