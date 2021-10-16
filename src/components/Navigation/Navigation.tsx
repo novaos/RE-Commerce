@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import classNames from 'classnames';
@@ -18,21 +18,15 @@ const Navigation: React.FC = () => {
   const [theme, setTheme] = useStickyState(ThemeEnum.LIGHT, LocalStorageKeysEnum.THEME);
   const { i18n } = useTranslation();
 
-  const handleLanguageChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      i18n.changeLanguage(event.target.value);
-      localStorage.setItem(LocalStorageKeysEnum.LANGUAGE, JSON.stringify(i18n.language));
-      dispatch({ type: 'SET_LANGUAGE', payload: i18n.language as LanguageEnum });
-    },
-    [i18n, dispatch]
-  );
+  const handleLanguageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    i18n.changeLanguage(event.target.value);
+    localStorage.setItem(LocalStorageKeysEnum.LANGUAGE, JSON.stringify(i18n.language));
+    dispatch({ type: 'SET_LANGUAGE', payload: i18n.language as LanguageEnum });
+  };
 
-  const handleThemeChange = useCallback(
-    (_: React.ChangeEvent<HTMLInputElement>) => {
-      setTheme(theme === ThemeEnum.LIGHT ? ThemeEnum.DARK : ThemeEnum.LIGHT);
-    },
-    [theme, setTheme]
-  );
+  const handleThemeChange = (_: React.ChangeEvent<HTMLInputElement>) => {
+    setTheme(theme === ThemeEnum.LIGHT ? ThemeEnum.DARK : ThemeEnum.LIGHT);
+  };
 
   return (
     <nav
