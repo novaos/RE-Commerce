@@ -4,20 +4,10 @@ import Navigation from './components/Navigation/Navigation';
 import Loader from './components/Loader';
 import { routes } from './app.routes';
 
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { queryClient } from './utils/react-query-client';
+import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import GlobalContext from './utils/providers/GlobalContext';
-
-// Create a client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      retry: false,
-      staleTime: 30000
-    }
-  }
-});
 
 const App: React.FC = () => (
   // Provide the client to your App
