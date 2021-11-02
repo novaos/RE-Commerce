@@ -7,7 +7,7 @@ import Error from './Error';
 const BasicForm = () => {
   const { t } = useTranslation();
 
-  const validationSchema: any = Yup.object({
+  const validationSchema = Yup.object({
     fullName: Yup.string().required(t('Formik.required')),
     email: Yup.string().email(t('Formik.incorrectEmail')).required(t('Formik.required')),
     password: Yup.string().min(8, 'Minimum 8 characters').required('Required!'),
