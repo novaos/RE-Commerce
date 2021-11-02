@@ -11,6 +11,11 @@
   "Query":{
     "title": "React Query"
   },
+  "Formik":{
+    "title": "Formik + Yup",
+    "required": "This field is required",
+    "incorrectEmail": "Incorrect email address"
+  },
   "a": {
     "b": {
       "c": ""
