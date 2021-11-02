@@ -11,6 +11,9 @@
   "Query":{
     "title": "React Query"
   },
+  "Formik":{
+    "title": "Formik + Yup"
+  },
   "a": {
     "b": {
       "c": ""

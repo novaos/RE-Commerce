@@ -11,6 +11,9 @@
   "Query":{
     "title": "React Anfrage"
   },
+  "Formik":{
+    "title": "[de] Formik + Yup"
+  },
   "a": {
     "b": {
       "c": ""
