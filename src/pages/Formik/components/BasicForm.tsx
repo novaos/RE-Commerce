@@ -2,6 +2,7 @@ import { Formik, Form, Field, ErrorMessage, FormikProps } from 'formik';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { IBasicFormValues } from '../interfaces';
+import { DisplayFormikState } from '../../../utils/displayFormikState';
 import Error from './Error';
 
 const BasicForm = () => {
@@ -35,7 +36,7 @@ const BasicForm = () => {
 
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(props: FormikProps<IBasicFormValues>) => {
-          const { dirty, isValid } = props;
+          const { dirty, isValid, values } = props;
 
           return (
             <Form>
@@ -95,6 +96,8 @@ const BasicForm = () => {
                   Submit
                 </button>
               </div>
+
+              <DisplayFormikState {...values} />
             </Form>
           );
         }}
