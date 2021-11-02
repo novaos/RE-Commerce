@@ -19,14 +19,12 @@ const CustomValidationForm = () => {
       .min(2, 'Mininum 2 characters')
       .max(15, 'Maximum 15 characters')
       .required(t('Formik.required')),
-    product: Yup.string().required('Please select a product').oneOf(products),
-    agreeWithTermsAndConditions: Yup.boolean().default(false)
+    product: Yup.string().required('Please select a product').oneOf(products)
   });
 
   const initialValues = {
     fullName: '',
-    product: '',
-    agreeWithTermsAndConditions: false
+    product: ''
   };
 
   const onSubmit = (values: ICustomValidationFormValues) => {
@@ -44,7 +42,6 @@ const CustomValidationForm = () => {
           return (
             <Form>
               <div className="container">
-                {/* text control */}
                 <div className="field">
                   <label className="label" htmlFor="fullName">
                     Full name
@@ -55,7 +52,6 @@ const CustomValidationForm = () => {
                   </div>
                 </div>
 
-                {/* Dropdown */}
                 <div className="field">
                   <label className="label" htmlFor="product">
                     Product
@@ -68,16 +64,6 @@ const CustomValidationForm = () => {
                       </Field>
                     </div>
                     <ErrorMessage name="product" render={Error} />
-                  </div>
-                </div>
-
-                {/* checkbox */}
-                <div className="field">
-                  <div className="control">
-                    <label className="checkbox" htmlFor="agreeWithTermsAndConditions">
-                      <Field name="agreeWithTermsAndConditions" type="checkbox" className="mr-2 checkbox" />I agree to
-                      the terms and conditions
-                    </label>
                   </div>
                 </div>
 

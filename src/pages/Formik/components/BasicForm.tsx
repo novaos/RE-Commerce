@@ -9,12 +9,20 @@ const BasicForm = () => {
 
   const validationSchema: any = Yup.object({
     fullName: Yup.string().required(t('Formik.required')),
-    email: Yup.string().email(t('Formik.incorrectEmail')).required(t('Formik.required'))
+    email: Yup.string().email(t('Formik.incorrectEmail')).required(t('Formik.required')),
+    password: Yup.string().min(8, 'Minimum 8 characters').required('Required!'),
+    confirm_password: Yup.string()
+      .oneOf([Yup.ref('password')], "Password's not match")
+      .required('Required!'),
+    agreeWithTermsAndConditions: Yup.boolean().default(false)
   });
 
   const initialValues = {
     fullName: '',
-    email: ''
+    email: '',
+    password: '',
+    confirm_password: '',
+    agreeWithTermsAndConditions: false
   };
 
   const onSubmit = (values: IBasicFormValues) => {
@@ -49,6 +57,37 @@ const BasicForm = () => {
                   <div className="control">
                     <Field name="email" type="text" className="input" placeholder="Email address" />
                     <ErrorMessage name="email" render={Error} />
+                  </div>
+                </div>
+
+                <div className="field">
+                  <label className="label" htmlFor="password">
+                    Password
+                  </label>
+
+                  <div className="control">
+                    <Field name="password" type="text" className="input" placeholder="Password" />
+                    <ErrorMessage name="password" render={Error} />
+                  </div>
+                </div>
+
+                <div className="field">
+                  <label className="label" htmlFor="password">
+                    Confirm Password
+                  </label>
+
+                  <div className="control">
+                    <Field name="confirm_password" type="text" className="input" placeholder="Password" />
+                    <ErrorMessage name="confirm_password" render={Error} />
+                  </div>
+                </div>
+
+                <div className="field">
+                  <div className="control">
+                    <label className="checkbox" htmlFor="agreeWithTermsAndConditions">
+                      <Field name="agreeWithTermsAndConditions" type="checkbox" className="mr-2 checkbox" />I agree to
+                      the terms and conditions
+                    </label>
                   </div>
                 </div>
 
