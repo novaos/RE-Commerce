@@ -1,11 +1,15 @@
 import { Formik, Form, Field, ErrorMessage, FormikProps } from 'formik';
+import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
-import { IFormValues } from '../interfaces';
+import { IBasicFormValues } from '../interfaces';
+import Error from './Error';
 
 const BasicForm = () => {
+  const { t } = useTranslation();
+
   const validationSchema: any = Yup.object({
-    fullName: Yup.string().required(),
-    email: Yup.string().email().required()
+    fullName: Yup.string().required(t('Formik.required')),
+    email: Yup.string().email(t('Formik.incorrectEmail')).required(t('Formik.required'))
   });
 
   const initialValues = {
@@ -13,16 +17,16 @@ const BasicForm = () => {
     email: ''
   };
 
-  const onSubmit = (values: IFormValues) => {
+  const onSubmit = (values: IBasicFormValues) => {
     console.log(values);
   };
 
-  const renderError = (message: string) => <p className="help is-danger">{message}</p>;
-
   return (
     <>
+      <h4 className="title is-4">Basic form</h4>
+
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-        {(props: FormikProps<IFormValues>) => {
+        {(props: FormikProps<IBasicFormValues>) => {
           const { dirty, isValid } = props;
 
           return (
@@ -34,7 +38,7 @@ const BasicForm = () => {
                   </label>
                   <div className="control">
                     <Field name="fullName" type="text" className="input" placeholder="Full name" />
-                    <ErrorMessage name="fullName" render={renderError} />
+                    <ErrorMessage name="fullName" render={Error} />
                   </div>
                 </div>
 
@@ -44,7 +48,7 @@ const BasicForm = () => {
                   </label>
                   <div className="control">
                     <Field name="email" type="text" className="input" placeholder="Email address" />
-                    <ErrorMessage name="email" render={renderError} />
+                    <ErrorMessage name="email" render={Error} />
                   </div>
                 </div>
 

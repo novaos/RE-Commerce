@@ -1,11 +1,12 @@
 import loadable from '@loadable/component';
+import Loader from './components/Loader';
 
-const LazyHome = loadable(() => import('./pages/Home/Home'));
-const LazyCounter = loadable(() => import('./pages/Counter/Counter'));
-const LazyUsers = loadable(() => import('./pages/Users/Users'));
-const LazyQuery = loadable(() => import('./pages/Query/Query'));
-const LazyFormik = loadable(() => import('./pages/Formik/Formik'));
-const LazyNotFound = loadable(() => import('./components/NotFound'));
+const LazyHome = loadable(() => import('./pages/Home/Home'), { fallback: <Loader /> });
+const LazyCounter = loadable(() => import('./pages/Counter/Counter'), { fallback: <Loader /> });
+const LazyUsers = loadable(() => import('./pages/Users/Users'), { fallback: <Loader /> });
+const LazyQuery = loadable(() => import('./pages/Query/Query'), { fallback: <Loader /> });
+const LazyFormik = loadable(() => import('./pages/Formik/Formik'), { fallback: <Loader /> });
+const LazyNotFound = loadable(() => import('./components/NotFound'), { fallback: <Loader /> });
 
 export const routes = [
   {

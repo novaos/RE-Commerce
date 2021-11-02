@@ -12,7 +12,9 @@
     "title": "React Anfrage"
   },
   "Formik":{
-    "title": "[de] Formik + Yup"
+    "title": "[de] Formik + Yup",
+    "required": "[de] This field is required",
+    "incorrectEmail": "[de] Incorrect email address"
   },
   "a": {
     "b": {
