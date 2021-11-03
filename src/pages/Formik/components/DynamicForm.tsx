@@ -32,7 +32,7 @@ const DynamicForm = () => {
 
   return (
     <>
-      <h4 className="title is-4">Basic form</h4>
+      <h4 className="title is-4">Dynamic form</h4>
 
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
         {(props: FormikProps<IDynamicFormValues>) => {
