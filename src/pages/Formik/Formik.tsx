@@ -26,6 +26,9 @@ const Formik: React.FC = (props: any) => {
             <li className={getNavLinkClass(`${url}/custom-validation`)}>
               <NavLink to={`${url}/custom-validation`}>Custom Validation Form</NavLink>
             </li>
+            <li className={getNavLinkClass(`${url}/dynamic`)}>
+              <NavLink to={`${url}/dynamic`}>Dynamic Form</NavLink>
+            </li>
           </ul>
         </div>
       </div>

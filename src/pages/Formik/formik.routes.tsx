@@ -1,5 +1,6 @@
 import BasicForm from './components/BasicForm';
 import CustomValidationForm from './components/CustomValidationForm';
+import DynamicForm from './components/DynamicForm';
 
 export const formikRoutes = [
   {
@@ -10,6 +11,10 @@ export const formikRoutes = [
   {
     path: '/custom-validation',
     component: CustomValidationForm
+  },
+  {
+    path: '/dynamic',
+    component: DynamicForm
   },
   {
     path: '*',

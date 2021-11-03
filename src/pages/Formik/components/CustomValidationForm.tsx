@@ -36,7 +36,9 @@ const CustomValidationForm = () => {
         then: Yup.string().required(t('GLOBAL.VALIDATION.required')),
         otherwise: Yup.string()
       })
-      .min(2, 'Mininum 2 characters')
+      .min(2, 'Mininum 2 characters'),
+    age: Yup.number(),
+    meat: Yup.array().min(1, 'At least one meat must be selected')
   });
 
   const initialValues = {
@@ -45,7 +47,9 @@ const CustomValidationForm = () => {
     country: '',
     email: '',
     startDate: '',
-    comment: ''
+    comment: '',
+    age: '',
+    meat: ''
   };
 
   const onSubmit = (values: ICustomValidationFormValues) => {
@@ -151,6 +155,67 @@ const CustomValidationForm = () => {
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <div className="field">
+                  <div className="control">
+                    <div role="group" aria-labelledby="radio-group">
+                      <label className="label">How old are you?</label>
+
+                      <div className="control columns">
+                        <label className="column radio label">
+                          <Field className="mr-2" name="age" type="radio" value="0-20" />
+                          0-20
+                        </label>
+                        <label className="column radio label">
+                          <Field className="mr-2" name="age" type="radio" value="20-40" />
+                          20-40
+                        </label>
+                        <label className="column radio label">
+                          <Field className="mr-2" name="age" type="radio" value="40-60" />
+                          40-60
+                        </label>
+                        <label className="column radio label">
+                          <Field className="mr-2" name="age" type="radio" value="60-80" />
+                          60-80
+                        </label>
+                        <label className="column radio label">
+                          <Field className="mr-2" name="age" type="radio" value="80-100" />
+                          80-100
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <ErrorMessage name="age" render={Error} />
+                </div>
+
+                <div className="field">
+                  <div className="control">
+                    <div role="group" aria-labelledby="checkbox-group">
+                      <label className="label">What is your favorite meat?</label>
+
+                      <div className="control columns">
+                        <label className="column checkbox label">
+                          <Field className="mr-2" name="meat" type="checkbox" value="pork" />
+                          Pork
+                        </label>
+                        <label className="column checkbox label">
+                          <Field className="mr-2" name="meat" type="checkbox" value="beef" />
+                          Beef
+                        </label>
+                        <label className="column checkbox label">
+                          <Field className="mr-2" name="meat" type="checkbox" value="chicken" />
+                          Chicken
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <ErrorMessage name="meat" render={Error} />
+                </div>
+
+                <div className="field">
+                  <label className="label">Field Arrays</label>
+                  <div className="control">TODO https://formik.org/docs/examples/field-arrays</div>
                 </div>
 
                 <button type="submit" className="button is-primary" disabled={!(isValid && dirty)}>

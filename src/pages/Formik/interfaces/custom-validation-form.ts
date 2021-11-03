@@ -5,4 +5,6 @@ export interface ICustomValidationFormValues {
   email: string;
   startDate: string;
   comment: string;
+  age: string;
+  meat: string;
 }

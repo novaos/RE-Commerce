@@ -15,7 +15,7 @@ const BasicForm = () => {
     confirm_password: Yup.string()
       .oneOf([Yup.ref('password')], "Password's not match")
       .required('Required!'),
-    agreeWithTermsAndConditions: Yup.boolean().default(false)
+    agreeWithTermsAndConditions: Yup.boolean().oneOf([true], 'Must Accept Terms and Conditions')
   });
 
   const initialValues = {
@@ -89,6 +89,7 @@ const BasicForm = () => {
                       <Field name="agreeWithTermsAndConditions" type="checkbox" className="mr-2 checkbox" />I agree to
                       the terms and conditions
                     </label>
+                    <ErrorMessage name="agreeWithTermsAndConditions" render={Error} />
                   </div>
                 </div>
 
