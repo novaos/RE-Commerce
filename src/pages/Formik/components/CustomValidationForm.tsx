@@ -25,15 +25,15 @@ const CustomValidationForm = () => {
     fullName: Yup.string()
       .min(2, 'Mininum 2 characters')
       .max(15, 'Maximum 15 characters')
-      .required(t('Formik.required')),
+      .required(t('GLOBAL.VALIDATION.required')),
     product: Yup.string().required('Please select a product').oneOf(products),
-    country: Yup.string().required(t('Formik.required')),
-    email: Yup.string().matches(companyEmailRegExp, 'Must be company email').required(t('Formik.required')),
-    startDate: Yup.string().required(t('Formik.required')),
+    country: Yup.string().required(t('GLOBAL.VALIDATION.required')),
+    email: Yup.string().matches(companyEmailRegExp, 'Must be company email').required(t('GLOBAL.VALIDATION.required')),
+    startDate: Yup.string().required(t('GLOBAL.VALIDATION.required')),
     comment: Yup.string()
       .when('startDate', {
         is: (startDate: Date) => new Date(startDate) >= new Date(),
-        then: Yup.string().required(t('Formik.required')),
+        then: Yup.string().required(t('GLOBAL.VALIDATION.required')),
         otherwise: Yup.string()
       })
       .min(2, 'Mininum 2 characters')

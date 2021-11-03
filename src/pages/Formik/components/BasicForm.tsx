@@ -9,8 +9,8 @@ const BasicForm = () => {
   const { t } = useTranslation();
 
   const validationSchema = Yup.object({
-    fullName: Yup.string().required(t('Formik.required')),
-    email: Yup.string().email(t('Formik.incorrectEmail')).required(t('Formik.required')),
+    fullName: Yup.string().required(t('GLOBAL.VALIDATION.required')),
+    email: Yup.string().email(t('GLOBAL.VALIDATION.incorrectEmail')).required(t('GLOBAL.VALIDATION.required')),
     password: Yup.string().min(8, 'Minimum 8 characters').required('Required!'),
     confirm_password: Yup.string()
       .oneOf([Yup.ref('password')], "Password's not match")

@@ -1,4 +1,10 @@
 {
+  "GLOBAL":{
+    "VALIDATION": {
+      "required": "This field is required",
+      "incorrectEmail": "Incorrect email address"
+    }
+  },
   "Home": {
     "title": "Home"
   },
@@ -12,9 +18,7 @@
     "title": "React Query"
   },
   "Formik":{
-    "title": "Formik + Yup",
-    "required": "This field is required",
-    "incorrectEmail": "Incorrect email address"
+    "title": "Formik + Yup"
   },
   "a": {
     "b": {
