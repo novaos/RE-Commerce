@@ -40,14 +40,14 @@ const DynamicForm = () => {
 
           return (
             <Form>
-              <div className="container">
+              <div className="container my-3">
                 <FieldArray name="friends">
                   {({ remove, push }) => (
                     <div>
                       {values.friends.length > 0 &&
                         values.friends.map((_: IFriend, index) => (
                           <div className="columns" key={index}>
-                            <div className="field column is-fullwidth">
+                            <div className="column is-four-fifths">
                               <label className="label" htmlFor={`friends.${index}.name`}>
                                 Name
                               </label>
@@ -59,24 +59,24 @@ const DynamicForm = () => {
                               />
                               <ErrorMessage name={`friends.${index}.name`} render={Error} />
                             </div>
-                            <div className="col">
-                              <button type="button" className="secondary" onClick={() => remove(index)}>
+                            <div className="column">
+                              <button type="button" className="button is-link is-light" onClick={() => remove(index)}>
                                 X
                               </button>
                             </div>
                           </div>
                         ))}
-                      <button type="button" className="secondary" onClick={() => push({ name: '' })}>
+                      <button type="button" className="button is-link is-light" onClick={() => push({ name: '' })}>
                         Add Friend
                       </button>
                     </div>
                   )}
                 </FieldArray>
-
-                <button type="submit" className="button is-primary" disabled={!(isValid && dirty)}>
-                  Submit
-                </button>
               </div>
+
+              <button type="submit" className="button is-primary" disabled={!(isValid && dirty)}>
+                Submit
+              </button>
 
               <DisplayFormikState {...values} />
             </Form>
