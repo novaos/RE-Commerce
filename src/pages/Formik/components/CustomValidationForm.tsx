@@ -213,11 +213,6 @@ const CustomValidationForm = () => {
                   <ErrorMessage name="meat" render={Error} />
                 </div>
 
-                <div className="field">
-                  <label className="label">Field Arrays</label>
-                  <div className="control">TODO https://formik.org/docs/examples/field-arrays</div>
-                </div>
-
                 <button type="submit" className="button is-primary" disabled={!(isValid && dirty)}>
                   Submit
                 </button>
