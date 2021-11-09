@@ -19,6 +19,7 @@
 - React Router (https://reactrouter.com/web/guides/quick-start)
 - @loadable/component (https://github.com/gregberge/loadable-components)
 - react-i18next (https://github.com/i18next/react-i18next)
+- Formik+Yup (https://formik.org/docs/overview & https://github.com/jquense/yup)
 
 # Inspired from
 - https://github.com/react-boilerplate/react-boilerplate-cra-template
