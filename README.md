@@ -2,9 +2,10 @@
 
 - Tools
 - Architecture
-- Unit testing
-- Forms (react-hook-form)
+- Unit testing - Oleksandr Utkin
+- Forms (react-hook-form) - Bohdan Omelianec
 - Auth
+- PWA - Yurii Troniak + Andriy Vengrynovych
 
 # List of libraries
 - React
