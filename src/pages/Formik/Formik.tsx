@@ -13,6 +13,12 @@ const Formik: React.FC = (props: any) => {
 
   return (
     <>
+      <div className="notification is-info">
+        <button className="delete"></button>
+        <h3>Prerequisites</h3>
+        <code>npm install --save formik yup</code>
+      </div>
+
       <h1 className="title">{t('Formik.title')}</h1>
 
       <div className="tile is-vertical is-12">
