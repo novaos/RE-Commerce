@@ -5,7 +5,6 @@
 - Unit testing
 - Forms (react-hook-form)
 - Auth
-- graphics
 
 # List of libraries
 - React
