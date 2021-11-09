@@ -53,9 +53,9 @@ const Navigation: React.FC = () => {
             </NavLink>
             <NavLink
               className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
-              to="/counter"
+              to="/context"
               activeClassName={styles.selected}>
-              Counter
+              Context
             </NavLink>
             <NavLink
               className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}

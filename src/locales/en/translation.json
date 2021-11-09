@@ -20,6 +20,9 @@
   "Formik":{
     "title": "Formik + Yup"
   },
+  "Context":{
+    "title": "React Context"
+  },
   "a": {
     "b": {
       "c": ""
