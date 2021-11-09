@@ -1,6 +1,7 @@
 import BasicForm from './components/BasicForm';
 import CustomValidationForm from './components/CustomValidationForm';
 import DynamicForm from './components/DynamicForm';
+import ReusableForm from './components/ReusableForm';
 
 export const formikRoutes = [
   {
@@ -15,6 +16,10 @@ export const formikRoutes = [
   {
     path: '/dynamic',
     component: DynamicForm
+  },
+  {
+    path: '/reusable',
+    component: ReusableForm
   },
   {
     path: '*',

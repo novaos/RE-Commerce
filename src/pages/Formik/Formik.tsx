@@ -29,6 +29,9 @@ const Formik: React.FC = (props: any) => {
             <li className={getNavLinkClass(`${url}/dynamic`)}>
               <NavLink to={`${url}/dynamic`}>Dynamic Form</NavLink>
             </li>
+            <li className={getNavLinkClass(`${url}/reusable`)}>
+              <NavLink to={`${url}/reusable`}>Reusable Form</NavLink>
+            </li>
           </ul>
         </div>
       </div>
