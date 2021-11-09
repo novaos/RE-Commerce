@@ -13,5 +13,5 @@ export const useUsers = () => {
     })();
   }, []);
 
-  return [users, setUsers] as const;
+  return users;
 };

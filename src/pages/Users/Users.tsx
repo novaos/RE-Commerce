@@ -6,7 +6,7 @@ import { useUsers } from './hooks/useUsers';
 
 const Users: React.FC = () => {
   const { t } = useTranslation();
-  const [users] = useUsers();
+  const users = useUsers();
 
   return (
     <>
