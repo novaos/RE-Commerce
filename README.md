@@ -3,11 +3,8 @@
 - Tools
 - Architecture
 - Unit testing
-- Forms (Formik and react-hook-form)
+- Forms (react-hook-form)
 - Auth
-- async (React-query)
-- hooks
-- context
 - graphics
 
 # List of libraries
