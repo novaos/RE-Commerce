@@ -1,21 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { getUsers } from './services/usersApiService';
+import React from 'react';
 import { IUser } from './interfaces';
 import User from './components/User';
 import { useTranslation } from 'react-i18next';
+import { useUsers } from './hooks/useUsers';
 
 const Users: React.FC = () => {
   const { t } = useTranslation();
-  const [users, setUsers] = useState<IUser[]>([]);
-
-  // fetch a user from a fake backend API
-  useEffect(() => {
-    (async () => {
-      const users: IUser[] = await getUsers();
-
-      setUsers(users);
-    })();
-  }, []);
+  const [users] = useUsers();
 
   return (
     <>
