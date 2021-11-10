@@ -1,6 +1,6 @@
 {
-  "extends": ["react-app", "react-app/jest"],
-  "plugins": ["react-hooks"],
+  "extends": ["react-app", "react-app/jest", "eslint:recommended", "plugin:jest/recommended", "plugin:jest/style"],
+  "plugins": ["react-hooks", "jest"],
   "rules": {
     "react-hooks/rules-of-hooks": "error", // Перевіряє правила хуків
     "react-hooks/exhaustive-deps": "warn" // Перевіряє ефект залежностей
