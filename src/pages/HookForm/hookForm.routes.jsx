@@ -1,5 +1,5 @@
 import BasicFormHook from './components/BasicForm';
-// import CustomValidationForm from './components/CustomValidationForm';
+import CustomValidationForm from './components/CustomValidationForm';
 // import DynamicForm from './components/DynamicForm';
 import ReusableForm from './components/ReusableForm';
 
@@ -9,10 +9,10 @@ export const hookFormRoutes = [
     exact: true,
     component: BasicFormHook
   },
-  // {
-  //   path: '/custom-validation',
-  //   component: CustomValidationForm
-  // },
+  {
+    path: '/custom-validation',
+    component: CustomValidationForm
+  },
   // {
   //   path: '/dynamic',
   //   component: DynamicForm

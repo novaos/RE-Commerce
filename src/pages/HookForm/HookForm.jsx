@@ -29,12 +29,12 @@ const HookForm = (props) => {
                 Basic Form
               </NavLink>
             </li>
-            {/* <li className={getNavLinkClass(`${url}/custom-validation`)}>
+            <li className={getNavLinkClass(`${url}/custom-validation`)}>
               <NavLink to={`${url}/custom-validation`}>Custom Validation Form</NavLink>
-            </li> */}
-            {/* <li className={getNavLinkClass(`${url}/dynamic`)}>
+            </li>
+            <li className={getNavLinkClass(`${url}/dynamic`)}>
               <NavLink to={`${url}/dynamic`}>Dynamic Form</NavLink>
-            </li> */}
+            </li>
             <li className={getNavLinkClass(`${url}/reusable`)}>
               <NavLink to={`${url}/reusable`}>Reusable Form</NavLink>
             </li>
