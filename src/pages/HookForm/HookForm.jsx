@@ -1,19 +1,36 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useTranslation } from 'react-i18next';
+import styles from './HookForm.module.scss';
+
 
 const Hookform = () => {
-    const { register, handleSubmit, formState: {errors} } = useForm();
-    const onSubmit = data => console.log(data);
-    const style = {
-        width: '600px',
-        margin: '0 auto'
-    }
-    const myRef = useRef(null);
+    const { t } = useTranslation();
 
+    const validationSchema = Yup.object({
+        fullName: Yup.string().required(t('GLOBAL.VALIDATION.required')),
+        email: Yup.string().email(t('GLOBAL.VALIDATION.incorrectEmail')).required(t('GLOBAL.VALIDATION.required')),
+        password: Yup.string().required(t('GLOBAL.VALIDATION.required')).min(8, 'Minimum 8 characters'),
+        confirm_password: Yup.string().oneOf([Yup.ref('password')], 'Password is not match!').required(t('GLOBAL.VALIDATION.required')),
+        agreeWithTermsAndConditions: Yup.boolean().oneOf([true], 'Must Accept Terms and Conditions')
+    });
+
+    const { register, handleSubmit, formState, formState: {errors}, reset } = useForm({
+        mode: 'onChange',
+        reValidateMode: 'onChange',
+        resolver: yupResolver(validationSchema)
+    });
+
+    const onSubmit = data => {
+        console.log(data)
+        reset()
+    };
 
     return ( 
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <div style={style}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+            <div className={styles.hookContainer}>
                 <div className="field">
                   <label className="label" htmlFor="fullName">
                     Full name
@@ -23,8 +40,8 @@ const Hookform = () => {
                         type="text" 
                         className="input" 
                         placeholder="Full name" 
-                        { ...register('fullName', {required: {value: true, message: 'This field is required'}, maxLength: {value: 25, message: 'Must contain up to 25 characters'}}) } />
-                    {errors.fullName && <span className='help is-danger'>{errors.fullName.message}</span>}
+                        { ...register('fullName') } />
+                    <span className='help is-danger'>{errors.fullName?.message}</span>
                   </div>
                 </div>
 
@@ -37,8 +54,8 @@ const Hookform = () => {
                         type="text" 
                         className="input" 
                         placeholder="Email address" 
-                        { ...register('email', {required: {value: true, message: 'This field is required'}, pattern: {value: /^\S{3,}@\S{2,}\.\D{2,}/, message: 'Your email is not valid'}}) } />
-                    {errors.email && <span className='help is-danger'>{errors.email.message}</span>}
+                        { ...register('email') } />
+                    <span className='help is-danger'>{errors.email?.message}</span>
                   </div>
                 </div>
 
@@ -46,31 +63,28 @@ const Hookform = () => {
                   <label className="label" htmlFor="password">
                     Password
                   </label>
-
                   <div className="control">
                     <input 
                         type="text"
-                        ref={myRef} 
                         className="input" 
                         placeholder="Password" 
-                        { ...register('password', {required: {value: true, message: 'This field is required'}, minLength: {value: 8, message: 'Minimum length is 8'}}) } />
-                    {errors.password && <span className='help is-danger'>{errors.password.message}</span>}
+                        { ...register('password') } />
+                    <span className='help is-danger'>{errors.password?.message}</span>
                   </div>
                 </div>
-{console.log(myRef)}
+
                 <div className="field">
                   <label className="label" htmlFor="password">
                     Confirm Password
                   </label>
-
                   <div className="control">
                     <input 
                         name="confirm_password" 
                         type="text" 
                         className="input" 
                         placeholder="Password"
-                        // {...register('', {validate: () => })}
-                         />
+                        { ...register('confirm_password') }/>
+                    <span className='help is-danger'>{errors.confirm_password?.message}</span>
                   </div>
                 </div>
 
@@ -80,17 +94,17 @@ const Hookform = () => {
                       <input 
                         type="checkbox" 
                         className="mr-2 checkbox" 
-                        { ...register('agreeWithTermsAndConditions', {required: 'You have to agree with the terms and conditions!'}) } />I agree to
+                        { ...register('agreeWithTermsAndConditions') } />I agree to
                       the terms and conditions
                     </label>
-                    {errors.agreeWithTermsAndConditions && <span className='help is-danger'>{errors.agreeWithTermsAndConditions.message}</span>}
+                    <span className='help is-danger'>{errors.agreeWithTermsAndConditions?.message}</span>
                   </div>
                 </div>
                 
-                <button type="submit" className="button is-primary" >
+                <button type="submit" className="button is-primary" disabled={!formState.isValid} >
                   Submit
                 </button>
-              </div>
+            </div>
         </form>
     );
 }
