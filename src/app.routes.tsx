@@ -7,6 +7,7 @@ const LazyContext = loadable(() => import('./pages/Context/Context'), { fallback
 const LazyUsers = loadable(() => import('./pages/Users/Users'), { fallback: <Loader /> });
 const LazyQuery = loadable(() => import('./pages/Query/Query'), { fallback: <Loader /> });
 const LazyFormik = loadable(() => import('./pages/Formik/Formik'), { fallback: <Loader /> });
+const HookForm = loadable(() => import('./pages/HookForm/HookForm'), { fallback: <Loader /> });
 const LazyNotFound = loadable(() => import('./components/NotFound'), { fallback: <Loader /> });
 
 export const routes = [
@@ -30,6 +31,10 @@ export const routes = [
   {
     path: '/formik',
     component: LazyFormik
+  },
+  {
+    path: '/hook-form',
+    component: HookForm
   },
   {
     path: '*',
