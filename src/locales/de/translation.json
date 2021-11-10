@@ -20,6 +20,9 @@
   "Formik":{
     "title": "[de] Formik + Yup"
   },
+  "HookForm":{
+    "title": "[de] Hook Form + Yup"
+  },
   "Context":{
     "title": "[de] React Context"
   },
