@@ -1,112 +1,56 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
-import styles from './HookForm.module.scss';
+import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
+import { hookFormRoutes } from './hookForm.routes';
 
+const HookForm = (props) => {
+  const { t } = useTranslation();
+  let { url, path } = useRouteMatch();
 
-const Hookform = () => {
-    const { t } = useTranslation();
+  const getNavLinkClass = (path) => {
+    return props.location.pathname === path ? 'is-active' : '';
+  };
 
-    const validationSchema = Yup.object({
-        fullName: Yup.string().required(t('GLOBAL.VALIDATION.required')),
-        email: Yup.string().email(t('GLOBAL.VALIDATION.incorrectEmail')).required(t('GLOBAL.VALIDATION.required')),
-        password: Yup.string().required(t('GLOBAL.VALIDATION.required')).min(8, 'Minimum 8 characters'),
-        confirm_password: Yup.string().oneOf([Yup.ref('password')], 'Password is not match!').required(t('GLOBAL.VALIDATION.required')),
-        agreeWithTermsAndConditions: Yup.boolean().oneOf([true], 'Must Accept Terms and Conditions')
-    });
+  return (
+    <>
+      <div className="notification is-info">
+        <button className="delete"></button>
+        <h3>Prerequisites</h3>
+        <code>npm install react-hook-form yup @hookform/resolvers</code>
+      </div>
 
-    const { register, handleSubmit, formState, formState: {errors}, reset } = useForm({
-        mode: 'onChange',
-        reValidateMode: 'onChange',
-        resolver: yupResolver(validationSchema)
-    });
+      <h1 className="title">{t('HookForm.title')}</h1>
 
-    const onSubmit = data => {
-        console.log(data)
-        reset()
-    };
+      <div className="tile is-vertical is-12">
+        <div className="tabs">
+          <ul className="column is-full">
+            <li className={getNavLinkClass(`${url}/basic`)}>
+              <NavLink to={`${url}/basic`} activeClassName="is-active">
+                Basic Form
+              </NavLink>
+            </li>
+            {/* <li className={getNavLinkClass(`${url}/custom-validation`)}>
+              <NavLink to={`${url}/custom-validation`}>Custom Validation Form</NavLink>
+            </li> */}
+            {/* <li className={getNavLinkClass(`${url}/dynamic`)}>
+              <NavLink to={`${url}/dynamic`}>Dynamic Form</NavLink>
+            </li> */}
+            <li className={getNavLinkClass(`${url}/reusable`)}>
+              <NavLink to={`${url}/reusable`}>Reusable Form</NavLink>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-    return ( 
-        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-            <div className={styles.hookContainer}>
-                <div className="field">
-                  <label className="label" htmlFor="fullName">
-                    Full name
-                  </label>
-                  <div className="control">
-                    <input 
-                        type="text" 
-                        className="input" 
-                        placeholder="Full name" 
-                        { ...register('fullName') } />
-                    <span className='help is-danger'>{errors.fullName?.message}</span>
-                  </div>
-                </div>
+      <section className="tile is-child notification is-white">
+        <Switch>
+          {hookFormRoutes.map((route, i) => (
+              <Route exact={route.exact || false} path={path + route.path} component={route.component} key={i} />
+          ))}
+        </Switch>
+      </section>
+    </>
+  );
+};
 
-                <div className="field">
-                  <label className="label" htmlFor="email">
-                    Email address
-                  </label>
-                  <div className="control">
-                    <input 
-                        type="text" 
-                        className="input" 
-                        placeholder="Email address" 
-                        { ...register('email') } />
-                    <span className='help is-danger'>{errors.email?.message}</span>
-                  </div>
-                </div>
-
-                <div className="field">
-                  <label className="label" htmlFor="password">
-                    Password
-                  </label>
-                  <div className="control">
-                    <input 
-                        type="text"
-                        className="input" 
-                        placeholder="Password" 
-                        { ...register('password') } />
-                    <span className='help is-danger'>{errors.password?.message}</span>
-                  </div>
-                </div>
-
-                <div className="field">
-                  <label className="label" htmlFor="password">
-                    Confirm Password
-                  </label>
-                  <div className="control">
-                    <input 
-                        name="confirm_password" 
-                        type="text" 
-                        className="input" 
-                        placeholder="Password"
-                        { ...register('confirm_password') }/>
-                    <span className='help is-danger'>{errors.confirm_password?.message}</span>
-                  </div>
-                </div>
-
-                <div className="field">
-                  <div className="control">
-                    <label className="checkbox" htmlFor="agreeWithTermsAndConditions">
-                      <input 
-                        type="checkbox" 
-                        className="mr-2 checkbox" 
-                        { ...register('agreeWithTermsAndConditions') } />I agree to
-                      the terms and conditions
-                    </label>
-                    <span className='help is-danger'>{errors.agreeWithTermsAndConditions?.message}</span>
-                  </div>
-                </div>
-                
-                <button type="submit" className="button is-primary" disabled={!formState.isValid} >
-                  Submit
-                </button>
-            </div>
-        </form>
-    );
-}
-
-export default Hookform;
+export default HookForm;
