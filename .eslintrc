@@ -3,6 +3,13 @@
   "plugins": ["react-hooks", "jest"],
   "rules": {
     "react-hooks/rules-of-hooks": "error", // Перевіряє правила хуків
-    "react-hooks/exhaustive-deps": "warn" // Перевіряє ефект залежностей
+    "react-hooks/exhaustive-deps": "warn", // Перевіряє ефект залежностей
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warn"]
+  },
+  "globals": {
+    "React": true,
+    "jsdom": true,
+    "JSX": true
   }
 }

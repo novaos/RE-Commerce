@@ -16,15 +16,15 @@ const DynamicForm = () => {
       .required(t('GLOBAL.VALIDATION.required'))
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = data => {
     console.log(data);
   };
 
-	return (
-		<form>
-			<div className="container my-3">
-			<FieldArray name="friends">
-					{/* {({ remove, push }) => (
+  return (
+    <form>
+      <div className="container my-3">
+        <FieldArray name="friends">
+          {/* {({ remove, push }) => (
 					<div>
 							{values.friends.length > 0 &&
 							values.friends.map((_: IFriend, index) => (
@@ -53,14 +53,14 @@ const DynamicForm = () => {
 							</button>
 					</div>
 					)} */}
-			</FieldArray>
-			</div>
+        </FieldArray>
+      </div>
 
-			<button type="submit" className="button is-primary" >
-			Submit
-			</button>
-		</form>
-	);
+      <button type="submit" className="button is-primary">
+        Submit
+      </button>
+    </form>
+  );
 };
 
 export default DynamicForm;
