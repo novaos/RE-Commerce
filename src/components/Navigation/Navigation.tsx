@@ -75,6 +75,12 @@ const Navigation: React.FC = () => {
               activeClassName={styles.selected}>
               Formik
             </NavLink>
+            <NavLink
+              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
+              to="/hook-form"
+              activeClassName={styles.selected}>
+              HookForm
+            </NavLink>
           </div>
 
           <LanguageSwitch language={state.language} handleLanguageChange={handleLanguageChange} />
