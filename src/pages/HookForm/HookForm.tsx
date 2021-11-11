@@ -1,13 +1,12 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
 import { hookFormRoutes } from './hookForm.routes';
 
-const HookForm = (props) => {
+const HookForm: React.FC = (props: any) => {
   const { t } = useTranslation();
   let { url, path } = useRouteMatch();
 
-  const getNavLinkClass = (path) => {
+  const getNavLinkClass = (path: string) => {
     return props.location.pathname === path ? 'is-active' : '';
   };
 

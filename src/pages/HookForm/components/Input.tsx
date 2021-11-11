@@ -1,7 +1,17 @@
-import React from 'react';
 import Error from './Error';
 
-function Input(props) {
+type Props = {
+  name: string;
+  label: string;
+  type: 'text' | 'email';
+  inputClass?: string;
+  register: Function;
+  errors: {
+    [key: string]: any
+  };
+};
+
+function Input(props: Props) {
   const { name, label, type, inputClass, register, errors, ...rest } = props;
 
   return (

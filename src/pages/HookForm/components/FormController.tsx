@@ -1,7 +1,18 @@
-import React from 'react';
 import Input from './Input';
 
-const FormController = (props) => {
+type Props = {
+  control: string;
+  name: string;
+  label: string;
+  type: 'text' | 'email';
+  inputClass?: string;
+  register: Function;
+  errors: {
+    [key: string]: any
+  };
+};
+
+const FormController = (props: Props) => {
   const { control, ...rest } = props;
 
   switch (control) {

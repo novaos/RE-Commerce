@@ -1,11 +1,11 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import FormController from './FormController';
+import { IReuseableFormValues } from '../interfaces/reusable-form';
 
-const ReusableForm = (props) => {
+const ReusableForm = () => {
     const { t } = useTranslation();
 
     const validationSchema = Yup.object({
@@ -18,7 +18,7 @@ const ReusableForm = (props) => {
         mode: 'onChange'
     }); 
 
-    const onSubmit = data => {
+    const onSubmit = (data: IReuseableFormValues) => {
         console.log(data);
         reset();
     };
@@ -26,21 +26,6 @@ const ReusableForm = (props) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="container">
-                {/* <div className="field">
-                    <label className="label" htmlFor="fullName">Full name</label>
-                    <div className="control">
-                        <input type="text" className="input" placeholder="Full name" {...register('fullName')} />
-                        <span className="help is-danger">{errors.fullName?.message}</span>
-                    </div>
-                </div>
-
-                <div className="field">
-                    <label className="label" htmlFor="email">Email address</label>
-                    <div className="control">
-                        <input type="text" className="input" placeholder="Email address" {...register('email')} />
-                        <span className="help is-danger">{errors.email?.message}</span>
-                    </div>
-                </div> */}
                 <FormController control='input' name='fullName' label='Full name' type='text' register={register} errors={errors} />
                 <FormController control='input' name='email' label='Email address' type='text' register={register} errors={errors} />
 
