@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import FormController from './FormController';
 
 const ReusableForm = (props) => {
     const { t } = useTranslation();
@@ -14,8 +15,7 @@ const ReusableForm = (props) => {
 
     const { register, handleSubmit, formState, formState: {errors}, reset } = useForm({
         resolver: yupResolver(validationSchema),
-        mode: 'onChange',
-        reValidateMode: 'onChange'
+        mode: 'onChange'
     }); 
 
     const onSubmit = data => {
@@ -26,7 +26,7 @@ const ReusableForm = (props) => {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="container">
-                <div className="field">
+                {/* <div className="field">
                     <label className="label" htmlFor="fullName">Full name</label>
                     <div className="control">
                         <input type="text" className="input" placeholder="Full name" {...register('fullName')} />
@@ -40,9 +40,11 @@ const ReusableForm = (props) => {
                         <input type="text" className="input" placeholder="Email address" {...register('email')} />
                         <span className="help is-danger">{errors.email?.message}</span>
                     </div>
-                </div>
+                </div> */}
+                <FormController control='input' name='fullName' label='Full name' type='text' register={register} errors={errors} />
+                <FormController control='input' name='email' label='Email address' type='text' register={register} errors={errors} />
 
-                <button type="submit" className="button is-primary" disabled={!formState.isValid}>Submit</button>
+                <button type="submit" className="button is-primary" disabled={!formState.isValid} >Submit</button>
             </div>
         </form>
     );
