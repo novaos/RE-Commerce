@@ -44,6 +44,8 @@ function checkStatus(response: Response) {
  *
  * @return {object}           The response data
  */
+
+// eslint-disable-next-line no-undef
 export async function request(url: string, options?: RequestInit): Promise<{} | { err: ResponseError }> {
   const fetchResponse = await fetch(url, options);
   const response = checkStatus(fetchResponse);

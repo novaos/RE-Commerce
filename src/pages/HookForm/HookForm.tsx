@@ -2,11 +2,13 @@ import { useTranslation } from 'react-i18next';
 import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
 import { hookFormRoutes } from './hookForm.routes';
 
+
 const HookForm: React.FC = (props: any) => {
   const { t } = useTranslation();
   let { url, path } = useRouteMatch();
 
   const getNavLinkClass = (path: string) => {
+
     return props.location.pathname === path ? 'is-active' : '';
   };
 
@@ -44,7 +46,7 @@ const HookForm: React.FC = (props: any) => {
       <section className="tile is-child notification is-white">
         <Switch>
           {hookFormRoutes.map((route, i) => (
-              <Route exact={route.exact || false} path={path + route.path} component={route.component} key={i} />
+            <Route exact={route.exact || false} path={path + route.path} component={route.component} key={i} />
           ))}
         </Switch>
       </section>
