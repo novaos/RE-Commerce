@@ -1,8 +1,8 @@
-import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
+import { IBasicFormValues } from '../interfaces/basic-form';
 
 const BasicFormHook = () => {
   const { t } = useTranslation();
@@ -29,9 +29,9 @@ const BasicFormHook = () => {
     resolver: yupResolver(validationSchema)
   });
 
-  const onSubmit = data => {
-    console.log(data);
-    reset();
+  const onSubmit = (data: IBasicFormValues) => {
+      console.log(data)
+      reset()
   };
 
   return (
@@ -73,7 +73,6 @@ const BasicFormHook = () => {
           </label>
           <div className="control">
             <input
-              name="confirm_password"
               type="text"
               className="input"
               placeholder="Password"
@@ -92,6 +91,7 @@ const BasicFormHook = () => {
             <span className="help is-danger">{errors.agreeWithTermsAndConditions?.message}</span>
           </div>
         </div>
+
 
         <button type="submit" className="button is-primary" disabled={!formState.isValid}>
           Submit

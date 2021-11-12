@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { CountryDropdown } from 'react-country-region-selector';
 import DatePicker from 'react-datepicker';
+import { ICustomValidationFormValues } from '../interfaces/custom-validation-form';
 
 const CustomValidationForm = () => {
   const { t } = useTranslation();
-  const [country, setCountry] = useState();
+  const [country, setCountry] = useState('');
   const [startDate, setStartDate] = useState(new Date());
 
   const companyEmailRegExp =
@@ -32,7 +33,7 @@ const CustomValidationForm = () => {
     startDate: Yup.string().required(t('GLOBAL.VALIDATION.required')),
     comment: Yup.string()
       .when('startDate', {
-        is: startDate => new Date(startDate) >= new Date(),
+        is: (startDate: Date) => new Date(startDate) >= new Date(),
         then: Yup.string().required(t('GLOBAL.VALIDATION.required')),
         otherwise: Yup.string()
       })
@@ -50,7 +51,7 @@ const CustomValidationForm = () => {
     resolver: yupResolver(validationSchema)
   });
 
-  const onSubmit = data => {
+  const onSubmit = (data: ICustomValidationFormValues) => {
     console.log(data);
     reset();
   };
@@ -74,7 +75,7 @@ const CustomValidationForm = () => {
           </label>
           <div className="control">
             <div className="select is-fullwidth">
-              <select name="product" {...register('product')}>
+              <select {...register('product')}>
                 <option value={''}>Select a product</option>
                 {productOptions}
               </select>
@@ -91,9 +92,9 @@ const CustomValidationForm = () => {
             <div className="select is-fullwidth">
               <CountryDropdown
                 value={country}
-                onChange={value => {
-                  register('country', { value });
-                  setCountry(value);
+                onChange={(value: string) => {
+                  register('country', {value});
+                  setCountry(value)
                 }}
               />
             </div>
@@ -122,9 +123,9 @@ const CustomValidationForm = () => {
                   className="input is-fullwidth"
                   name="startDate"
                   selected={startDate}
-                  onChange={startDate => {
-                    register('startDate', { value: startDate });
-                    setStartDate(startDate);
+                  onChange={(startDate: Date) => {
+                    register('startDate', {value: startDate});
+                    setStartDate(startDate)
                   }}
                   dateFormat="MM/yyyy"
                   showMonthYearPicker
@@ -133,7 +134,7 @@ const CustomValidationForm = () => {
             </div>
           </div>
           <div className="column is-6">
-            <div>
+            <div >
               <label className="label" htmlFor="comment">
                 Some comment
               </label>
