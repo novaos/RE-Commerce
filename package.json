@@ -15,7 +15,6 @@
     "eslint": "eslint --ext js,ts,tsx"
   },
   "dependencies": {
-    "@hookform/error-message": "^2.0.0",
     "@hookform/resolvers": "^2.8.3",
     "@loadable/component": "^5.15.0",
     "@testing-library/jest-dom": "^5.14.1",

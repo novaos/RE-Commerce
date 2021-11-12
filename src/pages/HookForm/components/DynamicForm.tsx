@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ErrorMessage } from '@hookform/error-message';
-
 import Error from './Error';
 import { useForm, useFieldArray } from 'react-hook-form';
+import { IDynamicForm } from '../interfaces/dynamic-form';
 
 const DynamicForm = () => {
   const { t } = useTranslation();
@@ -19,8 +18,11 @@ const DynamicForm = () => {
       .required(t('GLOBAL.VALIDATION.required'))
   });
 
-  const { register, control, handleSubmit, formState: {errors}, reset } = useForm({
-    resolver: yupResolver(validationSchema)
+  const { register, control, handleSubmit, formState: {errors} } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      friends: [{name: ''}]
+    }
   });
 
   const { fields, remove, append } = useFieldArray({
@@ -28,7 +30,7 @@ const DynamicForm = () => {
     name: 'friends'
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: IDynamicForm) => {
     console.log(data);
   };
 
@@ -44,16 +46,15 @@ const DynamicForm = () => {
                   Name
                   </label>
                   <input
-                    name='name'
                     placeholder="Your name"
                     type="text"
                     className="input"
                     {...register(`friends.${index}.name`)}
                   />
-                  {/* <Error message={errors?.friends[index]?.name.message} /> */}
+                  {errors.friends && <Error message={errors.friends[index]?.name?.message} />}
                 </div>
                 <div className="column">
-                    <button type="button" className="button is-link is-light" onClick={() => remove(index)}>
+                    <button type="button"  className="button is-link is-light" onClick={() => remove(index)}>
                     Delete
                     </button>
                 </div>
