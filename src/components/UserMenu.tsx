@@ -2,12 +2,17 @@ import classNames from 'classnames';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const UserMenu: React.FC = () => {
+type Props = {
+  handleLogOut: React.MouseEventHandler;
+  user: {name: {firstname: string, lastname: string}} | null
+};
+
+const UserMenu: React.FC<Props> = ({handleLogOut, user}) => {
   return (
     <div className="navbar-end">
       <div className={classNames('navbar-item has-dropdown is-hoverable')}>
         <NavLink className="navbar-link" to="/profile">
-          User Name
+          {user ? `${user.name.firstname.toUpperCase()} ${user.name.lastname.toUpperCase()}` : 'User Name'}
         </NavLink>
 
         <div className="navbar-dropdown is-right">
@@ -21,7 +26,7 @@ const UserMenu: React.FC = () => {
             Notifications
           </NavLink>
           <hr className="navbar-divider" />
-          <button className="button is-ghost" onClick={() => console.log('Log Out')}>
+          <button className="button is-ghost" onClick={handleLogOut}>
             Log Out
           </button>
         </div>
