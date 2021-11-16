@@ -1,9 +1,14 @@
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Switch, Route, NavLink, useRouteMatch } from 'react-router-dom';
+import Login from '../Login/Login';
 import { hookFormRoutes } from './hookForm.routes';
+import { GlobalContext } from '../../utils/providers/GlobalContext';
 
 
 const HookForm: React.FC = (props: any) => {
+  const { state } = useContext(GlobalContext);
+
   const { t } = useTranslation();
   let { url, path } = useRouteMatch();
 
@@ -11,6 +16,10 @@ const HookForm: React.FC = (props: any) => {
 
     return props.location.pathname === path ? 'is-active' : '';
   };
+
+  if(!state.isLogedIn) {
+    return <Login />
+  }
 
   return (
     <>

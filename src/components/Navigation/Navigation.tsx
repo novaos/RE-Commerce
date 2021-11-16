@@ -28,6 +28,12 @@ const Navigation: React.FC = () => {
     setTheme(theme === ThemeEnum.LIGHT ? ThemeEnum.DARK : ThemeEnum.LIGHT);
   };
 
+  const handleLogOut = () => {
+    localStorage.removeItem('token');
+    dispatch({type: 'SET_LOGIN', payload: false});
+    dispatch({type: 'SET_USER', payload: null});
+  }
+
   return (
     <nav
       role="navigation"
@@ -85,7 +91,7 @@ const Navigation: React.FC = () => {
 
           <LanguageSwitch language={state.language} handleLanguageChange={handleLanguageChange} />
           <ThemeSwitch theme={theme} handleThemeChange={handleThemeChange} />
-          <UserMenu />
+          <UserMenu handleLogOut={handleLogOut} user={state.user} />
         </div>
       </div>
     </nav>
