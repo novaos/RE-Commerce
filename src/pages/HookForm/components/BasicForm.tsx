@@ -4,7 +4,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useTranslation } from 'react-i18next';
 import { IBasicFormValues } from '../interfaces/basic-form';
 
-const BasicFormHook = () => {
+const BasicFormHook: React.FC = () => {
   const { t } = useTranslation();
 
   const validationSchema = Yup.object({

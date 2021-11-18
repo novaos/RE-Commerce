@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import { GlobalContext } from '../../utils/providers/GlobalContext';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import Form from './Form';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -15,14 +16,15 @@ const Login: React.FC = () => {
     password: Yup.string().required(t('GLOBAL.VALIDATION.required'))
   });
 
-  const {handleSubmit, register} = useForm({
+  const {handleSubmit, register, formState: {errors}} = useForm({
     resolver: yupResolver(validationSchema)
   });
-
+  
   const onSubmit = async () => {
     setDisabled(true);
 
-    const user = await fetch('https://fakestoreapi.com/users/3')
+    const randomUser = Math.round(Math.random() * (10 - 1) + 1);
+    const user = await fetch(`https://fakestoreapi.com/users/${randomUser}`)
       .then(res => res.json());
 
     dispatch({type: 'SET_LOGIN', payload: true});
@@ -30,38 +32,12 @@ const Login: React.FC = () => {
   }
 
   return(
-    <div className="columns is-centered">
-        <div className="column is-half">
-          <h1 className='title'>Log In</h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="field">
-                <label className="label" htmlFor="email">
-                  Email address
-                </label>
-                <div className="control">
-                  <input type="text" className="input" placeholder="Email address" {...register('email')}  />
-                </div>
-              </div>
-
-              <div className="field">
-                <label className="label" htmlFor="password">
-                  Password
-                </label>
-                <div className="control">
-                  <input type="text" className="input" placeholder="Password" {...register('password')} />
-                </div>
-              </div>
-
-              <button type="submit" className="button is-primary" disabled={disabled} >
-                Submit
-              </button>
-
-              <div className="field">
-                {disabled ? 'Loading...' : null}
-              </div>
-          </form>
-        </div>
+    <div className='columns mt-6 is-centered'>
+      <div className="box column is-5 p-6">
+        <h1 className='title is-3'>Log In</h1>
+          <Form handleSubmit={handleSubmit} onSubmit={onSubmit} register={register} disabled={disabled} errors={errors} />
       </div>
+    </div>
   )
 }
 
