@@ -2,7 +2,7 @@
     width: fit-content;
     margin: 20px auto;
     display: grid;
-    grid-template-columns: repeat(4, 100px);
+    // grid-template-columns: repeat(4, 100px);
     grid-gap: 10px;
     .item {
         width: 100px;
@@ -36,6 +36,9 @@
     }
 
     .turned {
+        transform: rotateY(180deg);
+    }
+    .passed {
         transform: rotateY(180deg);
     }
 }
