@@ -87,6 +87,12 @@ const Navigation: React.FC = () => {
               activeClassName={styles.selected}>
               HookForm
             </NavLink>
+            <NavLink
+              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
+              to="/memory-game"
+              activeClassName={styles.selected}>
+              Memory Game
+            </NavLink>
           </div>
 
           <LanguageSwitch language={state.language} handleLanguageChange={handleLanguageChange} />
