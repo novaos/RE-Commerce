@@ -9,6 +9,7 @@ const LazyQuery = loadable(() => import('./pages/Query/Query'), { fallback: <Loa
 const LazyFormik = loadable(() => import('./pages/Formik/Formik'), { fallback: <Loader /> });
 const HookForm = loadable(() => import('./pages/HookForm/HookForm'), { fallback: <Loader /> });
 const MemoryGame = loadable(() => import('./pages/MemoryGame/MemoryGame'), { fallback: <Loader /> });
+const Charts = loadable(() => import('./pages/Charts/Charts'), { fallback: <Loader /> });
 const LazyNotFound = loadable(() => import('./components/NotFound'), { fallback: <Loader /> });
 
 export const routes = [
@@ -40,6 +41,10 @@ export const routes = [
   {
     path: '/memory-game',
     component: MemoryGame
+  },
+  {
+    path: '/charts',
+    component: Charts
   },
   {
     path: '*',

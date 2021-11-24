@@ -93,6 +93,12 @@ const Navigation: React.FC = () => {
               activeClassName={styles.selected}>
               Memory Game
             </NavLink>
+            <NavLink
+              className={classNames('navbar-item', theme === ThemeEnum.LIGHT ? 'has-text-black' : 'has-text-white')}
+              to="/charts"
+              activeClassName={styles.selected}>
+              Charts
+            </NavLink>
           </div>
 
           <LanguageSwitch language={state.language} handleLanguageChange={handleLanguageChange} />
