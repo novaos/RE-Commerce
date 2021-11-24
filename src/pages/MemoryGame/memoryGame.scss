@@ -15,7 +15,7 @@
         font-size: 14px;
         position: relative;
         transform-style: preserve-3d;
-        transition: all .6s linear; 
+        transition: all .5s linear; 
     }
     
     .side {
@@ -41,4 +41,16 @@
     .passed {
         transform: rotateY(180deg);
     }
+}
+
+.box {
+    margin: 0 auto;
+    box-sizing: border-box;
+    height: 150px;
+    text-align: center;
+    width: 300px;
+}
+
+.modal-background {
+    background-color: rgba(10, 10, 10, 0.26);
 }
