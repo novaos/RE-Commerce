@@ -107,7 +107,7 @@ const MemoryGame = () => {
       <div className={`modal ${isFinished() ? 'is-active' : ''}`} ref={modal}>
         <div className="modal-background"></div>
         <div className="modal-content">
-        <div className="custom-box">
+        <div className="custom-box box">
           <h1 className='title is-4'>Well done!</h1>
           <button className='button is-primary' onClick={restartGame}>Start new game</button>
         </div>
