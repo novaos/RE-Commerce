@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie, ResponsiveContainer, Legend, CartesianGrid, Cell, Sector, LineChart, Line, AreaChart, Area, Brush } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, PieChart, Pie, ResponsiveContainer, 
+  Legend, CartesianGrid, Cell, Sector, AreaChart, Area } from 'recharts';
+
 
 const Charts = () => {
   const [data, setData] = useState([]);
@@ -8,10 +10,11 @@ const Charts = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   
   const { t } = useTranslation();
-  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8476a7', '#cd6771', '#244ee7', '#32d51e', '#f1df09', '#f10909'];
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8476a7', '#cd6771', '#244ee7', '#32d51e', '#f1df09', '#f10909']; // #132737
 
   useEffect(() => {
     getCurrencyRate();
+    //eslint-disable-next-line
   }, [])
  
 
@@ -58,7 +61,7 @@ const Charts = () => {
 
   function renderShape(props) {
     const RADIAN = Math.PI / 180;
-    const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value, name } = props;
+    const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, percent, value, name } = props;
     
     const sin = Math.sin(-RADIAN * midAngle);
     const cos = Math.cos(-RADIAN * midAngle);
@@ -86,22 +89,13 @@ const Charts = () => {
           cy={cy}
           startAngle={startAngle}
           endAngle={endAngle}
-          innerRadius={innerRadius - 3}
-          outerRadius={innerRadius + 1}
-          fill={fill}
-        />
-        <Sector
-          cx={cx}
-          cy={cy}
-          startAngle={startAngle}
-          endAngle={endAngle}
-          innerRadius={outerRadius - 1}
-          outerRadius={outerRadius + 3}
+          innerRadius={outerRadius + 5}
+          outerRadius={outerRadius + 10}
           fill={fill}
         />
         <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
         <circle cx={ex} cy={ey} r={3} fill={fill} stroke="none" />
-        <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`${name} ${value}`}</text>
+        <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#fff">{`${name} ${value}`}</text>
         <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
           {`(Rate ${(percent * 100).toFixed(2)}%)`}
         </text>
@@ -113,9 +107,6 @@ const Charts = () => {
     setActiveIndex(i)
   }
 
-  function test(props) {
-    console.log(props)
-  }
 
   return (
   <>
@@ -127,59 +118,70 @@ const Charts = () => {
 
     <h1 className="title">{t('Charts.title')}</h1>
     
-    <div className="box">
-      <ResponsiveContainer width='100%' height={300}>
-        <BarChart width="100%" height="50%" data={data} barCategoryGap='15%' >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis  dataKey="exchangedate"/>
-          <YAxis tickCount={6} />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="usd" fill="#00C49F" legendType='triangle' unit=' UAH' />
-          <Bar dataKey="eur" fill="#FF8042" legendType='triangle' unit=' UAH' />
-        </BarChart>
-      </ResponsiveContainer>
-    </div>
-      
-    <div className="box">
-      <ResponsiveContainer width='100%' height={370}>
-        <PieChart width={800} height={300}>
-          <Pie 
-          data={allData} 
-          dataKey="rate" 
-          nameKey="txt" 
-          cx="50%" 
-          cy="50%" 
-          innerRadius={60} 
-          outerRadius={100} 
-          fill="#8884d8" 
-          activeIndex={activeIndex} 
-          activeShape={renderShape} 
-          onMouseEnter={onMouseHadler}>
-            {data.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
-          </Pie>
-          <Legend iconType='triangle' />
-        </PieChart>
-      </ResponsiveContainer>
+    
+
+
+    <div className="tile in-ancestor block">
+      <div className="tile is-parent is-vertical is-6">
+        <div className="tile is-child box has-background-dark">
+          <ResponsiveContainer minHeight={300}>
+            <BarChart width="100%"  data={data} barCategoryGap='15%' >
+              <CartesianGrid strokeDasharray="9 9" vertical='' />
+              <XAxis  dataKey="exchangedate" />
+              <YAxis tickCount={6} axisLine={{stroke: '#fff'}}  />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="usd" fill="#00C49F" legendType='triangle' unit=' UAH' />
+              <Bar dataKey="eur" fill="#FF8042" legendType='triangle' unit=' UAH' />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+        <div className="tile is-child box has-background-dark">
+          <ResponsiveContainer minHeight={300}>
+            <AreaChart width='100%' data={data}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="9 9" />
+              <XAxis dataKey="exchangedate" />
+              <YAxis />
+              <Tooltip />
+              <Legend iconType='circle' />
+              <Area type='monotone' dataKey="usd"  stroke="#82ca9d" fill='#32d51e' dot unit=' UAH' />
+              <Area type="monotone" dataKey="eur"  stroke="#ffc658" fill='#ffc658' dot unit=' UAH' />
+            </AreaChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
+
+      <div className="tile is-parent is-6">
+        <div className='tile is-child box p-0 has-background-dark'>
+          <ResponsiveContainer width='100%' >
+            <PieChart>
+              <Pie 
+              data={allData} 
+              dataKey="rate" 
+              nameKey="txt" 
+              cx="0%" 
+              cy="50%" 
+              innerRadius={100} 
+              outerRadius={250}
+              startAngle={90}
+              endAngle={-90} 
+              fill="#8884d8" 
+              activeIndex={activeIndex} 
+              activeShape={renderShape} 
+              onMouseEnter={onMouseHadler}>
+                {data.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Legend iconType='triangle' />
+            </PieChart>
+          </ResponsiveContainer>
+        </div>
+      </div>
     </div>
 
-    <div className="box">
-      <ResponsiveContainer width='100%' height={300}>
-        <AreaChart width='100%' height={250} data={data}
-          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 2" />
-          <XAxis dataKey="exchangedate" />
-          <YAxis />
-          <Tooltip />
-          <Legend iconType='circle' />
-          <Area type='monotone' dataKey="usd"  stroke="#82ca9d" fill='#82ca9d' dot unit=' UAH' />
-          <Area type="monotone" dataKey="eur"  stroke="#ffc658" fill='#ffc658' dot unit=' UAH' />
-          <Brush />
-        </AreaChart>
-      </ResponsiveContainer>
-    </div>
+    
   </>
   );
 }
