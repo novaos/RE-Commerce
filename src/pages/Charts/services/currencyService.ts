@@ -29,6 +29,13 @@ export const getCurrencyRate = async () => {
       }
     });
 
+    const nok = arr.filter(item => item.cc === 'NOK').map(item => {
+      return {
+        ...item,
+        exchangedate: item.exchangedate.slice(6)
+      }
+    });
+
     const transformedData = [];
 
     for(let i = 0; i < usd.length; i++) {
@@ -36,7 +43,8 @@ export const getCurrencyRate = async () => {
         exchangedate: usd[i].exchangedate,
         rate: 'rate',
         usd: usd[i].rate,
-        eur: eur[i].rate
+        eur: eur[i].rate,
+        nok: nok[i].rate,
       }
     }
 

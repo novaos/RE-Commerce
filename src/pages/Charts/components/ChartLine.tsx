@@ -1,6 +1,6 @@
 import { IAnnualRate } from '../interfaces';
 import { XAxis, YAxis, Tooltip, ResponsiveContainer, 
-  Legend, CartesianGrid, AreaChart, Area } from 'recharts';
+  Legend, LineChart, Line } from 'recharts';
 
 type FCProps = {
   annualCurrencyRate: IAnnualRate[]
@@ -9,16 +9,16 @@ type FCProps = {
 const ChartLine = ({annualCurrencyRate}: FCProps) => {
   return (
     <ResponsiveContainer minHeight={300}>
-      <AreaChart data={annualCurrencyRate}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-        <CartesianGrid strokeDasharray="9 9" />
+      <LineChart data={annualCurrencyRate} >
+        {/* <CartesianGrid strokeDasharray="0 0" opacity='.8' /> */}
         <XAxis dataKey="exchangedate" />
         <YAxis />
-        <Tooltip />
+        <Tooltip  />
         <Legend iconType='circle' />
-        <Area type='monotone' dataKey="usd"  stroke="#82ca9d" fill='#32d51e' dot unit=' UAH' />
-        <Area type="monotone" dataKey="eur"  stroke="#ffc658" fill='#ffc658' dot unit=' UAH' />
-      </AreaChart>
+        <Line type='monotone' dataKey="usd" stroke="#f10909" dot={false} strokeWidth={4} unit=' UAH' />
+        <Line type="monotone" dataKey="nok" stroke="#82ca9d" dot={false} strokeWidth={2} unit=' UAH' />
+        <Line type="monotone" dataKey="eur" stroke="#ffc658" dot={false} strokeWidth={6} unit=' UAH' />
+      </LineChart>
     </ResponsiveContainer>
   );
 }

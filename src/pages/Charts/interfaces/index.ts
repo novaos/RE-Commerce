@@ -9,5 +9,6 @@ export interface IAnnualRate {
     exchangedate: string; 
     rate: string; 
     usd: number; 
-    eur: number; 
+    eur: number;
+    nok: number;
   }

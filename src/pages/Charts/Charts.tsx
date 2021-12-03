@@ -20,7 +20,7 @@ const Charts = () => {
       
       <div className="tile in-ancestor block">
         <div className="tile is-parent is-vertical is-6">
-          <div className="tile is-child box has-background-dark">
+          <div className="tile is-child box has-background-dark ">
             <ChartBar annualCurrencyRate={annualCurrencyRate} />
           </div>
           <div className="tile is-child box has-background-dark">
