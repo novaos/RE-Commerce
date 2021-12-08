@@ -54,3 +54,52 @@
 .modal-background {
     background-color: rgba(10, 10, 10, 0.26);
 }
+///////////////////new
+
+.new-playground {
+    width: fit-content;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 130px);
+    grid-gap: 10px;
+}
+
+.six {
+    grid-template-columns: repeat(6, 130px);
+}
+
+.card-item {
+    position: relative;
+    border-radius: 10px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.card-item img {
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.card-item .front-side {
+    transform: rotateY(90deg);
+    position: absolute;
+    transition: transform 0.2s; 
+}
+
+.turnedd .front-side {
+    transform: rotateY(0deg);
+    transition-delay: 0.2s;
+}
+
+.card-item .back-side {
+    transition: transform 0.2s;
+    transition-delay: 0.2s;
+}
+
+.turnedd .back-side {
+    transform: rotateY(90deg);
+    transition-delay: 0s;
+}
+
