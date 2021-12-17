@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import Loader from './components/Loader';
 import GlobalContext from './utils/providers/GlobalContext';
 import { queryClient } from './utils/react-query-client';
+import Navigation from './components/Navigation/Navigation';
 
 const App: React.FC = () => (
   // Provide the client to your App
@@ -12,6 +13,7 @@ const App: React.FC = () => (
     <Router>
       <Suspense fallback={<Loader />}>
         <GlobalContext>
+          <Navigation />
           <div className="App">
             <div className="container">
               <Switch>
