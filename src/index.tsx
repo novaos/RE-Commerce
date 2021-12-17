@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import 'antd/dist/antd.css';
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
 // Initialize languages
