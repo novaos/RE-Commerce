@@ -1,0 +1,40 @@
+.button-group {
+    width: 32px;
+    position: absolute;
+    top: 6px;
+    right: -32px;
+    transition: right .2s ease-in;
+    &-btn {
+        margin: 3px 0;
+        background: #349764;
+        border: none;
+    }
+    &-btn:hover {
+        background: #45c784;
+    }
+    &-btn:visited {
+        background: #349764;
+    }
+}
+
+.item-card {
+    overflow: hidden;
+}
+.item-card:hover {
+    
+    .button-group {
+        right: 6px;
+    }
+}
+.card-title {
+    font-size: 12px;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.card-description {
+    color: #6ac998;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
