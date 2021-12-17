@@ -46,7 +46,7 @@ const Navigation: React.FC = () => {
           <Row justify="space-between">
             {navigation.map(({ title, to, exact }) => (
               <Menu.Item className="link" key={title}>
-                <NavLink exact={exact} activeClassName="linkActive" to={to}>
+                <NavLink className="link" exact={exact} activeClassName="linkActive" to={to}>
                   {title}
                 </NavLink>
               </Menu.Item>

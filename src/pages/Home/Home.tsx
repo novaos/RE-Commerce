@@ -1,9 +1,9 @@
 import React from 'react';
-
+import { Footer } from '../../components/Footer';
 const Home: React.FC = () => {
   return (
     <>
-      <p>project</p>
+      <Footer />
     </>
   );
 };

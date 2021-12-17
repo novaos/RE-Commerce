@@ -4,6 +4,11 @@
   background-color: #fff;
   display: flex;
   justify-content: space-between;
+  height: 64px;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
 
   .logo {
     color: $primary-green;
@@ -16,6 +21,7 @@
     }
   }
   .menu {
+    background-color: #fff;
     a:active,
     a:focus {
       background-color: #fff;
