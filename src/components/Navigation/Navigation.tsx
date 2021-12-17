@@ -13,23 +13,23 @@ const navigation = [
   },
   {
     title: 'women',
-    to: '/a'
+    to: '/women'
   },
   {
     title: 'men',
-    to: '/b'
+    to: '/men'
   },
   {
     title: 'kids',
-    to: '/c'
+    to: '/kids'
   },
   {
     title: 'jewellery',
-    to: '/d'
+    to: '/jewellery'
   },
   {
     title: 'accessories',
-    to: '/e'
+    to: '/accessories'
   }
 ];
 
@@ -56,10 +56,14 @@ const Navigation: React.FC = () => {
       </Menu>
       <Row justify="space-between">
         <Col span={8} className="link">
-          <IconFont className="icon" type="icon-shoppingcart" />
+          <Link to="/search">
+            <IconFont className="icon" type="icon-shoppingcart" />
+          </Link>
         </Col>
         <Col span={8} className="link">
-          <SearchOutlined className="icon" />
+          <Link to="/basket">
+            <SearchOutlined className="icon" />
+          </Link>
         </Col>
       </Row>
     </Header>
