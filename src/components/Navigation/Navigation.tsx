@@ -57,12 +57,12 @@ const Navigation: React.FC = () => {
         </Menu>
         <Row justify="space-between">
           <Col span={8} className="link">
-            <Link to="/search">
+            <Link to="/cart">
               <IconFont className="icon" type="icon-shoppingcart" />
             </Link>
           </Col>
           <Col span={8} className="link">
-            <Link to="/basket">
+            <Link to="/search">
               <SearchOutlined className="icon" />
             </Link>
           </Col>

@@ -4,16 +4,15 @@
     position: absolute;
     top: 6px;
     right: -32px;
-    transition: right .2s ease-in;
+    transition: right .3s ease-out;
     &-btn {
         margin: 3px 0;
         background: $primary-green;
         border: none;
     }
-    &-btn:hover {
+    &-btn:hover, &-btn:focus {
         background: #45c784;
     }
-    
 }
 
 .item-card {

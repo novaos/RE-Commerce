@@ -81,15 +81,17 @@ const data = [
 
 const Footer: React.FC = () => {
   return (
-    <div className="footer">
-      {data.map(section => (
-        <div className="footer-content">
-          <h4>{section.title}</h4>
-          {section.links.map(({ name }) => (
-            <p>{name}</p>
-          ))}
-        </div>
-      ))}
+    <div className="inner-container">
+      <div className="footer">
+        {data.map(section => (
+          <div className="footer-content">
+            <h4>{section.title}</h4>
+            {section.links.map(({ name }) => (
+              <p>{name}</p>
+            ))}
+          </div>
+        ))}
+      </div>`
     </div>
   );
 };

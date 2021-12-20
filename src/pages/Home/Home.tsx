@@ -9,6 +9,7 @@ const Home: React.FC = () => {
       <BestSelers />
       <Delivery />
       <FeatureProducts />
+      <div className="inner-container"></div>
     </>
      
   );
