@@ -1,49 +1,72 @@
-import { Menu } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import { Col, Menu, Row } from 'antd';
+import { Header } from 'antd/lib/layout/layout';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import IconFont from '../IconFont';
 import './navigation.scss';
 const navigation = [
   {
     title: 'home',
-    to: '/'
+    to: '/',
+    exact: true
   },
   {
     title: 'women',
-    to: '/'
+    to: '/women'
   },
   {
     title: 'men',
-    to: '/'
+    to: '/men'
   },
   {
     title: 'kids',
-    to: '/'
+    to: '/kids'
   },
   {
     title: 'jewellery',
-    to: '/'
+    to: '/jewellery'
   },
   {
     title: 'accessories',
-    to: '/'
+    to: '/accessories'
   }
 ];
+
 const Navigation: React.FC = () => {
   return (
-    <div className="navigation">
-      <Menu selectedKeys={['kids']} mode="horizontal">
-        <Menu.Item>
-          <h3 className="title">
-            Renoshop<span>bee</span>
-          </h3>
-        </Menu.Item>
-        {navigation.map(({ title, to }, i) => (
-          <NavLink key={i} to={to}>
-            <Menu.Item key={title}>{title}</Menu.Item>
-          </NavLink>
-        ))}
+    <Header className="navigation">
+      <Link className="link" to="/">
+        <h4 className="logo">
+          Renoshop<span>bee</span>
+        </h4>
+      </Link>
+      <Menu className="menu" selectedKeys={['home']} mode="horizontal">
+        <nav className="nav">
+          <Row justify="space-between">
+            {navigation.map(({ title, to, exact }) => (
+              <Menu.Item className="link" key={title}>
+                <NavLink className="link" exact={exact} activeClassName="linkActive" to={to}>
+                  {title}
+                </NavLink>
+              </Menu.Item>
+            ))}
+          </Row>
+        </nav>
       </Menu>
-    </div>
+      <Row justify="space-between">
+        <Col span={8} className="link">
+          <Link to="/search">
+            <IconFont className="icon" type="icon-shoppingcart" />
+          </Link>
+        </Col>
+        <Col span={8} className="link">
+          <Link to="/basket">
+            <SearchOutlined className="icon" />
+          </Link>
+        </Col>
+      </Row>
+    </Header>
   );
 };
 

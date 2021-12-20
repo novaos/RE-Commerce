@@ -1,5 +1,52 @@
+@import 'src/variables.scss';
+
 .navigation {
-  .title {
-    color: red;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  height: 64px;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+
+  .logo {
+    color: $primary-green;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 24px;
+    span {
+      font-weight: 400;
+      color: #000;
+    }
+  }
+  .menu {
+    background-color: #fff;
+    a:active,
+    a:focus {
+      background-color: #fff;
+    }
+  }
+
+  .link {
+    text-transform: uppercase;
+    color: #000;
+
+    &:hover {
+      color: $primary-green;
+    }
+    &:active,
+    &:focus {
+      background-color: #fff;
+    }
+  }
+
+  .linkActive {
+    color: $primary-green;
+  }
+
+  .icon {
+    color: #000;
+    font-size: 20px;
   }
 }

@@ -1,0 +1,47 @@
+@import 'src/variables.scss';
+$transition-time: 300ms;
+
+.header-top {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: black;
+
+  .link {
+    position: relative;
+    margin-left: 40px;
+    transition: color $transition-time ease-in-out;
+    
+    &:hover {
+      .icon,
+      a {
+        color: $primary-green;
+      }
+    }
+    
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      transition: color $transition-time ease-in-out;
+    }
+
+    .icon {
+      color: white;
+      margin-right: 10px;
+      transition: color $transition-time ease-in-out;
+    } 
+  }
+
+  .link:not(:last-child)::after {
+    content: '';
+    width: 1px;
+    height: 20px;
+    background-color: $primary-gray;
+    position: absolute;
+    top: 1px;
+    right: -20px;
+  }
+}
