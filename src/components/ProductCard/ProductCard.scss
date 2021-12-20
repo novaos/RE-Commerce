@@ -1,3 +1,4 @@
+@import 'src/variables.scss';
 .button-group {
     width: 32px;
     position: absolute;
@@ -6,7 +7,7 @@
     transition: right .2s ease-in;
     &-btn {
         margin: 3px 0;
-        background: #339663;
+        background: $primary-green;
         border: none;
     }
     &-btn:hover {
@@ -31,7 +32,7 @@
 }
 
 .card-description {
-    color: #6ac998;
+    color: $primary-green;
     font-size: 16px;
     font-weight: 700;
     font-style: italic;

@@ -2,16 +2,20 @@
 $transition-time: 300ms;
 
 .header-top {
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
   background-color: black;
+  .container {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
 
   .link {
     position: relative;
-    margin-left: 40px;
     transition: color $transition-time ease-in-out;
+    &:last-child {
+      margin-left: 40px;
+    }
     
     &:hover {
       .icon,

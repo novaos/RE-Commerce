@@ -8,6 +8,7 @@ import { queryClient } from './utils/react-query-client';
 import Navigation from './components/Navigation/Navigation';
 import Layout, { Content } from 'antd/lib/layout/layout';
 import { HeaderTop } from './components/HeaderTop';
+import { Footer } from './components/Footer';
 
 const App: React.FC = () => (
   // Provide the client to your App
@@ -15,18 +16,17 @@ const App: React.FC = () => (
     <Router>
       <Suspense fallback={<Loader />}>
         <GlobalContext>
-          <Layout>
+          <Layout style={{background: '#fff'}}>
             <HeaderTop />
             <Navigation />
-            <div className="App">
-              <Content className="app-content">
-                <Switch>
-                  {routes.map((route, i) => (
-                    <Route exact={route.exact || false} path={route.path} component={route.component} key={i} />
-                  ))}
-                </Switch>
-              </Content>
-            </div>
+            <Content className="app-content">
+              <Switch>
+                {routes.map((route, i) => (
+                  <Route exact={route.exact || false} path={route.path} component={route.component} key={i} />
+                ))}
+              </Switch>
+            </Content>
+            <Footer />
           </Layout>
         </GlobalContext>
       </Suspense>
