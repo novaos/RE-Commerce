@@ -1,11 +1,13 @@
 import React from 'react';
-import ProductCard from '../../components/ProductCard/ProductCard';
+import BestSelers from './components/bestSelers/BestSelers';
+import Delivery from './components/delivery/Delivery';
 
 const Home: React.FC = () => {
   return (
     <>
       <p>project</p>
-      <ProductCard />
+      <BestSelers />
+      <Delivery />
     </>
   );
 };

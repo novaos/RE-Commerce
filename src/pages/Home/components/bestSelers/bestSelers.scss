@@ -1,0 +1,15 @@
+.best-selers-wrap {
+    padding: 50px;
+}
+
+.description-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &-title {
+        margin: 0;
+    }
+    &-subtitle {
+        color: #6ac998;
+    }
+}
