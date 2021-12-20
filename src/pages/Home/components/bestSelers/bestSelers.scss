@@ -8,8 +8,10 @@
     justify-content: center;
     &-title {
         margin: 0;
+        font-weight: bold;
     }
     &-subtitle {
         color: #6ac998;
+        font-style: italic;
     }
 }

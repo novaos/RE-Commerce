@@ -1,7 +1,18 @@
-import React from 'react';
+
 import { Card, Rate, Button, } from 'antd';
 import { HeartFilled, SyncOutlined, createFromIconfontCN } from '@ant-design/icons';
 import './ProductCard.scss';
+
+interface IProduct {
+  title: string
+  price: number
+  rate: number
+  img: string
+}
+
+interface IProps {
+  product: IProduct
+}
 
 const IconFont = createFromIconfontCN({
   scriptUrl: [
@@ -10,7 +21,7 @@ const IconFont = createFromIconfontCN({
   ],
 });
 
-const ProductCard: React.FC = () => {
+const ProductCard = ({ product }: IProps) => {
   const btns = (
     <div className='button-group'>
       <Button className='button-group-btn' type='primary' block icon={<IconFont type='icon-shoppingcart' />} />
@@ -25,13 +36,13 @@ const ProductCard: React.FC = () => {
       hoverable
       style={{ width: 300, margin: '0 auto', height: 570 }}
       bordered={false}
-      bodyStyle={{padding: '5px 0'}}
-      cover={<img alt="example" height={450} src="https://cercana.us/wp-content/uploads/2021/03/placeholder-300x450.jpg" />}
+      bodyStyle={{padding: '5px 2px'}}
+      cover={<img alt="example" height={450} src={product.img} />}
     >
       {btns}
-      <p className='card-title'>Cruise Dual Analog</p>
-      <p className='card-description'>$250.00</p>
-      <Rate allowHalf defaultValue={3.5}/>
+      <p className='card-title'>{product.title}</p>
+      <p className='card-description'>${product.price}</p>
+      <Rate allowHalf defaultValue={product.rate} />
     </Card>
   );
 };

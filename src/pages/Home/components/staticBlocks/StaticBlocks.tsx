@@ -1,5 +1,5 @@
 import { Row, Col } from 'antd';
-import './delivery.scss';
+import './staticBlocks.scss';
 import { RocketFilled, FireFilled, SyncOutlined, LikeFilled } from '@ant-design/icons';
 
 const data = [
@@ -25,7 +25,7 @@ const data = [
   },
 ];
 
-const Delivery: React.FC = () => {
+const StaticBlocks: React.FC = () => {
   return (
     <Row gutter={[5, 5]}>
       {
@@ -45,4 +45,4 @@ const Delivery: React.FC = () => {
   )
 }
 
-export default Delivery;
+export default StaticBlocks;
