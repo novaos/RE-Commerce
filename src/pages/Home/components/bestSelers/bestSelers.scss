@@ -1,0 +1,17 @@
+.best-selers-wrap {
+    padding: 50px;
+}
+
+.description-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    &-title {
+        margin: 0;
+        font-weight: bold;
+    }
+    &-subtitle {
+        color: #6ac998;
+        font-style: italic;
+    }
+}
