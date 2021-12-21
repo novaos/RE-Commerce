@@ -1,6 +1,40 @@
+.product-cell {
+    display: flex;
+    align-items: center;
+    img {
+        margin-right: 30px;
+    }
+}
+
+
 .form-title {
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 600;
     text-transform: uppercase;
     margin-top: 60px;
+    color: #242628;
 }
+
+.ant-form-item-label label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #777777;
+}
+
+.cart-form-btn {
+    width: 130px;
+    background: #2faf6d;
+    border: none;
+    &:hover, &:focus {
+        background: #45c784;
+    }
+ }
+
+ .cart-coupon {
+    margin-bottom: -2px;
+     p {
+         font: 14px 'Roboto', sans-serif;
+         margin: 15px;
+     }
+ }
+
