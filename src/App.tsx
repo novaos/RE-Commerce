@@ -16,7 +16,7 @@ const App: React.FC = () => (
     <Router>
       <Suspense fallback={<Loader />}>
         <GlobalContext>
-          <Layout style={{background: '#fff'}}>
+          <Layout style={{ background: '#fff', overflow: 'hidden' }}>
             <HeaderTop />
             <Navigation />
             <Content className="app-content">

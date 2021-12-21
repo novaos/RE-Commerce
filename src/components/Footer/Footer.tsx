@@ -1,3 +1,5 @@
+import { GlobalOutlined, MailOutlined, PayCircleOutlined, PhoneOutlined } from '@ant-design/icons';
+import { Layout } from 'antd';
 import * as React from 'react';
 import './footer.scss';
 
@@ -7,23 +9,23 @@ const data = [
     links: [
       {
         name: 'Delivery Information',
-        to: '/'
+        to: '/delivery-information'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'Discount',
+        to: '/discount'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'Sitemap',
+        to: '/sitemap'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'Privacy Policy',
+        to: '/privacy-policy'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'My Account',
+        to: '/my-account'
       }
     ]
   },
@@ -31,24 +33,24 @@ const data = [
     title: 'My account',
     links: [
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'Sign In',
+        to: '/sign-in'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'View Cart',
+        to: '/view-cart'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'My Wishlist',
+        to: '/my-wishlist'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'Check out',
+        to: '/check-out'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'Track My Order',
+        to: '/track-my-order'
       }
     ]
   },
@@ -56,24 +58,43 @@ const data = [
     title: 'Help',
     links: [
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'F.A.Q.',
+        to: '/faq'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'Shipping',
+        to: '/shipping'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'Contact Us',
+        to: '/contact-us'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        name: 'Privacy Policy',
+        to: '/privacy-policy'
+      }
+    ]
+  }
+];
+
+const dataRight = [
+  {
+    title: 'Contact info',
+    links: [
+      {
+        icon: <GlobalOutlined />,
+        name: '1234 Your address, Country',
+        href: 'https://goo.gl/maps/ZYwZGwL3S8UNxKqS8'
       },
       {
-        name: 'Delivery Information',
-        to: '/'
+        icon: <PhoneOutlined />,
+        name: '+1 234 567 89',
+        href: 'tel:+1123456789'
+      },
+      {
+        icon: <MailOutlined />,
+        name: 'mail@domain.com',
+        href: 'mailto:info@company.com'
       }
     ]
   }
@@ -81,18 +102,47 @@ const data = [
 
 const Footer: React.FC = () => {
   return (
-    <div className="inner-container">
-      <div className="footer">
-        {data.map(section => (
-          <div className="footer-content">
-            <h4>{section.title}</h4>
-            {section.links.map(({ name }) => (
-              <p>{name}</p>
+    <>
+      <div className="inner-container">
+        <div className="footer">
+          <div className="footer-left-content">
+            {data.map(section => (
+              <div className="footer-content">
+                <h4 className="title">{section.title}</h4>
+                {section.links.map(({ name }) => (
+                  <p className="link">{name}</p>
+                ))}
+              </div>
             ))}
           </div>
-        ))}
-      </div>`
-    </div>
+          <div className="footer-right-content">
+            {dataRight.map(section => (
+              <div className="footer-content">
+                <h4 className="title">{section.title}</h4>
+                {section.links.map(({ name, icon, href }) => (
+                  <div className="link-wrapper">
+                    <div className="icon">{icon}</div>
+                    <a rel="noreferrer" target="_blank" href={href} className="link">
+                      {name}
+                    </a>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <Layout.Footer className="footer-line">
+        <div className="footer-content">
+          <p className="additional-info">Copyright 2021 RenoshopBee all right reserved - Design by BeeStudios</p>
+          <div className="pays">
+            <PayCircleOutlined />
+            <PayCircleOutlined />
+            <PayCircleOutlined />
+          </div>
+        </div>
+      </Layout.Footer>
+    </>
   );
 };
 
