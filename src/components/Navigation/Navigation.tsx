@@ -12,6 +12,10 @@ const navigation = [
     exact: true
   },
   {
+    title: 'catalog',
+    to: '/catalog'
+  },
+  {
     title: 'women',
     to: '/women'
   },
@@ -69,7 +73,6 @@ const Navigation: React.FC = () => {
         </Row>
       </div>
     </Header>
-    
   );
 };
 

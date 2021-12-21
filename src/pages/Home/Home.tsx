@@ -2,7 +2,6 @@ import React from 'react';
 import BestSelers from './components/bestSelers/BestSelers';
 import Delivery from './components/staticBlocks/StaticBlocks';
 import FeatureProducts from './components/featuredProducts/FeatureProducts';
-
 const Home: React.FC = () => {
   return (
     <>
@@ -11,7 +10,6 @@ const Home: React.FC = () => {
       <FeatureProducts />
       <div className="inner-container"></div>
     </>
-     
   );
 };
 

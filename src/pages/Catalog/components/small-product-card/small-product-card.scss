@@ -1,0 +1,28 @@
+.item-small-card {
+  display: flex;
+  margin-bottom: 20px;
+  width: 100%;
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    -webkit-box-shadow: 5px 5px 15px 5px #8f8f8f;
+    box-shadow: 5px 5px 15px 5px #8f8f8f;
+  }
+
+  .content {
+    margin-left: 10px;
+    display: flex;
+    align-items: space-between;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .card-title {
+      white-space: pre-wrap;
+    }
+
+    .card-description {
+      font-style: normal;
+    }
+  }
+}
