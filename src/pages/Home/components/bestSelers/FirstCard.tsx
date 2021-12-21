@@ -10,7 +10,7 @@ const FirstCard: React.FC = () => {
     >
       <h1 className='description-card-title'>BEST SELERS</h1>
       <p className='description-card-subtitle'>The best productions from us</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do Lorem ipsum dolor sit amet,
+      <p className='description-card-text'>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do Lorem ipsum dolor sit amet,
           consectetur adipisicing elit, sed d
       </p>
     </Card>

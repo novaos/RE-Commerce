@@ -8,10 +8,14 @@
     justify-content: center;
     &-title {
         margin: 0;
-        font-weight: bold;
+        font-size: 30px;
     }
     &-subtitle {
-        color: #6ac998;
-        font-style: italic;
+        color: #2faf6d;
+        font: italic 14px 'Source Serif Pro', serif;
+    }
+    &-text {
+        font-size: 14;
+        font-weight: 500;
     }
 }
