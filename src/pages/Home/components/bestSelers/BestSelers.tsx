@@ -1,12 +1,14 @@
-import { Row, Col } from 'antd';
-import FirstCard from './FirstCard';
+import { Col, Row } from 'antd';
+import { useContext, useMemo } from 'react';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
-import './bestSelers.scss';
-import { useContext } from 'react';
 import { GlobalContext } from '../../../../utils/providers/GlobalContext';
+import './bestSelers.scss';
+import FirstCard from './FirstCard';
 
 const BestSelers: React.FC = () => {
   const { state } = useContext(GlobalContext);
+
+  const productsToShow = useMemo(() => state?.sortedProductsByRating?.slice(0, 4), [state?.sortedProductsByRating]);
 
   return (
     <div className="best-selers-wrap">
@@ -15,7 +17,7 @@ const BestSelers: React.FC = () => {
           <Col flex="300px">
             <FirstCard />
           </Col>
-          {state.products?.map(item => (
+          {productsToShow?.map(item => (
             <Col flex="300px" key={item.id}>
               <ProductCard product={item} />
             </Col>

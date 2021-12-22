@@ -1,34 +1,33 @@
 import * as React from 'react';
 import './catalog-header.scss';
 import { Select } from 'antd';
+import { SortTypes } from '../../../../utils/providers/GlobalContext';
 const { Option } = Select;
 
 type CatalogHeaderProps = {
   pages: number;
+  handleChange: (value: any) => void;
 };
 
 const options = [
   {
-    value: 'newness',
+    value: SortTypes.newness,
     label: 'Sort by newness'
   },
   {
-    value: 'oldest',
+    value: SortTypes.oldest,
     label: 'Sort by oldest'
   },
   {
-    value: 'rating',
+    value: SortTypes.rating,
     label: 'Sort by rating'
   },
   {
-    value: 'price',
+    value: SortTypes.price,
     label: 'Sort by price'
   }
 ];
-const CatalogHeader: React.FC<CatalogHeaderProps> = ({ pages }) => {
-  const handleChange = (value: any) => {
-    console.log(value);
-  };
+const CatalogHeader: React.FC<CatalogHeaderProps> = ({ pages, handleChange }) => {
   return (
     <div className="catalog-header">
       <p>Showing 1-12 of {pages} results</p>

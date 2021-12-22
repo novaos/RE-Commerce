@@ -30,7 +30,7 @@ const ProductCard = ({ product }: IProps) => {
       style={{ width: 300, margin: '0 auto', height: 570 }}
       bordered={false}
       bodyStyle={{ padding: '5px 2px' }}
-      cover={<img alt="example" height={450} src={product.photo} />}>
+      cover={<img style={{ objectFit: 'contain' }} alt="example" height={450} src={product.photo} />}>
       {btns}
       <p className="card-title">{product.name}</p>
       <p className="card-description">${product.price}</p>

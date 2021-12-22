@@ -1,9 +1,7 @@
+import { Product } from '../../../../utils/providers/GlobalContext';
+
 type SmallProductCardProps = {
-  product: {
-    title: string;
-    price: number;
-    img: string;
-  };
+  product: Product;
 };
 
 export type { SmallProductCardProps };

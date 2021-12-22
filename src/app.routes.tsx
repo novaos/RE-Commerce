@@ -1,5 +1,6 @@
 import loadable from '@loadable/component';
 import Loader from './components/Loader';
+import { ActionTypes, WearTypes } from './utils/providers/GlobalContext';
 
 const LazyHome = loadable(() => import('./pages/Home/Home'), { fallback: <Loader /> });
 const LazyCart = loadable(() => import('./pages/Cart/Cart'), { fallback: <Loader /> });
@@ -17,7 +18,27 @@ export const routes = [
   },
   {
     path: '/catalog',
-    component: LazyCatalog
+    component: () => <LazyCatalog />
+  },
+  {
+    path: '/women',
+    component: () => <LazyCatalog filter={ActionTypes.SHOW_ONLY_WOMEN} products={WearTypes.women} />
+  },
+  {
+    path: '/men',
+    component: () => <LazyCatalog filter={ActionTypes.SHOW_ONLY_MEN} products={WearTypes.men} />
+  },
+  {
+    path: '/kids',
+    component: () => <LazyCatalog filter={ActionTypes.SHOW_ONLY_KIDS} products={WearTypes.kids} />
+  },
+  {
+    path: '/jewellery',
+    component: () => <LazyCatalog filter={ActionTypes.SHOW_ONLY_JEWELLERY} products={WearTypes.jewellery} />
+  },
+  {
+    path: '/accessories',
+    component: () => <LazyCatalog filter={ActionTypes.SHOW_ONLY_ACCESSORIES} products={WearTypes.accessories} />
   },
   {
     path: '*',
