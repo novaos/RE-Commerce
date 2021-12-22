@@ -1,5 +1,5 @@
 import * as React from 'react';
-import './catalog-header.scss';
+import './catalogHeader.scss';
 import { Select } from 'antd';
 import { SortTypes } from '../../../../utils/providers/GlobalContext';
 const { Option } = Select;

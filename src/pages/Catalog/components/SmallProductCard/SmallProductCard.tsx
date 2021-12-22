@@ -1,7 +1,7 @@
 import { Image } from 'antd';
 import * as React from 'react';
-import './small-product-card.scss';
-import { SmallProductCardProps } from './small-product-card.types';
+import './smallProductCard.scss';
+import { SmallProductCardProps } from './smallProductCard.types';
 
 const SmallProductCard: React.FC<SmallProductCardProps> = ({ product }) => {
   return (

@@ -1,4 +1,4 @@
-export * from './catalog-header';
+export * from './CatalogHeader';
 export * from './Filter';
-export * from './small-product-card';
-export * from './Top-Rated';
+export * from './SmallProductCard';
+export * from './TopRated';

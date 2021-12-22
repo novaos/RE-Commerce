@@ -4,7 +4,7 @@ import Form from 'antd/lib/form/Form';
 import { Formik } from 'formik';
 import * as React from 'react';
 import { useFilterData } from './useFilter.hook';
-import './Filter.scss';
+import './filter.scss';
 
 const Filter: React.FC = () => {
   const {

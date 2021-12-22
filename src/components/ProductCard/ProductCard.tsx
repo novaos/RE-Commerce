@@ -1,6 +1,6 @@
 import { Card, Rate, Button } from 'antd';
 import { HeartFilled, SyncOutlined, createFromIconfontCN } from '@ant-design/icons';
-import './ProductCard.scss';
+import './productCard.scss';
 import { Product } from '../../utils/providers/GlobalContext';
 
 interface IProps {

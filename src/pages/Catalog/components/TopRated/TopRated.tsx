@@ -1,8 +1,8 @@
 import { Row } from 'antd';
 import * as React from 'react';
 import { ActionTypes, GlobalContext } from '../../../../utils/providers/GlobalContext';
-import { SmallProductCard } from '../small-product-card';
-import './Top-Rated.scss';
+import { SmallProductCard } from '../SmallProductCard';
+import './topRated.scss';
 
 const TopRated: React.FC = () => {
   const { state, dispatch } = React.useContext(GlobalContext);
