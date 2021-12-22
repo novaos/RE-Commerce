@@ -7,6 +7,8 @@ const { Option } = Select;
 type CatalogHeaderProps = {
   pages: number;
   handleChange: (value: any) => void;
+  from: number;
+  to: number;
 };
 
 const options = [
@@ -27,10 +29,12 @@ const options = [
     label: 'Sort by price'
   }
 ];
-const CatalogHeader: React.FC<CatalogHeaderProps> = ({ pages, handleChange }) => {
+const CatalogHeader: React.FC<CatalogHeaderProps> = ({ pages, handleChange, from, to }) => {
   return (
     <div className="catalog-header">
-      <p>Showing 1-12 of {pages} results</p>
+      <p>
+        Showing {from}-{to} of {pages} results
+      </p>
       <Select bordered={false} defaultValue={options[0].value} style={{ width: 150 }} onChange={handleChange}>
         {options.map(({ value, label }) => (
           <Option value={value}>{label}</Option>
