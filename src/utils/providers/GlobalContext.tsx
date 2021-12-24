@@ -20,6 +20,7 @@ enum ActionTypes {
 
 export type { Product };
 export { WearTypes, SortTypes, ActionTypes };
+export type { DataForFilterType };
 
 type Product = {
   createdAt: Date;
@@ -48,7 +49,16 @@ interface Context {
   kids?: Products;
   jewellery?: Products;
   accessories?: Products;
+  dataForFilter?: DataForFilterType;
 }
+
+type DataForFilterType = {
+  category: string[];
+  color: string[];
+  price: string[] | number[];
+  size: string[];
+};
+
 type Action =
   | { type: ActionTypes.GET_PRODUCTS; payload: Products }
   | { type: ActionTypes.SORT_BY_RATING }
@@ -111,15 +121,33 @@ const handleFilter = (products: Context['products'], typeOfCategory: WearTypes) 
   return filteredProducts;
 };
 
+const getDataForFilter = (products: Context['products']) => {
+  if (!products) return;
+  const category = Array.from(new Set(products?.map(({ category }) => category)))?.sort((a, b) => {
+    return a.localeCompare(b, 'en', { sensitivity: 'base' });
+  });
+  const size = Array.from(new Set(products?.map(({ size }) => size)));
+  const color = Array.from(new Set(products?.map(({ color }) => color)))?.sort((a, b) => {
+    return a.localeCompare(b, 'en', { sensitivity: 'base' });
+  });
+  const sortedByPrice = products?.map(({ price }) => price)?.sort((curr, next) => Number(curr) - Number(next));
+  const price = [sortedByPrice?.[0], sortedByPrice?.[sortedByPrice.length - 1]];
+  return {
+    category,
+    size,
+    color,
+    price
+  };
+};
+
 function reducer(state: Context, action: Action): Context {
   switch (action.type) {
     case ActionTypes.GET_PRODUCTS:
-      return { ...state, products: action.payload };
-    case 'SORT_BY_RATING':
       return {
         ...state,
-        sortedProductsByRating: handleSort(state.products, SortTypes.rating),
-        products: handleSort(state.products, SortTypes.rating)
+        products: action.payload,
+        dataForFilter: getDataForFilter(action.payload),
+        sortedProductsByRating: handleSort(action.payload, SortTypes.rating)
       };
     case ActionTypes.SORT_BY_NEWNESS:
       return {

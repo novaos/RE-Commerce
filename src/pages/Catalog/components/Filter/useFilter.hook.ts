@@ -1,131 +1,67 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useContext, useEffect } from 'react';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext';
 import { FormInputType } from './Filter.types';
 
 const useFilterData = () => {
+  const { state } = useContext(GlobalContext);
   const [inputRangeValue, setInputRangeValue] = useState({
     min: 0,
     max: 1500
   });
+  useEffect(() => {
+    if (state.dataForFilter) {
+      const minPrice = Number(state.dataForFilter?.price?.[0]);
+      const maxPrice = Number(state.dataForFilter?.price?.[1]);
+      setInputRangeValue({ min: minPrice, max: maxPrice });
+    }
+  }, [state?.dataForFilter]);
 
   const categories = useMemo(
     () => [
       {
         title: 'Categories',
-        type: FormInputType.checkbox,
-        options: [
-          {
-            value: 'accessories',
-            label: 'Accessories',
-            count: 15
-          },
-          {
-            value: 'dresses',
-            label: 'Dresses',
-            count: 15
-          },
-          {
-            value: 'women',
-            label: 'Women',
-            count: 15
-          },
-          {
-            value: 'men',
-            label: 'Men',
-            count: 15
-          },
-          {
-            value: 'watch',
-            label: 'Watch',
-            count: 15
-          },
-          {
-            value: 'clothing',
-            label: 'Clothing',
-            count: 15
-          },
-
-          {
-            value: 'bags',
-            label: 'Bags',
-            count: 15
-          }
-        ]
+        type: FormInputType.radio,
+        options: state.dataForFilter?.category.map(item => ({
+          label: item,
+          value: item
+        }))
       }
     ],
-    []
+    [state.dataForFilter?.category]
   );
 
   const sizes = useMemo(
     () => [
       {
         title: 'Size',
-        options: [
-          {
-            value: 'xs',
-            label: 'XS'
-          },
-          {
-            value: 's',
-            label: 'S'
-          },
-          {
-            value: 'm',
-            label: 'M'
-          },
-          {
-            value: 'l',
-            label: 'L'
-          },
-          {
-            value: 'sl',
-            label: 'SL'
-          },
-          {
-            value: 'xl',
-            label: 'XL'
-          },
-          {
-            value: 'xxl',
-            label: 'XXL'
-          }
-        ]
+        options: state.dataForFilter?.size.map(item => ({
+          label: item,
+          value: item
+        }))
       }
     ],
-    []
+    [state.dataForFilter?.size]
   );
 
   const colors = useMemo(
     () => [
       {
         title: 'Colors',
-        options: [
-          {
-            label: 'Black',
-            value: 'black'
-          },
-          {
-            label: 'White',
-            value: 'white'
-          },
-          {
-            label: 'Blue',
-            value: 'blue'
-          },
-          {
-            label: 'Yellow',
-            value: 'yellow'
-          },
-          {
-            label: 'Orange',
-            value: 'orange'
-          }
-        ]
+        type: FormInputType.checkbox,
+        options: state.dataForFilter?.color.map(item => ({
+          label: item,
+          value: item
+        }))
       }
     ],
-    []
+    [state.dataForFilter?.color]
   );
 
   const onChangeCheckbox = (name: string, setFieldValue: (name: string, values: any) => void, values: any) => {
+    setFieldValue(name, values);
+  };
+
+  const onChangeRadio = (name: string, setFieldValue: (name: string, values: any) => void, values: any) => {
     setFieldValue(name, values);
   };
 
@@ -154,10 +90,10 @@ const useFilterData = () => {
     setFieldValue('price', values);
   };
   const initialValues = {
-    categories: [],
-    price: [],
+    category: [],
+    price: state.dataForFilter ? [+state.dataForFilter?.price?.[0], +state.dataForFilter?.price?.[1]] : [0, 0],
     size: [],
-    colors: []
+    color: []
   };
 
   return {
@@ -169,7 +105,9 @@ const useFilterData = () => {
     inputRangeValue,
     colors,
     sizes,
-    categories
+    categories,
+    radioRange: state.dataForFilter?.price,
+    onChangeRadio
   };
 };
 

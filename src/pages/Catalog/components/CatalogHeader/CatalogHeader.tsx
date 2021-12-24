@@ -33,7 +33,7 @@ const CatalogHeader: React.FC<CatalogHeaderProps> = ({ pages, handleChange, from
   return (
     <div className="catalog-header">
       <p>
-        Showing {from}-{to} of {pages} results
+        Showing {from}-{to > pages ? pages : to} of {pages} results
       </p>
       <Select bordered={false} defaultValue={options[0].value} style={{ width: 150 }} onChange={handleChange}>
         {options.map(({ value, label }) => (

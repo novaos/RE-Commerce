@@ -1,0 +1,26 @@
+@import 'src/variables.scss';
+
+.checkbox-wrapper {
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid silver;
+
+  .title {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .ant-checkbox-wrapper {
+    transition: all 300ms ease-in-out;
+    margin-bottom: 6px;
+
+    .ant-checkbox {
+      &-checked {
+        span {
+          background-color: $primary-green;
+        }
+      }
+    }
+  }
+}

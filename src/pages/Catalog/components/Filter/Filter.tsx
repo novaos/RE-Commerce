@@ -1,12 +1,12 @@
-import { SearchOutlined } from '@ant-design/icons';
-import { Button, Checkbox, InputNumber, Row, Slider, Tooltip } from 'antd';
+import { Radio, Row, Typography } from 'antd';
 import Form from 'antd/lib/form/Form';
 import { Formik } from 'formik';
 import * as React from 'react';
-import { useFilterData } from './useFilter.hook';
+import { ButtonCheckbox, CheckboxComponent, RangeComponent } from './components';
 import './filter.scss';
+import { useFilterData } from './useFilter.hook';
 
-const Filter: React.FC = () => {
+const Filter: React.FC<{ handleSearch: (values: any) => void }> = ({ handleSearch }) => {
   const {
     onChangeCheckbox,
     handleMinRangeChange,
@@ -16,98 +16,70 @@ const Filter: React.FC = () => {
     inputRangeValue,
     colors,
     sizes,
-    categories
+    categories,
+    radioRange,
+    onChangeRadio
   } = useFilterData();
 
   return (
     <div>
-      <Formik initialValues={initialValues} onSubmit={values => console.log(values)}>
+      <Formik initialValues={initialValues} onSubmit={values => handleSearch(values)}>
         {({ values, setFieldValue, handleSubmit }) => (
           <Form onFinish={handleSubmit}>
             <section className="filter-section categories">
               {categories.map(({ title, options }) => (
                 <>
-                  <h4 className="title">{title}</h4>
-                  <Checkbox.Group onChange={values => onChangeCheckbox('categories', setFieldValue, values)}>
-                    {options.map(({ value, label, count }) => (
+                  <Typography.Title level={4} className="title">
+                    {title}
+                  </Typography.Title>
+                  <Radio.Group
+                    onChange={event => {
+                      onChangeRadio('category', setFieldValue, event.target.value);
+                      handleSubmit();
+                    }}>
+                    {options?.map(({ value, label }) => (
                       <Row>
-                        <Checkbox value={value}>
-                          {label}({count})
-                        </Checkbox>
+                        <Radio className="label" value={value}>
+                          {label}
+                        </Radio>
                       </Row>
                     ))}
-                  </Checkbox.Group>
+                  </Radio.Group>
                 </>
               ))}
             </section>
 
             <section className="filter-section">
-              <div className="range">
-                <h4 className="title">Price Filter</h4>
-                <Slider
-                  value={[inputRangeValue.min, inputRangeValue.max]}
-                  range={{ draggableTrack: true }}
-                  defaultValue={[0, 1000]}
-                  min={0}
-                  max={9999}
-                  onChange={(values: number[]) => handleBothRangeChange(setFieldValue, values)}
-                />
-                <InputNumber
-                  min={0}
-                  max={inputRangeValue.max}
-                  style={{ margin: '0 16px' }}
-                  value={inputRangeValue.min}
-                  onChange={(value: number) => handleMinRangeChange(setFieldValue, value)}
-                />
-                <InputNumber
-                  min={inputRangeValue.min}
-                  max={9999}
-                  style={{ margin: '0 16px' }}
-                  value={inputRangeValue.max}
-                  onChange={(value: number) => handleMaxRangeChange(setFieldValue, value)}
-                />
-                <Tooltip title="search">
-                  <Button
-                    onClick={() => {}}
-                    type="primary"
-                    style={{ backgroundColor: '#2faf6d' }}
-                    shape="default"
-                    icon={<SearchOutlined />}
-                  />
-                </Tooltip>
-              </div>
+              <RangeComponent
+                title={'Price Filter'}
+                inputRangeValue={inputRangeValue}
+                radioRange={radioRange}
+                handleBothValueChange={handleBothRangeChange}
+                handleMinValueChange={handleMinRangeChange}
+                handleMaxValueChange={handleMaxRangeChange}
+                setFieldValue={setFieldValue}
+                values={values}
+                handleSubmit={handleSubmit}
+              />
             </section>
 
             <section className="filter-section">
-              {sizes.map(({ title, options }) => (
-                <>
-                  <h4 className="title">{title}</h4>
-                  <Checkbox.Group
-                    onChange={values => onChangeCheckbox('size', setFieldValue, values)}
-                    className="custom-checkboxes">
-                    {options.map(({ value, label }) => (
-                      <Checkbox value={value}>{label}</Checkbox>
-                    ))}
-                  </Checkbox.Group>
-                </>
-              ))}
+              <ButtonCheckbox
+                items={sizes}
+                name={'size'}
+                setFieldValue={setFieldValue}
+                onChange={onChangeCheckbox}
+                handleSubmit={handleSubmit}
+              />
             </section>
 
-            <section className="filter-section colors">
-              {colors.map(({ title, options }) => (
-                <>
-                  <h4 className="title">{title}</h4>
-                  <Checkbox.Group onChange={values => onChangeCheckbox('colors', setFieldValue, values)}>
-                    {options.map(({ value, label }) => (
-                      <Row>
-                        <Checkbox value={value}>{label}</Checkbox>
-                      </Row>
-                    ))}
-                  </Checkbox.Group>
-                </>
-              ))}
-            </section>
-            {JSON.stringify(values)}
+            <CheckboxComponent
+              items={colors}
+              setFieldValue={setFieldValue}
+              name={'color'}
+              onChange={onChangeCheckbox}
+              handleSubmit={handleSubmit}
+            />
           </Form>
         )}
       </Formik>

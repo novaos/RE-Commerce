@@ -1,6 +1,7 @@
 enum FormInputType {
   checkbox = 'checkbox',
-  range = 'range'
+  range = 'range',
+  radio = 'radio'
 }
 
 export { FormInputType };
