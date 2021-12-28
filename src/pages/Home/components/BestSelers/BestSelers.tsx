@@ -13,7 +13,7 @@ const BestSelers: React.FC = () => {
   return (
     <div className="best-selers-wrap">
       <div className="container">
-        <Row justify="space-between" gutter={[4, 20]}>
+        <Row justify="space-between" gutter={[20, 20]}>
           <Col flex="300px">
             <FirstCard />
           </Col>

@@ -2,21 +2,21 @@ import { Col, Row } from 'antd';
 import { useContext, useMemo } from 'react';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
 import { GlobalContext } from '../../../../utils/providers/GlobalContext';
-import './bestSelers.scss';
-import FirstCard from './FirstCard';
+import './featuredProducts.scss';
 
-const BestSelers: React.FC = () => {
+const FeatureProducts = () => {
   const { state } = useContext(GlobalContext);
 
-  const productsToShow = useMemo(() => state?.sortedProductsByRating?.slice(0, 4), [state?.sortedProductsByRating]);
+  const productsToShow = useMemo(() => state?.sortedProductsByNewness?.slice(0, 10), [state?.sortedProductsByNewness]);
 
   return (
     <div className="best-selers-wrap">
       <div className="container">
-        <Row justify="space-between" gutter={[4, 20]}>
-          <Col flex="300px">
-            <FirstCard />
-          </Col>
+        <div className="fu-products-header">
+          <h1 className="description-card-title">FEATURED PRODUCTS</h1>
+          <p className="description-card-subtitle">Newest trends from top brands</p>
+        </div>
+        <Row justify="space-between" gutter={[20, 20]} wrap={true}>
           {productsToShow?.map(item => (
             <Col flex="300px" key={item.id}>
               <ProductCard product={item} />
@@ -28,4 +28,4 @@ const BestSelers: React.FC = () => {
   );
 };
 
-export default BestSelers;
+export default FeatureProducts;

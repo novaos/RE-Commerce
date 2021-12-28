@@ -15,6 +15,7 @@ body {
 .app-content {
   // margin-top: $header-height;
   color: $primary-dark;
+  min-height: calc(100vh - 500px);
 }
 
 .container {
