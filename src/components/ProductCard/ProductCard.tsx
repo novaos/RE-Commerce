@@ -25,7 +25,7 @@ const ProductCard = ({ product }: IProps) => {
   );
 
   return (
-    <Link to={`product/${product.id}`}>
+    <Link to={`/product/${product.id}`}>
       <Card
         className="item-card"
         hoverable
