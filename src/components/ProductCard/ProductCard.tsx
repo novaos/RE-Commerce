@@ -1,10 +1,11 @@
 import { Card, Rate, Button } from 'antd';
 import { HeartFilled, SyncOutlined, createFromIconfontCN } from '@ant-design/icons';
 import './productCard.scss';
-import { Product } from '../../utils/providers/GlobalContext';
+import { ProductType } from '../../utils/providers/GlobalContext';
+import { Link } from 'react-router-dom';
 
 interface IProps {
-  product: Product;
+  product: Omit<ProductType, 'description' | 'about'>;
 }
 
 const IconFont = createFromIconfontCN({
@@ -24,18 +25,20 @@ const ProductCard = ({ product }: IProps) => {
   );
 
   return (
-    <Card
-      className="item-card"
-      hoverable
-      style={{ width: 300, margin: '0 auto', height: 570 }}
-      bordered={false}
-      bodyStyle={{ padding: '5px 2px' }}
-      cover={<img style={{ objectFit: 'contain' }} alt="example" height={450} src={product.photo} />}>
-      {btns}
-      <p className="card-title">{product.name}</p>
-      <p className="card-description">${product.price}</p>
-      <Rate allowHalf defaultValue={product.rating} />
-    </Card>
+    <Link to={`product/${product.id}`}>
+      <Card
+        className="item-card"
+        hoverable
+        style={{ width: 300, margin: '0 auto', height: 570 }}
+        bordered={false}
+        bodyStyle={{ padding: '5px 2px' }}
+        cover={<img style={{ objectFit: 'contain' }} alt="example" height={450} src={product.photo} />}>
+        {btns}
+        <p className="card-title">{product.name}</p>
+        <p className="card-description">${product.price}</p>
+        <Rate allowHalf defaultValue={product.rating} />
+      </Card>
+    </Link>
   );
 };
 

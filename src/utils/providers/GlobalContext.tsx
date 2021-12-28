@@ -15,14 +15,15 @@ enum ActionTypes {
   SHOW_ONLY_KIDS = 'FILTER_KIDS',
   SHOW_ONLY_JEWELLERY = 'FILTER_JEWELLERY',
   SHOW_ONLY_ACCESSORIES = 'FILTER_ACCESSORIES',
-  FILTER_BY_PRICE = 'FILTER_BY_PRICE'
+  FILTER_BY_PRICE = 'FILTER_BY_PRICE',
+  GET_SELECTED_PRODUCT = 'GET_SELECTED_PRODUCT'
 }
 
-export type { Product };
+export type { ProductType };
 export { WearTypes, SortTypes, ActionTypes };
 export type { DataForFilterType };
 
-type Product = {
+type ProductType = {
   createdAt: Date;
   name: string;
   photo: string;
@@ -35,9 +36,11 @@ type Product = {
   id: string;
   colors: string;
   wearType: WearTypes;
+  description: string;
+  about: string;
 };
 
-type Products = Product[];
+type Products = ProductType[];
 interface Context {
   products?: Products;
   sortedProductsByRating?: Products;
@@ -50,6 +53,7 @@ interface Context {
   jewellery?: Products;
   accessories?: Products;
   dataForFilter?: DataForFilterType;
+  selectedProduct?: ProductType;
 }
 
 type DataForFilterType = {
@@ -61,6 +65,7 @@ type DataForFilterType = {
 
 type Action =
   | { type: ActionTypes.GET_PRODUCTS; payload: Products }
+  | { type: ActionTypes.GET_SELECTED_PRODUCT; payload: ProductType }
   | { type: ActionTypes.SORT_BY_RATING }
   | { type: ActionTypes.SORT_BY_PRICE }
   | { type: ActionTypes.SORT_BY_NEWNESS }
@@ -148,6 +153,11 @@ function reducer(state: Context, action: Action): Context {
         products: action.payload,
         dataForFilter: getDataForFilter(action.payload),
         sortedProductsByRating: handleSort(action.payload, SortTypes.rating)
+      };
+    case ActionTypes.GET_SELECTED_PRODUCT:
+      return {
+        ...state,
+        selectedProduct: action.payload
       };
     case ActionTypes.SORT_BY_NEWNESS:
       return {

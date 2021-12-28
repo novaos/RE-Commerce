@@ -1,0 +1,32 @@
+@import 'src/variables.scss';
+
+.product-tab-wrapper {
+  margin-top: 50px;
+  .ant-tabs > .ant-tabs-nav {
+    background-color: white;
+  }
+
+  .product-tab-wrapper,
+  .ant-tabs,
+  .ant-tabs-top,
+  .ant-tabs-card,
+  .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab-active {
+    background-color: #dcdcdc;
+  }
+
+  .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab-active,
+  .ant-tabs-card.ant-tabs-top > .ant-tabs-nav .ant-tabs-tab {
+    border-bottom: 0;
+  }
+
+  .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn,
+  .ant-tabs-tab.ant-tabs-tab .ant-tabs-tab-btn {
+    color: $primary-dark;
+  }
+
+  .tab {
+    margin: 0;
+    padding: 10px;
+    border-radius: 3px;
+  }
+}

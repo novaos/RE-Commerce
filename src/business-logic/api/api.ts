@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ProductType } from '../../utils/providers/GlobalContext';
 const BASE_API_URL = 'https://61c1e7539dbcca0017c82212.mockapi.io/api/re-commerce';
 const PRODUCT_URL = '/products';
 
@@ -7,7 +8,7 @@ const http = axios.create({
   responseType: 'json'
 });
 
-const getProducts = async (fetchProducts: any) => {
+const getProducts = async (fetchProducts: (data: ProductType[]) => void) => {
   try {
     const response = await http.get(`${PRODUCT_URL}`);
 
@@ -19,4 +20,13 @@ const getProducts = async (fetchProducts: any) => {
   }
 };
 
-export { getProducts };
+const getSelectedProduct = async (id: string, callback: (data: ProductType) => void) => {
+  try {
+    const response = await http.get(`${PRODUCT_URL}/${id}`);
+    callback(response.data);
+  } catch (error) {
+    throw new Error('Something went wrong during get a selected product');
+  }
+};
+
+export { getProducts, getSelectedProduct };

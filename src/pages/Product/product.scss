@@ -1,0 +1,76 @@
+@import 'src/variables.scss';
+
+.product-wrapper {
+  margin: 50px auto;
+
+  .ant-typography {
+    margin: 0;
+  }
+
+  .info-wrapper {
+    margin-bottom: 40px;
+
+    .divider {
+      margin-top: 40px;
+    }
+  }
+
+  .inputs-wrapper {
+    .button {
+      background-color: $primary-green;
+      color: white;
+      text-transform: uppercase;
+      border: 0;
+
+      display: flex;
+      align-items: center;
+    }
+
+    .ant-input-number-group-addon {
+      padding: 0;
+    }
+  }
+
+  .arrow {
+    border-radius: 3px;
+    background-color: silver;
+    width: max-content;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    white-space: nowrap;
+    transition: all ease-in-out 200ms;
+    cursor: pointer;
+
+    &-next {
+      margin-left: 10px;
+
+      &:after {
+        content: '»';
+      }
+    }
+
+    &-prev {
+      margin-right: 25px;
+      &:after {
+        content: '«';
+      }
+    }
+
+    &:hover {
+      background-color: #2faf6dab;
+    }
+  }
+}
+
+.input-toggler {
+  padding: 4px 10px;
+  transition: all ease-in-out 200ms;
+  cursor: pointer;
+  &:hover {
+    background-color: #2faf6dab;
+    color: white;
+  }
+}
