@@ -5,7 +5,7 @@ import { ProductType } from '../../utils/providers/GlobalContext';
 import { Link } from 'react-router-dom';
 
 interface IProps {
-  product: Omit<ProductType, 'description' | 'about'>;
+  product: Omit<ProductType, 'description' | 'about' | 'reviews'>;
 }
 
 const IconFont = createFromIconfontCN({
@@ -36,7 +36,7 @@ const ProductCard = ({ product }: IProps) => {
         {btns}
         <p className="card-title">{product.name}</p>
         <p className="card-description">${product.price}</p>
-        <Rate allowHalf defaultValue={product.rating} />
+        <Rate disabled allowHalf defaultValue={product.rating} />
       </Card>
     </Link>
   );

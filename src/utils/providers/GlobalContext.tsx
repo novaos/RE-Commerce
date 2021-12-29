@@ -19,9 +19,17 @@ enum ActionTypes {
   GET_SELECTED_PRODUCT = 'GET_SELECTED_PRODUCT'
 }
 
-export type { ProductType };
+export type { ProductType, ReviewType, DataForFilterType };
 export { WearTypes, SortTypes, ActionTypes };
-export type { DataForFilterType };
+
+type ReviewType = {
+  id: string;
+  body: string;
+  date: Date;
+  name: string;
+  rating: number;
+  avatar: string;
+};
 
 type ProductType = {
   createdAt: Date;
@@ -38,6 +46,7 @@ type ProductType = {
   wearType: WearTypes;
   description: string;
   about: string;
+  reviews: ReviewType[];
 };
 
 type Products = ProductType[];
