@@ -40,29 +40,11 @@ const RelatedProducts: React.FC = () => {
                 arrows={true}
                 draggable={true}
                 {...settings}>
-                {state?.products
-                  ?.slice(0, 15)
-                  .map(({ amount, category, color, createdAt, id, name, photo, price, rating, size, wearType }) => (
-                    <>
-                      <ProductCard
-                        key={id}
-                        product={{
-                          createdAt: createdAt,
-                          name: name,
-                          photo: photo,
-                          price: price,
-                          rating: rating,
-                          amount: amount,
-                          category: category,
-                          size: size,
-                          color: color,
-                          id: id,
-                          colors: color,
-                          wearType: wearType
-                        }}
-                      />
-                    </>
-                  ))}
+                {state?.products?.slice(0, 15).map(product => (
+                  <>
+                    <ProductCard key={product.id} product={product} />
+                  </>
+                ))}
               </Carousel>
             </Col>
           </Row>

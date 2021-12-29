@@ -12,16 +12,22 @@ const IconFont = createFromIconfontCN({
   ]
 });
 
-const ProductCard: React.FC<{product: ProductType}> = ({ product }) => {
+const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
   const { dispatch } = useContext(GlobalContext);
 
   const cartHandler = () => {
-    dispatch({type: ActionTypes.ADD_TO_CART, payload: product})
-  }
+    dispatch({ type: ActionTypes.ADD_TO_CART, payload: product });
+  };
 
   const btns = (
     <div className="button-group">
-      <Button className="button-group-btn" type="primary" block onClick={cartHandler} icon={<IconFont type="icon-shoppingcart" />} />
+      <Button
+        className="button-group-btn"
+        type="primary"
+        block
+        onClick={cartHandler}
+        icon={<IconFont type="icon-shoppingcart" />}
+      />
       <Button className="button-group-btn" type="primary" block icon={<HeartFilled color="#fff" />} />
       <Button className="button-group-btn" type="primary" block icon={<SyncOutlined color="#fff" />} />
     </div>

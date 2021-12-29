@@ -90,8 +90,8 @@ type Action =
   | { type: ActionTypes.SHOW_ONLY_ACCESSORIES }
   | { type: ActionTypes.SHOW_ONLY_JEWELLERY }
   | { type: ActionTypes.ADD_TO_CART; payload: ProductType }
-  | { type: ActionTypes.REMOVE_FROM_CART, payload: string }
-  | { type: ActionTypes.EDIT_QUANTITY, payload: {value: string, id: string} };
+  | { type: ActionTypes.REMOVE_FROM_CART; payload: string }
+  | { type: ActionTypes.EDIT_QUANTITY; payload: { value: string; id: string } };
 
 const initialContext: Context = {};
 
@@ -143,33 +143,35 @@ const handleFilter = (products: Context['products'], typeOfCategory: WearTypes) 
   return filteredProducts;
 };
 
-const handleQuantity = (products: Context['products'], payload: {value: string, id: string}) => {
+const handleQuantity = (products: Context['products'], payload: { value: string; id: string }) => {
   return products?.map(item => {
-    if(item.id === payload.id) {
+    if (item.id === payload.id) {
       return {
         ...item,
         quantity: Number(payload.value)
-      }
+      };
     }
-    return item
-  })
-}
+    return item;
+  });
+};
 
 const addToCartHandle = (products: Context['products'], payload: ProductType) => {
-    if(products) {
-      if(products.find(item => item.id === payload.id)) {
-        return products.map(item => item.id === payload.id ?
-          {
-            ...payload,
-            quantity: (item.quantity) ? ++item.quantity : 1
-          } : item
-        );
-      } else {
-        return [...products, {...payload, quantity: 1}] 
-      }
+  if (products) {
+    if (products.find(item => item.id === payload.id)) {
+      return products.map(item =>
+        item.id === payload.id
+          ? {
+              ...payload,
+              quantity: item.quantity ? ++item.quantity : 1
+            }
+          : item
+      );
+    } else {
+      return [...products, { ...payload, quantity: 1 }];
     }
-    return [{...payload, quantity: 1}]
-}
+  }
+  return [{ ...payload, quantity: 1 }];
+};
 
 const getDataForFilter = (products: Context['products']) => {
   if (!products) return;
@@ -264,7 +266,7 @@ function reducer(state: Context, action: Action): Context {
         ...state,
         productsInCart: addToCartHandle(state.productsInCart, action.payload)
       };
-    
+
     case ActionTypes.REMOVE_FROM_CART:
       return {
         ...state,
