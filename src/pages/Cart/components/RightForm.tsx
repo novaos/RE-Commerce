@@ -1,6 +1,14 @@
 import { Form, Input, Button, Card, Row, Col } from 'antd';
+import { useContext } from 'react';
+import { GlobalContext } from '../../../utils/providers/GlobalContext';
 
 const RightForm = () => {
+  const { state } = useContext(GlobalContext);
+  const coupon = 50;
+  const subtotal = state.productsInCart?.map(product => {
+    return product.quantity ? product.quantity * +product.price : +product.price;
+  }).reduce((a, b) => a + b, 0);
+
   return (
     <Form layout="vertical">
       <h2 className="form-title">use gift voucher</h2>
@@ -18,11 +26,11 @@ const RightForm = () => {
         <Card className='cart-coupon'>
           <Row justify='space-between'>
             <Col><p>Subtotal</p></Col>
-            <Col><p>$450</p></Col>
+            <Col><p>${subtotal ? subtotal : 0}</p></Col>
           </Row>
           <Row justify='space-between'>
             <Col><p>Coupon</p></Col>
-            <Col><p>-$50</p></Col>
+            <Col><p>-${coupon}</p></Col>
           </Row>
           <Row justify='space-between'>
             <Col><p>Shipping</p></Col>
@@ -32,7 +40,7 @@ const RightForm = () => {
         <Card>
           <Row justify='space-between'>
             <Col><p>Total</p></Col>
-            <Col><p>$400</p></Col>
+            <Col><p>${subtotal ? subtotal - coupon : 0}</p></Col>
           </Row>
         </Card>
       </Form.Item>

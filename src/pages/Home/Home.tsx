@@ -3,13 +3,16 @@ import { ActionTypes, GlobalContext } from '../../utils/providers/GlobalContext'
 import BestSelers from './components/bestSelers/BestSelers';
 import FeatureProducts from './components/featuredProducts/FeatureProducts';
 import Delivery from './components/SaticBlocks/StaticBlocks';
+
 const Home: React.FC = () => {
-  const { state, dispatch } = useContext(GlobalContext);
+  const { dispatch } = useContext(GlobalContext);
 
   useEffect(() => {
     dispatch({ type: ActionTypes.SORT_BY_RATING });
     dispatch({ type: ActionTypes.SORT_BY_NEWNESS });
-  }, [dispatch, state.products]);
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <>
       <BestSelers />

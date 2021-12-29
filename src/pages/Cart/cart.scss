@@ -1,11 +1,17 @@
 .product-cell {
     display: flex;
     align-items: center;
+    justify-content: left;
     img {
         margin-right: 30px;
     }
 }
 
+.total-cell:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
 
 .form-title {
     font-size: 14px;
@@ -27,6 +33,24 @@
     border: none;
     &:hover, &:focus {
         background: #45c784;
+    }
+ }
+
+ .cart-buttons {
+     display: flex;
+     justify-content: end;
+    &-update {
+        width: 130px;
+        height: 40px;
+        margin-right: 10px;
+    }
+    &-continue {
+        background: #2faf6d;
+        height: 40px;
+        border: none;
+        &:hover, &:focus {
+            background: #45c784;
+        }  
     }
  }
 

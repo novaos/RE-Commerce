@@ -15,7 +15,10 @@ enum ActionTypes {
   SHOW_ONLY_KIDS = 'FILTER_KIDS',
   SHOW_ONLY_JEWELLERY = 'FILTER_JEWELLERY',
   SHOW_ONLY_ACCESSORIES = 'FILTER_ACCESSORIES',
-  FILTER_BY_PRICE = 'FILTER_BY_PRICE'
+  FILTER_BY_PRICE = 'FILTER_BY_PRICE',
+  ADD_TO_CART = 'ADD_TO_CART',
+  REMOVE_FROM_CART = 'REMOVE_FROM_CART',
+  EDIT_QUANTITY = 'EDIT_QUANTITY'
 }
 
 export type { Product };
@@ -35,6 +38,7 @@ type Product = {
   id: string;
   colors: string;
   wearType: WearTypes;
+  quantity?: number;
 };
 
 type Products = Product[];
@@ -50,6 +54,7 @@ interface Context {
   jewellery?: Products;
   accessories?: Products;
   dataForFilter?: DataForFilterType;
+  productsInCart?: Products;
 }
 
 type DataForFilterType = {
@@ -69,7 +74,10 @@ type Action =
   | { type: ActionTypes.SHOW_ONLY_MEN }
   | { type: ActionTypes.SHOW_ONLY_KIDS }
   | { type: ActionTypes.SHOW_ONLY_ACCESSORIES }
-  | { type: ActionTypes.SHOW_ONLY_JEWELLERY };
+  | { type: ActionTypes.SHOW_ONLY_JEWELLERY }
+  | { type: ActionTypes.ADD_TO_CART; payload: Product }
+  | { type: ActionTypes.REMOVE_FROM_CART, payload: string }
+  | { type: ActionTypes.EDIT_QUANTITY, payload: {value: string, id: string} };
 
 const initialContext: Context = {};
 
@@ -120,6 +128,34 @@ const handleFilter = (products: Context['products'], typeOfCategory: WearTypes) 
 
   return filteredProducts;
 };
+
+const handleQuantity = (products: Context['products'], payload: {value: string, id: string}) => {
+  return products?.map(item => {
+    if(item.id === payload.id) {
+      return {
+        ...item,
+        quantity: Number(payload.value)
+      }
+    }
+    return item
+  })
+}
+
+const addToCartHandle = (products: Context['products'], payload: Product) => {
+    if(products) {
+      if(products.find(item => item.id === payload.id)) {
+        return products.map(item => item.id === payload.id ?
+          {
+            ...payload,
+            quantity: (item.quantity) ? ++item.quantity : 1
+          } : item
+        );
+      } else {
+        return [...products, {...payload, quantity: 1}] 
+      }
+    }
+    return [{...payload, quantity: 1}]
+}
 
 const getDataForFilter = (products: Context['products']) => {
   if (!products) return;
@@ -202,6 +238,24 @@ function reducer(state: Context, action: Action): Context {
       return {
         ...state,
         accessories: handleFilter(state.products, WearTypes.accessories)
+      };
+
+    case ActionTypes.ADD_TO_CART:
+      return {
+        ...state,
+        productsInCart: addToCartHandle(state.productsInCart, action.payload)
+      };
+    
+    case ActionTypes.REMOVE_FROM_CART:
+      return {
+        ...state,
+        productsInCart: state.productsInCart?.filter(({ id }) => id !== action.payload)
+      };
+
+    case ActionTypes.EDIT_QUANTITY:
+      return {
+        ...state,
+        productsInCart: handleQuantity(state.productsInCart, action.payload)
       };
     default:
       throw new Error('Unhandled action type.');
