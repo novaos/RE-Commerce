@@ -40,7 +40,6 @@ const navigation = [
 
 const Navigation: React.FC = () => {
   const { state } = useContext(GlobalContext);
-  console.log(state);
   return (
     <Header className="navigation">
       <div className="container">
@@ -63,18 +62,18 @@ const Navigation: React.FC = () => {
           </nav>
         </Menu>
         <Row justify="space-between">
-          <Col span={8} className="link">
+          <Col className="link">
+            {/* <Link to="/search">
+              <SearchOutlined className="icon" />
+            </Link> */}
+            <SearchInput />
+          </Col>
+          <Col className="link">
             <Link to="/cart">
               <Badge count={state.productsInCart?.length} size="small">
                 <IconFont className="icon" type="icon-shoppingcart" />
               </Badge>
             </Link>
-          </Col>
-          <Col span={8} className="link">
-            {/* <Link to="/search">
-              <SearchOutlined className="icon" />
-            </Link> */}
-            <SearchInput />
           </Col>
         </Row>
       </div>
