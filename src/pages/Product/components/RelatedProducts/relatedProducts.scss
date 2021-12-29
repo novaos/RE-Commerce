@@ -1,0 +1,28 @@
+@import 'src/variables.scss';
+
+.related-products-wrapper {
+  margin-top: 40px;
+  .arrows {
+    position: absolute;
+    top: -29px;
+    right: 0;
+    color: black;
+    z-index: 100000;
+    padding: 4.5px 10px;
+    background-color: $primary-green;
+    cursor: pointer;
+    color: white;
+
+    &-next {
+      &:after {
+        content: '»';
+      }
+    }
+    &-prev {
+      right: 34px;
+      &:after {
+        content: '«';
+      }
+    }
+  }
+}

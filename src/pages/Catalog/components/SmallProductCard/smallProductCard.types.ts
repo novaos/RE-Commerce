@@ -1,7 +1,7 @@
-import { Product } from '../../../../utils/providers/GlobalContext';
+import { ProductType } from '../../../../utils/providers/GlobalContext';
 
 type SmallProductCardProps = {
-  product: Product;
+  product: ProductType;
 };
 
 export type { SmallProductCardProps };

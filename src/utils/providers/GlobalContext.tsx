@@ -18,14 +18,23 @@ enum ActionTypes {
   FILTER_BY_PRICE = 'FILTER_BY_PRICE',
   ADD_TO_CART = 'ADD_TO_CART',
   REMOVE_FROM_CART = 'REMOVE_FROM_CART',
-  EDIT_QUANTITY = 'EDIT_QUANTITY'
+  EDIT_QUANTITY = 'EDIT_QUANTITY',
+  GET_SELECTED_PRODUCT = 'GET_SELECTED_PRODUCT'
 }
 
-export type { Product };
+export type { ProductType, ReviewType, DataForFilterType };
 export { WearTypes, SortTypes, ActionTypes };
-export type { DataForFilterType };
 
-type Product = {
+type ReviewType = {
+  id: string;
+  body: string;
+  date: Date;
+  name: string;
+  rating: number;
+  avatar: string;
+};
+
+type ProductType = {
   createdAt: Date;
   name: string;
   photo: string;
@@ -39,9 +48,12 @@ type Product = {
   colors: string;
   wearType: WearTypes;
   quantity?: number;
+  description: string;
+  about: string;
+  reviews: ReviewType[];
 };
 
-type Products = Product[];
+type Products = ProductType[];
 interface Context {
   products?: Products;
   sortedProductsByRating?: Products;
@@ -55,6 +67,7 @@ interface Context {
   accessories?: Products;
   dataForFilter?: DataForFilterType;
   productsInCart?: Products;
+  selectedProduct?: ProductType;
 }
 
 type DataForFilterType = {
@@ -66,6 +79,7 @@ type DataForFilterType = {
 
 type Action =
   | { type: ActionTypes.GET_PRODUCTS; payload: Products }
+  | { type: ActionTypes.GET_SELECTED_PRODUCT; payload: ProductType }
   | { type: ActionTypes.SORT_BY_RATING }
   | { type: ActionTypes.SORT_BY_PRICE }
   | { type: ActionTypes.SORT_BY_NEWNESS }
@@ -75,7 +89,7 @@ type Action =
   | { type: ActionTypes.SHOW_ONLY_KIDS }
   | { type: ActionTypes.SHOW_ONLY_ACCESSORIES }
   | { type: ActionTypes.SHOW_ONLY_JEWELLERY }
-  | { type: ActionTypes.ADD_TO_CART; payload: Product }
+  | { type: ActionTypes.ADD_TO_CART; payload: ProductType }
   | { type: ActionTypes.REMOVE_FROM_CART, payload: string }
   | { type: ActionTypes.EDIT_QUANTITY, payload: {value: string, id: string} };
 
@@ -141,7 +155,7 @@ const handleQuantity = (products: Context['products'], payload: {value: string, 
   })
 }
 
-const addToCartHandle = (products: Context['products'], payload: Product) => {
+const addToCartHandle = (products: Context['products'], payload: ProductType) => {
     if(products) {
       if(products.find(item => item.id === payload.id)) {
         return products.map(item => item.id === payload.id ?
@@ -184,6 +198,11 @@ function reducer(state: Context, action: Action): Context {
         products: action.payload,
         dataForFilter: getDataForFilter(action.payload),
         sortedProductsByRating: handleSort(action.payload, SortTypes.rating)
+      };
+    case ActionTypes.GET_SELECTED_PRODUCT:
+      return {
+        ...state,
+        selectedProduct: action.payload
       };
     case ActionTypes.SORT_BY_NEWNESS:
       return {

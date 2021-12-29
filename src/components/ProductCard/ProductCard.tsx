@@ -1,12 +1,9 @@
+import { createFromIconfontCN, HeartFilled, SyncOutlined } from '@ant-design/icons';
+import { Button, Card, Rate } from 'antd';
 import { useContext } from 'react';
-import { Card, Rate, Button } from 'antd';
-import { HeartFilled, SyncOutlined, createFromIconfontCN } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
+import { ActionTypes, GlobalContext, ProductType } from '../../utils/providers/GlobalContext';
 import './productCard.scss';
-import { ActionTypes, GlobalContext, Product } from '../../utils/providers/GlobalContext';
-
-interface IProps {
-  product: Product;
-}
 
 const IconFont = createFromIconfontCN({
   scriptUrl: [
@@ -15,7 +12,7 @@ const IconFont = createFromIconfontCN({
   ]
 });
 
-const ProductCard = ({ product }: IProps) => {
+const ProductCard: React.FC<{product: ProductType}> = ({ product }) => {
   const { dispatch } = useContext(GlobalContext);
 
   const cartHandler = () => {
@@ -31,18 +28,20 @@ const ProductCard = ({ product }: IProps) => {
   );
 
   return (
-    <Card
-      className="item-card"
-      hoverable
-      style={{ width: 300, margin: '0 auto', height: 570 }}
-      bordered={false}
-      bodyStyle={{ padding: '5px 2px' }}
-      cover={<img style={{ objectFit: 'cover' }} alt="example" height={450} src={product.photo} />}>
-      {btns}
-      <p className="card-title">{product.name}</p>
-      <p className="card-description">${product.price}</p>
-      <Rate allowHalf defaultValue={product.rating} />
-    </Card>
+    <Link to={`/product/${product.id}`}>
+      <Card
+        className="item-card"
+        hoverable
+        style={{ width: 300, margin: '0 auto', height: 570 }}
+        bordered={false}
+        bodyStyle={{ padding: '5px 2px' }}
+        cover={<img style={{ objectFit: 'contain' }} alt="example" height={450} src={product.photo} />}>
+        {btns}
+        <p className="card-title">{product.name}</p>
+        <p className="card-description">${product.price}</p>
+        <Rate disabled allowHalf defaultValue={product.rating} />
+      </Card>
+    </Link>
   );
 };
 

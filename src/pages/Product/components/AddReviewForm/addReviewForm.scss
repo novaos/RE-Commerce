@@ -1,0 +1,10 @@
+@import 'src/variables.scss';
+
+.add-review-form-wrapper {
+  button {
+    text-transform: uppercase;
+    color: white;
+    background-color: $primary-green;
+    padding: 5px 20px;
+  }
+}
