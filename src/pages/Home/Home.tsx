@@ -9,7 +9,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     dispatch({ type: ActionTypes.SORT_BY_RATING });
-    dispatch({ type: ActionTypes.SORT_BY_NEWNESS });
+    // dispatch({ type: ActionTypes.SORT_BY_NEWNESS });
     //eslint-disable-next-line
   }, []);
 

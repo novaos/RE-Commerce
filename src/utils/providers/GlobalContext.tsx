@@ -199,7 +199,8 @@ function reducer(state: Context, action: Action): Context {
         ...state,
         products: action.payload,
         dataForFilter: getDataForFilter(action.payload),
-        sortedProductsByRating: handleSort(action.payload, SortTypes.rating)
+        sortedProductsByRating: handleSort(action.payload, SortTypes.rating),
+        sortedProductsByNewness: handleSort(state.products, SortTypes.newness)
       };
     case ActionTypes.GET_SELECTED_PRODUCT:
       return {

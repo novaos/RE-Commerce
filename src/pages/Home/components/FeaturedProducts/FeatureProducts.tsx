@@ -8,6 +8,7 @@ const FeatureProducts = () => {
   const { state } = useContext(GlobalContext);
 
   const productsToShow = useMemo(() => state?.sortedProductsByNewness?.slice(0, 10), [state?.sortedProductsByNewness]);
+  console.log(state);
 
   return (
     <div className="best-selers-wrap">
