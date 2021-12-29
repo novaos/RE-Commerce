@@ -1,5 +1,6 @@
 import { Form, Input, Button, Card, Row, Col } from 'antd';
 import { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../../../utils/providers/GlobalContext';
 
 const RightForm = () => {
@@ -45,7 +46,15 @@ const RightForm = () => {
         </Card>
       </Form.Item>
       <Form.Item>
-        <Button className='cart-form-btn' size='large' type='primary' style={{width: 'fit-content', float: 'right'}} htmlType="submit">PROCEED TO CHECKOUT</Button>
+        <NavLink to='/checkout'>
+          <Button 
+            className='cart-form-btn' 
+            size='large' 
+            type='primary' 
+            style={{width: 'fit-content', float: 'right'}} 
+            htmlType="submit">PROCEED TO CHECKOUT
+          </Button>
+        </NavLink>
       </Form.Item>
     </Form>
   );

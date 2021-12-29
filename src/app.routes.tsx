@@ -6,6 +6,7 @@ const LazyHome = loadable(() => import('./pages/Home/Home'), { fallback: <Loader
 const LazyCart = loadable(() => import('./pages/Cart/Cart'), { fallback: <Loader /> });
 const LazyNotFound = loadable(() => import('./components/NotFound'), { fallback: <Loader /> });
 const LazyCatalog = loadable(() => import('./pages/Catalog/Catalog'), { fallback: <Loader /> });
+const LazyCheckout = loadable(() => import('./pages/Checkout/Checkout'), { fallback: <Loader /> });
 export const routes = [
   {
     path: '/',
@@ -19,6 +20,10 @@ export const routes = [
   {
     path: '/catalog',
     component: () => <LazyCatalog />
+  },
+  {
+    path: '/checkout',
+    component: () => <LazyCheckout />
   },
   {
     path: '/women',

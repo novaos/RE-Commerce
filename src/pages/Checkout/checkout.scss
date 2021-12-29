@@ -1,0 +1,34 @@
+
+.checkout-ckeckbox {
+    font-size: 14px;
+    font-family: 'Roboto' serif;
+}
+
+.checkout-form-title {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+    color: #242628;
+}
+
+.checkout-row {
+    margin: 15px auto;
+}
+
+.checkout-total {
+    font: 500 18px 'Roboto', serif;
+}
+
+.checkout-payment-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.checkout-payment {
+    background: #f8f8f8;
+    padding: 15px;
+    margin: 20px auto;
+    font: 14px 'Roboto', serif;
+}
