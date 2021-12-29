@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { ActionTypes, GlobalContext } from '../../utils/providers/GlobalContext';
-import BestSelers from './components/bestSelers/BestSelers';
-import FeatureProducts from './components/featuredProducts/FeatureProducts';
+import BestSelers from './components/BestSelers/BestSelers';
+import FeatureProducts from './components/FeaturedProducts/FeatureProducts';
 import Delivery from './components/SaticBlocks/StaticBlocks';
 
 const Home: React.FC = () => {
