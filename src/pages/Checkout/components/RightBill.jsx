@@ -1,27 +1,15 @@
 import React, { useContext } from 'react';
-import { Form, Input, Button, Card, Row, Col, Checkbox } from 'antd';
+import { Button, Card, Row, Col, Checkbox } from 'antd';
 import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../../../utils/providers/GlobalContext';
 
-const ProductRow = () => {
-  return (
-    <Row justify="space-between" className='checkout-row'>
-      <Col>
-        <p>Product</p>
-      </Col>
-      <Col>
-        <p>Total</p>
-      </Col>
-    </Row>
-  )
-}
 
 const Rightbill = () => {
   const { state } = useContext(GlobalContext);
   const total = state.productsInCart.map(item => {
     return item.price * item.quantity
   }).reduce((a, b) => a + b)
-  
+
   return (
     <>
       <Card className="checkout-card">
