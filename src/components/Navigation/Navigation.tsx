@@ -2,7 +2,7 @@ import { Badge, Col, Menu, Row } from 'antd';
 import { Header } from 'antd/lib/layout/layout';
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { GlobalContext } from '../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import IconFont from '../IconFont';
 import { SearchInput } from './componets';
 import './navigation.scss';

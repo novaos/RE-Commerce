@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { ActionTypes, DataForFilterType, GlobalContext, SortTypes } from '../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
+import { SortTypes, ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
+import { DataForFilterType } from '../../utils/providers/GlobalContext/globalContext.types';
 import { CatalogProps } from './catalog.types';
 
 const useCatalogData = ({ filter, products }: CatalogProps) => {

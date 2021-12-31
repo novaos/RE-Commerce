@@ -2,7 +2,9 @@ import { createFromIconfontCN, HeartFilled, SyncOutlined } from '@ant-design/ico
 import { Button, Card, Rate } from 'antd';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ActionTypes, GlobalContext, ProductType } from '../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
+import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
+import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
 import './productCard.scss';
 
 const IconFont = createFromIconfontCN({

@@ -3,7 +3,7 @@ import { Col, Input, Row } from 'antd';
 import * as React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GlobalContext } from '../../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import './searchInput.scss';
 
 const SearchInput: React.FC = () => {

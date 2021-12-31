@@ -1,7 +1,7 @@
 import { Carousel, Col, Row, Typography } from 'antd';
 import * as React from 'react';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
-import { GlobalContext } from '../../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import './relatedProducts.scss';
 import Loader from '../../../../components/Loader';
 

@@ -3,7 +3,7 @@ import { QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { routes } from './app.routes';
 import Loader from './components/Loader';
-import GlobalContext from './utils/providers/GlobalContext';
+import GlobalContext from './utils/providers/GlobalContext/GlobalContext';
 import { queryClient } from './utils/react-query-client';
 import Navigation from './components/Navigation/Navigation';
 import Layout, { Content } from 'antd/lib/layout/layout';

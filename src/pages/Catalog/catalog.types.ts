@@ -1,4 +1,4 @@
-import { ActionTypes, WearTypes } from '../../utils/providers/GlobalContext';
+import { ActionTypes, WearTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 type CatalogProps = {
   filter?:
     | ActionTypes.SHOW_ONLY_WOMEN

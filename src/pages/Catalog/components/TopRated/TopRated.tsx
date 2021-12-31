@@ -1,6 +1,7 @@
 import { Row } from 'antd';
 import * as React from 'react';
-import { ActionTypes, GlobalContext } from '../../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
+import { ActionTypes } from '../../../../utils/providers/GlobalContext/globalContext.enums';
 import { SmallProductCard } from '../SmallProductCard';
 import './topRated.scss';
 

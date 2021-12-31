@@ -2,7 +2,7 @@ import { Tabs } from 'antd';
 import * as React from 'react';
 import './productTabs.scss';
 import { ReviewsTab } from '../ReviewsTab';
-import { ReviewType } from '../../../../utils/providers/GlobalContext';
+import { ReviewType } from '../../../../utils/providers/GlobalContext/globalContext.types';
 
 const ProductTabs: React.FC<{ about: string; reviews: ReviewType[] }> = ({ about, reviews }) => {
   return (

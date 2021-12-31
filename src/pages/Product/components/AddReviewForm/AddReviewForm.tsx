@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import * as React from 'react';
 import { useContext, useMemo } from 'react';
 import { addReview } from '../../../../business-logic';
-import { GlobalContext } from '../../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import './addReviewForm.scss';
 import { addReviewFormValidationSchema } from './addReviewForm.validation';
 

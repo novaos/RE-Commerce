@@ -2,9 +2,10 @@ import { Col, Divider, Image, Rate, Row, Typography } from 'antd';
 import * as React from 'react';
 import './reviewsTab.scss';
 import { AddReviewForm } from '../AddReviewForm';
-import { GlobalContext, ReviewType } from '../../../../utils/providers/GlobalContext';
 import dayjs from 'dayjs';
 import { useContext } from 'react';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
+import { ReviewType } from '../../../../utils/providers/GlobalContext/globalContext.types';
 
 const ReviewsTab: React.FC<{ reviews: ReviewType[] }> = ({ reviews }) => {
   const { state } = useContext(GlobalContext);

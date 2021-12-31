@@ -1,5 +1,5 @@
 import { useMemo, useState, useContext, useEffect } from 'react';
-import { GlobalContext } from '../../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import { FormInputType } from './Filter.types';
 
 const useFilterData = () => {

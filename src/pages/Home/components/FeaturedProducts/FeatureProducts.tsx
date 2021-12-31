@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import { useContext, useMemo } from 'react';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
-import { GlobalContext } from '../../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import './featuredProducts.scss';
 
 const FeatureProducts = () => {

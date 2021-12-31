@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Button, Card, Row, Col, Checkbox } from 'antd';
 import { NavLink } from 'react-router-dom';
-import { GlobalContext } from '../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
 
 
 const Rightbill = () => {

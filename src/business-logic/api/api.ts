@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ProductType } from '../../utils/providers/GlobalContext';
+import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
 const BASE_API_URL = 'https://61c1e7539dbcca0017c82212.mockapi.io/api/re-commerce';
 const PRODUCT_URL = '/products';
 

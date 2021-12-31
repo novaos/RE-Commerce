@@ -1,6 +1,6 @@
 import loadable from '@loadable/component';
 import Loader from './components/Loader';
-import { ActionTypes, WearTypes } from './utils/providers/GlobalContext';
+import { ActionTypes, WearTypes } from './utils/providers/GlobalContext/globalContext.enums';
 
 const LazyHome = loadable(() => import('./pages/Home/Home'), { fallback: <Loader /> });
 const LazyCart = loadable(() => import('./pages/Cart/Cart'), { fallback: <Loader /> });

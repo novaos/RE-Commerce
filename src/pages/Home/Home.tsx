@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from 'react';
-import { ActionTypes, GlobalContext } from '../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
+import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import BestSelers from './components/BestSelers/BestSelers';
 import FeatureProducts from './components/FeaturedProducts/FeatureProducts';
 import Delivery from './components/SaticBlocks/StaticBlocks';
