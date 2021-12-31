@@ -9,11 +9,13 @@ import Navigation from './components/Navigation/Navigation';
 import Layout, { Content } from 'antd/lib/layout/layout';
 import { HeaderTop } from './components/HeaderTop';
 import { Footer } from './components/Footer';
+import ScrollToTop from './utils/ScrollToTop';
 
 const App: React.FC = () => (
   // Provide the client to your App
   <QueryClientProvider client={queryClient}>
     <Router>
+      <ScrollToTop />
       <Suspense fallback={<Loader />}>
         <GlobalContext>
           <Layout style={{ background: '#fff', overflow: 'hidden' }}>

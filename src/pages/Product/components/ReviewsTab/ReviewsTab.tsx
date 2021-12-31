@@ -16,7 +16,11 @@ const ReviewsTab: React.FC<{ reviews: ReviewType[] }> = ({ reviews }) => {
       {reviews.map(({ avatar, rating, body, date, name }) => (
         <Row>
           <Col span={3}>
-            <Image width={'150px'} height={'auto'} src={avatar} />
+            <Image
+              width={'150px'}
+              height={'auto'}
+              src={avatar || 'https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png'}
+            />
           </Col>
           <Col offset={1} span={20}>
             <div className="reviews-tab-wrapper-info">

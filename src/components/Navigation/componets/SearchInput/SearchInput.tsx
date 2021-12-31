@@ -18,13 +18,17 @@ const SearchInput: React.FC = () => {
           <Input
             onChange={e => setQuery(e.target.value)}
             value={query}
-            onFocus={() => setIsOpen(true)}
+            onFocus={() => {
+              setTimeout(() => {
+                setIsOpen(true);
+              }, 500);
+            }}
             onBlur={() => {
               setTimeout(() => {
                 setIsOpen(false);
-              }, 100);
+              }, 200);
             }}
-            style={{ width: 'min-content' }}
+            style={{ width: 'min-content', cursor: 'pointer' }}
             className="input"
             suffix={<SearchOutlined className="icon" />}
           />

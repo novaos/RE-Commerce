@@ -1,39 +1,39 @@
 @import 'src/variables.scss';
 .button-group {
-    width: 32px;
-    position: absolute;
-    top: 6px;
-    right: -32px;
-    transition: right .3s ease-out;
-    &-btn {
-        margin: 3px 0;
-        background: $primary-green;
-        border: none;
-    }
-    &-btn:hover, &-btn:focus {
-        background: #45c784;
-    }
+  width: 32px;
+  position: absolute;
+  top: 6px;
+  right: -32px;
+  transition: right 0.3s ease-out;
+  &-btn {
+    margin: 3px 0;
+    background: $primary-green;
+    border: none;
+  }
+  &-btn:hover,
+  &-btn:focus {
+    background: #45c784;
+  }
 }
 
 .item-card {
-    overflow: hidden;
+  overflow: hidden;
 }
 .item-card:hover {
-    
-    .button-group {
-        right: 6px;
-    }
+  .button-group {
+    right: 6px;
+  }
 }
 .card-title {
-    font-size: 14px;
-    font-weight: 600;
-    margin: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px 0;
 }
 
 .card-description {
-    color: $primary-green;
-    font-family: 'Source Serif Pro', serif;
-    font-size: 18px;
-    font-weight: 400;
-    margin-bottom: 15px;
+  color: $primary-green;
+  font-family: 'Source Serif Pro', serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 15px;
 }

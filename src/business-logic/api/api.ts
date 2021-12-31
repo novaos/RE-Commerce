@@ -29,4 +29,13 @@ const getSelectedProduct = async (id: string, callback: (data: ProductType) => v
   }
 };
 
-export { getProducts, getSelectedProduct };
+const addReview = async (id: number | string, data: any) => {
+  try {
+    const response = await http.put(`${PRODUCT_URL}/${id}`, data);
+    console.log({ response });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getProducts, getSelectedProduct, addReview };
