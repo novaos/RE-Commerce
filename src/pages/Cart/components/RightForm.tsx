@@ -49,7 +49,8 @@ const RightForm = () => {
         <NavLink to='/checkout'>
           <Button 
             className='cart-form-btn' 
-            size='large' 
+            size='large'
+            disabled={state.productsInCart?.length ? false : true}
             type='primary' 
             style={{width: 'fit-content', float: 'right'}} 
             htmlType="submit">PROCEED TO CHECKOUT

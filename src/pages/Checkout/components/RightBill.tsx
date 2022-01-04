@@ -1,13 +1,20 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Button, Card, Row, Col, Checkbox } from 'antd';
-import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../../../utils/providers/GlobalContext';
+import { useHistory } from 'react-router-dom';
 
 
 const Rightbill = () => {
-  const { state } = useContext(GlobalContext);
-  const total = state.productsInCart.map(item => {
-    return item.price * item.quantity
+  const { state: {productsInCart} } = useContext(GlobalContext);
+  const history = useHistory();
+
+  if(!productsInCart) {
+    history.push('/cart')
+    return null;
+  }
+
+  const total = productsInCart.map(item => {
+    return +item.price * (item.quantity || 1)
   }).reduce((a, b) => a + b)
 
   return (
@@ -23,13 +30,13 @@ const Rightbill = () => {
           </Col>
         </Row>
         <hr />
-        {state.productsInCart.map(item => (
+        {productsInCart.map(item => (
           <Row justify="space-between" className='checkout-row'>
             <Col>
               <p>{item.name} x {item.quantity}</p>
             </Col>
             <Col>
-              <p>${item.price * item.quantity}</p>
+              <p>${+item.price * (item.quantity || 1)}</p>
             </Col>
           </Row>
         ))}
@@ -75,17 +82,15 @@ const Rightbill = () => {
           </div>
         </div>
       </Card>
-
-      <NavLink to="/checkout">
-        <Button
-          className="cart-form-btn"
-          size="large"
-          type="primary"
-          style={{ width: 'fit-content', float: 'right' }}
-          htmlType="submit">
-          PROCEED TO CHECKOUT
-        </Button>
-      </NavLink>
+      <Button
+        className="checkout-bill-btn"
+        size="large"
+        type="primary"
+        htmlType="submit"
+        form='checkout-form'
+      >
+        place order
+      </Button>
     </>
   );
 };

@@ -32,3 +32,15 @@
     margin: 20px auto;
     font: 14px 'Roboto', serif;
 }
+
+.checkout-bill-btn {
+    width: fit-content;
+    margin-top: 15px;
+    background: #2faf6d;
+    border: none;
+    text-transform: uppercase;
+    float: right;
+    &:hover, &:focus {
+        background: #45c784;
+    }
+ }
