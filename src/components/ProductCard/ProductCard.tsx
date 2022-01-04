@@ -1,7 +1,7 @@
 import { createFromIconfontCN, HeartFilled, SyncOutlined } from '@ant-design/icons';
 import { Button, Card, Rate } from 'antd';
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
@@ -17,7 +17,8 @@ const IconFont = createFromIconfontCN({
 const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
   const { dispatch } = useContext(GlobalContext);
 
-  const cartHandler = () => {
+  const cartHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    e.stopPropagation();
     dispatch({ type: ActionTypes.ADD_TO_CART, payload: product });
   };
 
@@ -34,9 +35,10 @@ const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
       <Button className="button-group-btn" type="primary" block icon={<SyncOutlined color="#fff" />} />
     </div>
   );
+  const history = useHistory();
 
   return (
-    <Link to={`/product/${product.id}`}>
+    <div onClick={() => history.push(`/product/${product.id}`)}>
       <Card
         className="item-card"
         hoverable
@@ -49,7 +51,7 @@ const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
         <p className="card-description">${product.price}</p>
         <Rate disabled allowHalf defaultValue={product.rating} />
       </Card>
-    </Link>
+    </div>
   );
 };
 

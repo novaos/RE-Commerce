@@ -67,6 +67,7 @@ const Filter: React.FC<{ handleSearch: (values: any) => void }> = ({ handleSearc
               <ButtonCheckbox
                 items={sizes}
                 name={'size'}
+                styles={{ textTransform: 'uppercase' }}
                 setFieldValue={setFieldValue}
                 onChange={onChangeCheckbox}
                 handleSubmit={handleSubmit}
