@@ -14,7 +14,10 @@ const ButtonCheckbox: React.FC<{
   setFieldValue: (name: string, values: any) => void;
   onChange: (name: string, setFieldValue: (name: string, values: any) => void, values: any) => void;
   handleSubmit?: () => void;
-}> = ({ name, items, onChange, handleSubmit, setFieldValue }) => {
+  styles?: {
+    [key: string]: string;
+  };
+}> = ({ name, items, onChange, handleSubmit, setFieldValue, styles }) => {
   return (
     <section className="button-checkbox-wrapper">
       {items?.map(({ title, options }) => (
@@ -27,7 +30,7 @@ const ButtonCheckbox: React.FC<{
             }}
             className="custom-checkboxes">
             {options?.map(({ value, label }) => (
-              <Checkbox className="label" value={value}>
+              <Checkbox style={{ ...styles }} className="label" value={value}>
                 {label}
               </Checkbox>
             ))}

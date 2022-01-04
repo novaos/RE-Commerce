@@ -1,14 +1,16 @@
-import { Form, Input, Button, Card, Row, Col } from 'antd';
+import { Button, Card, Col, Form, Input, Row } from 'antd';
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { GlobalContext } from '../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
 
 const RightForm = () => {
   const { state } = useContext(GlobalContext);
   const coupon = 50;
-  const subtotal = state.productsInCart?.map(product => {
-    return product.quantity ? product.quantity * +product.price : +product.price;
-  }).reduce((a, b) => a + b, 0);
+  const subtotal = state.productsInCart
+    ?.map(product => {
+      return product.quantity ? product.quantity * +product.price : +product.price;
+    })
+    .reduce((a, b) => a + b, 0);
 
   return (
     <Form layout="vertical">
@@ -16,7 +18,7 @@ const RightForm = () => {
       <Form.Item label="Enter Your Gift Voucher Code Here">
         <Input.Group compact>
           <Input placeholder="Enter your gift voucher code here" size="large" style={{ width: 'calc(100% - 130px)' }} />
-          <Button className='cart-form-btn' size="large" type="primary">
+          <Button className="cart-form-btn" size="large" type="primary">
             APPLY
           </Button>
         </Input.Group>
@@ -24,24 +26,40 @@ const RightForm = () => {
 
       <h2 className="form-title">sopping cart calculation</h2>
       <Form.Item>
-        <Card className='cart-coupon'>
-          <Row justify='space-between'>
-            <Col><p>Subtotal</p></Col>
-            <Col><p>${subtotal ? subtotal : 0}</p></Col>
+        <Card className="cart-coupon">
+          <Row justify="space-between">
+            <Col>
+              <p>Subtotal</p>
+            </Col>
+            <Col>
+              <p>${subtotal ? subtotal : 0}</p>
+            </Col>
           </Row>
-          <Row justify='space-between'>
-            <Col><p>Coupon</p></Col>
-            <Col><p>-${coupon}</p></Col>
+          <Row justify="space-between">
+            <Col>
+              <p>Coupon</p>
+            </Col>
+            <Col>
+              <p>-${coupon}</p>
+            </Col>
           </Row>
-          <Row justify='space-between'>
-            <Col><p>Shipping</p></Col>
-            <Col><p>Free Shipping</p></Col>
+          <Row justify="space-between">
+            <Col>
+              <p>Shipping</p>
+            </Col>
+            <Col>
+              <p>Free Shipping</p>
+            </Col>
           </Row>
         </Card>
         <Card>
-          <Row justify='space-between'>
-            <Col><p>Total</p></Col>
-            <Col><p>${subtotal ? subtotal - coupon : 0}</p></Col>
+          <Row justify="space-between">
+            <Col>
+              <p>Total</p>
+            </Col>
+            <Col>
+              <p>${subtotal ? subtotal - coupon : 0}</p>
+            </Col>
           </Row>
         </Card>
       </Form.Item>

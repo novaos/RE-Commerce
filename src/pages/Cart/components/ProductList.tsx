@@ -1,8 +1,10 @@
 import { DeleteFilled } from '@ant-design/icons';
 import { Button, Input, Table } from 'antd';
-import { useState, useContext } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { GlobalContext, ActionTypes, ProductType } from '../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
+import { ActionTypes } from '../../../utils/providers/GlobalContext/globalContext.enums';
+import { ProductType } from '../../../utils/providers/GlobalContext/globalContext.types';
 
 const QuantityInput = ({ product }: { product: ProductType }) => {
   const { dispatch } = useContext(GlobalContext);

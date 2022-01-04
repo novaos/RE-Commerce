@@ -2,15 +2,21 @@ import { StarFilled, StarOutlined } from '@ant-design/icons';
 import { Button, Col, Divider, Form, Input, Row, Typography } from 'antd';
 import { Formik } from 'formik';
 import * as React from 'react';
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
+import { addReview } from '../../../../business-logic';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import './addReviewForm.scss';
+import { addReviewFormValidationSchema } from './addReviewForm.validation';
 
 const AddReviewForm: React.FC = () => {
+  const { state } = useContext(GlobalContext);
   const initialValues = useMemo(
     () => ({
+      id: Date.now(),
+      date: new Date(),
       name: '',
       email: '',
-      review: '',
+      body: '',
       rating: 0
     }),
     []
@@ -20,17 +26,33 @@ const AddReviewForm: React.FC = () => {
       <Row>
         <Typography.Title level={3}>Add a review</Typography.Title>
       </Row>
-      <Formik initialValues={initialValues} onSubmit={values => console.log(values)}>
-        {({ handleSubmit, setFieldValue, values }) => (
+      <Formik
+        validationSchema={addReviewFormValidationSchema}
+        initialValues={initialValues}
+        onSubmit={values => {
+          if (state.selectedProduct?.id) {
+            addReview(state.selectedProduct?.id, { reviews: [...state.selectedProduct?.reviews, { ...values }] });
+          }
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        }}>
+        {({ errors, touched, handleSubmit, setFieldValue, values }) => (
           <Form onFinish={handleSubmit}>
             <Row style={{ marginBottom: '30px' }}>
               <Col span={8}>
-                <Input onChange={e => setFieldValue('name', e.target.value)} name="name" placeholder="Your name..." />
+                <Input
+                  style={{ borderColor: `${errors.name && touched.name ? 'red' : ''}` }}
+                  onChange={e => setFieldValue('name', e.target.value)}
+                  name="name"
+                  placeholder="Your name..."
+                />
               </Col>
               <Col offset={2} span={8}>
                 <Input
                   onChange={e => setFieldValue('email', e.target.value)}
                   name="email"
+                  style={{ borderColor: `${errors.email && touched.email ? 'red' : ''}` }}
                   placeholder="Your email..."
                 />
               </Col>
@@ -50,7 +72,10 @@ const AddReviewForm: React.FC = () => {
                       values.rating === item ? (
                         <StarFilled style={{ color: 'orange' }} />
                       ) : (
-                        <StarOutlined style={{ color: 'orange' }} onClick={() => setFieldValue('rating', item)} />
+                        <StarOutlined
+                          style={{ color: `${errors.rating && touched.rating ? 'red' : 'orange'}` }}
+                          onClick={() => setFieldValue('rating', item)}
+                        />
                       )
                     );
                   }
@@ -64,7 +89,10 @@ const AddReviewForm: React.FC = () => {
               </Col>
             </Row>
             <Form.Item>
-              <Input.TextArea onChange={e => setFieldValue('review', e.target.value)} style={{ height: '200px' }} />
+              <Input.TextArea
+                onChange={e => setFieldValue('body', e.target.value)}
+                style={{ height: '200px', borderColor: `${errors.body && touched.body ? 'red' : ''}` }}
+              />
             </Form.Item>
             <Button htmlType="submit" disabled={Object.values(values).some(item => item === 0 || item === '')}>
               Submit

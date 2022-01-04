@@ -1,14 +1,13 @@
 import { Col, Row } from 'antd';
 import { useContext, useMemo } from 'react';
 import ProductCard from '../../../../components/ProductCard/ProductCard';
-import { GlobalContext } from '../../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import './featuredProducts.scss';
 
 const FeatureProducts = () => {
   const { state } = useContext(GlobalContext);
 
   const productsToShow = useMemo(() => state?.sortedProductsByNewness?.slice(0, 10), [state?.sortedProductsByNewness]);
-  console.log(state);
 
   return (
     <div className="best-selers-wrap">

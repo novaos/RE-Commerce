@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './catalogHeader.scss';
 import { Select } from 'antd';
-import { SortTypes } from '../../../../utils/providers/GlobalContext';
+import { SortTypes } from '../../../../utils/providers/GlobalContext/globalContext.enums';
 const { Option } = Select;
 
 type CatalogHeaderProps = {

@@ -37,7 +37,7 @@ const Filter: React.FC<{ handleSearch: (values: any) => void }> = ({ handleSearc
                       onChangeRadio('category', setFieldValue, event.target.value);
                       handleSubmit();
                     }}>
-                    {options?.map(({ value, label }) => (
+                    {options?.map(({ value, label }: { value: string; label: string }) => (
                       <Row>
                         <Radio className="label" value={value}>
                           {label}
@@ -67,6 +67,7 @@ const Filter: React.FC<{ handleSearch: (values: any) => void }> = ({ handleSearc
               <ButtonCheckbox
                 items={sizes}
                 name={'size'}
+                styles={{ textTransform: 'uppercase' }}
                 setFieldValue={setFieldValue}
                 onChange={onChangeCheckbox}
                 handleSubmit={handleSubmit}

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Button, Card, Row, Col, Checkbox } from 'antd';
-import { GlobalContext } from '../../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
 import { useHistory } from 'react-router-dom';
 
 

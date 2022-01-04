@@ -1,11 +1,12 @@
 import { HeartOutlined, SyncOutlined } from '@ant-design/icons';
 import { Button, Col, Divider, Form, Image, InputNumber, Rate, Row, Select, Typography } from 'antd';
+import { Formik } from 'formik';
 import * as React from 'react';
 import { useCallback, useState } from 'react';
 import IconFont from '../../../../components/IconFont';
 import { ProductHeaderCarousel } from '../ProductHeaderCarousel';
 import './productHeader.scss';
-import { Formik } from 'formik';
+import { productHeaderValidationSchema } from './productHeader.validation';
 
 type ProductHeaderProps = {
   photo: string;
@@ -58,10 +59,11 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
           </div>
           <div className="inputs-wrapper">
             <Formik
+              validationSchema={productHeaderValidationSchema}
               enableReinitialize
               initialValues={{ size: sizeOptions?.[0]?.value, color: colorOptions?.[0]?.value, count: 1 }}
               onSubmit={() => {}}>
-              {({ values, setFieldValue }) => (
+              {({ errors, touched, values, setFieldValue }) => (
                 <Form>
                   <Row gutter={40}>
                     <Col>
@@ -91,7 +93,7 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
                     addonAfter={inputNumberToggler(() => setCountOfProduct(prev => prev + 1), '+')}
                     defaultValue={countOfProduct}
                     value={countOfProduct}
-                    style={{ marginBottom: '30px' }}
+                    style={{ marginBottom: '30px', borderColor: `${touched.count && errors.count ? 'red' : ''}` }}
                     onChange={value => setFieldValue('count', value)}
                   />
                   <Row gutter={[10, 10]}>
@@ -116,6 +118,7 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
           </div>
         </Col>
       </Row>
+
       <ProductHeaderCarousel photo={photo} />
     </div>
   );

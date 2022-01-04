@@ -2,24 +2,11 @@ import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { getSelectedProduct } from '../../business-logic';
 import Loader from '../../components/Loader';
-import { ActionTypes, GlobalContext, ProductType } from '../../utils/providers/GlobalContext';
+import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
+import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
+import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
 import { ProductHeader, ProductTabs, RelatedProducts } from './components';
 import './product.scss';
-// const options: { value: string; label: string }[] = [
-//   {
-//     label: 'label',
-//     value: 'value'
-//   },
-//   {
-//     label: 'label',
-//     value: 'value'
-//   },
-//   {
-//     label: 'label',
-//     value: 'value'
-//   }
-// ];
-
 const Product: React.FC = () => {
   const { state, dispatch } = React.useContext(GlobalContext);
   const [sizeOptions, setSizeOptions] = React.useState<{ label: string; value: string }[]>([]);

@@ -26,7 +26,7 @@ const ProductHeaderCarousel: React.FC<{ photo: string }> = ({ photo }) => {
             draggable={true}
             {...settings}>
             {[1, 2, 3, 4].map(item => (
-              <Image width={'auto'} height={100} key={item} src={photo} />
+              <Image width={'auto'} height={100} key={String(item)} src={photo} />
             ))}
           </Carousel>
         </Col>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { ProductType } from '../../utils/providers/GlobalContext';
+import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
 const BASE_API_URL = 'https://61c1e7539dbcca0017c82212.mockapi.io/api/re-commerce';
 const PRODUCT_URL = '/products';
 
@@ -29,4 +29,13 @@ const getSelectedProduct = async (id: string, callback: (data: ProductType) => v
   }
 };
 
-export { getProducts, getSelectedProduct };
+const addReview = async (id: number | string, data: any) => {
+  try {
+    const response = await http.put(`${PRODUCT_URL}/${id}`, data);
+    console.log({ response });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getProducts, getSelectedProduct, addReview };
