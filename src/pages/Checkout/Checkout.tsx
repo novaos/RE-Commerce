@@ -1,9 +1,19 @@
-import { Row, Col } from 'antd';
+import { Col, Row } from 'antd';
+import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
+import './checkout.scss';
 import LeftForm from './components/LeftForm';
 import RightBill from './components/RightBill';
-import './checkout.scss';
 
 const Checkout = () => {
+  const { state: {productsInCart} } = useContext(GlobalContext);
+  const history = useHistory();
+
+  if(!productsInCart?.length) {
+    history.push('/catalog')
+    return null;
+  }
   return (
     <div className='inner-container'>
       <Row gutter={[20, 20]} style={{marginBottom: '150px'}}>

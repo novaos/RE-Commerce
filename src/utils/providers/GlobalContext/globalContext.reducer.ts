@@ -82,7 +82,7 @@ function reducer(state: Context, action: Action): Context {
     case ActionTypes.REMOVE_FROM_CART:
       return {
         ...state,
-        productsInCart: state.productsInCart?.filter(({ id }) => id !== action.payload)
+        productsInCart: (action.payload === 'submit') ? [] : state.productsInCart?.filter(({ id }) => id !== action.payload)
       };
 
     case ActionTypes.EDIT_QUANTITY:
