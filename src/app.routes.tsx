@@ -8,6 +8,7 @@ const LazyNotFound = loadable(() => import('./components/NotFound'), { fallback:
 const LazyCatalog = loadable(() => import('./pages/Catalog/Catalog'), { fallback: <Loader /> });
 const LazyCheckout = loadable(() => import('./pages/Checkout/Checkout'), { fallback: <Loader /> });
 const LazyProduct = loadable(() => import('./pages/Product/Product'), { fallback: <Loader /> });
+const LazyComparison = loadable(() => import('./pages/Comparison/Comparison'), { fallback: <Loader /> });
 export const routes = [
   {
     path: '/',
@@ -50,6 +51,10 @@ export const routes = [
   {
     path: '/product/:id',
     component: () => <LazyProduct />
+  },
+  {
+    path: '/comparison',
+    component: () => <LazyComparison />
   },
   {
     path: '*',

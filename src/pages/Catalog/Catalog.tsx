@@ -23,7 +23,7 @@ const Catalog: React.FC<CatalogProps> = ({ filter, products }) => {
           <div className="products-wrapper">
             <Row justify="space-between" gutter={[20, 20]} wrap={true}>
               {productsToShow?.slice(showFrom, showTo)?.map((item: ProductType) => (
-                <Col flex="250px" key={item.id}>
+                <Col flex="250px" className="product-column" key={item.id}>
                   <ProductCard product={item} />
                 </Col>
               ))}

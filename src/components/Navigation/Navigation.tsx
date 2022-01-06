@@ -1,7 +1,9 @@
+import { SyncOutlined } from '@ant-design/icons';
 import { Badge, Col, Menu, Row } from 'antd';
 import { Header } from 'antd/lib/layout/layout';
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { useClickAway } from '../../utils/hooks';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import IconFont from '../IconFont';
 import { SearchInput } from './componets';
@@ -40,6 +42,17 @@ const navigation = [
 
 const Navigation: React.FC = () => {
   const { state } = useContext(GlobalContext);
+  const [isVisibleAdditionalMenu, setIsVisibleAdditionalMenu] = React.useState(false);
+  const additionalMenuRef = useRef(null);
+
+  useClickAway(
+    additionalMenuRef,
+    () => {
+      setIsVisibleAdditionalMenu(false);
+    },
+    isVisibleAdditionalMenu
+  );
+
   return (
     <Header className="navigation">
       <div className="container">
@@ -63,15 +76,19 @@ const Navigation: React.FC = () => {
         </Menu>
         <Row justify="space-between">
           <Col className="link">
-            {/* <Link to="/search">
-              <SearchOutlined className="icon" />
-            </Link> */}
             <SearchInput />
           </Col>
           <Col className="link">
             <Link to="/cart">
               <Badge count={state.productsInCart?.length} size="small">
                 <IconFont className="icon" type="icon-shoppingcart" />
+              </Badge>
+            </Link>
+          </Col>
+          <Col className="link">
+            <Link style={{ color: 'black', marginLeft: '15px' }} to="/comparison">
+              <Badge count={state.comparisonProducts?.length} size="small">
+                <SyncOutlined />
               </Badge>
             </Link>
           </Col>

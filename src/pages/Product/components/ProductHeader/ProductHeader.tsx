@@ -16,6 +16,7 @@ type ProductHeaderProps = {
   description: string;
   sizeOptions?: { value: string; label: string }[];
   colorOptions?: { value: string; label: string }[];
+  onAdd: () => void;
 };
 
 const ProductHeader: React.FC<ProductHeaderProps> = ({
@@ -25,7 +26,8 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
   rating,
   description,
   sizeOptions,
-  colorOptions
+  colorOptions,
+  onAdd
 }) => {
   const [countOfProduct, setCountOfProduct] = useState(1);
 
@@ -100,6 +102,7 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
                     <Col>
                       <Button
                         htmlType="submit"
+                        onClick={onAdd}
                         icon={<IconFont className="icon" type="icon-shoppingcart" />}
                         className="button">
                         Add to Card

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSelectedProduct } from '../../business-logic';
 import Loader from '../../components/Loader';
@@ -34,6 +35,12 @@ const Product: React.FC = () => {
     ]);
   }, [id, selectedProduct?.size, selectedProduct?.color]);
 
+  const onAdd = useCallback(() => {
+    if (selectedProduct) {
+      dispatch({ type: ActionTypes.ADD_TO_CART, payload: selectedProduct });
+    }
+  }, [selectedProduct]);
+
   if (!selectedProduct) return <Loader />;
 
   return (
@@ -41,6 +48,7 @@ const Product: React.FC = () => {
       {selectedProduct ? (
         <div className="inner-container product-wrapper">
           <ProductHeader
+            onAdd={onAdd}
             photo={selectedProduct.photo}
             name={selectedProduct.name}
             price={selectedProduct.price}

@@ -1,13 +1,27 @@
+@import 'src/variables.scss';
+
 .catalog-wrapper {
   margin-top: 40px;
   display: grid;
-  grid-template-columns: 300px 1fr; 
+  grid-template-columns: 300px 1fr;
 
   .main {
     margin-left: 30px;
 
     .products-wrapper {
       padding: 20px 0;
+
+      .product-column {
+        @include for-tablet {
+          margin: 0 auto;
+        }
+      }
     }
+  }
+
+  @include for-tablet {
+    display: flex;
+    flex-direction: column;
+    padding: 0px 20px;
   }
 }

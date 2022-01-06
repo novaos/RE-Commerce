@@ -1,3 +1,4 @@
+import { LocalStorageKeys } from '../../types';
 import { WearTypes, SortTypes } from './globalContext.enums';
 import { ProductType, Context } from './globalContext.types';
 
@@ -84,7 +85,9 @@ const globalContextData = () => {
     };
   };
 
-  return { getDataForFilter, addToCartHandle, handleQuantity, handleFilter, handleSort };
+  const storageData = localStorage.getItem(LocalStorageKeys.comparison);
+
+  return { getDataForFilter, addToCartHandle, handleQuantity, handleFilter, handleSort, storageData };
 };
 
 export { globalContextData };
