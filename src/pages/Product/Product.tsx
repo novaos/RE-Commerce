@@ -6,6 +6,7 @@ import Loader from '../../components/Loader';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
+import { LocalStorageKeys } from '../../utils/types';
 import { ProductHeader, ProductTabs, RelatedProducts } from './components';
 import './product.scss';
 const Product: React.FC = () => {
@@ -41,6 +42,19 @@ const Product: React.FC = () => {
     }
   }, [selectedProduct]);
 
+  const addComparison = () => {
+    const storageData = localStorage.getItem(LocalStorageKeys.comparison);
+    const hasProduct = storageData
+      ? JSON.parse(storageData)?.some((item: ProductType) => {
+          return item.id === id;
+        })
+      : false;
+
+    if (!hasProduct && selectedProduct) {
+      dispatch({ type: ActionTypes.ADD_COMPARISON_PRODUCT, payload: selectedProduct });
+    }
+  };
+
   if (!selectedProduct) return <Loader />;
 
   return (
@@ -48,6 +62,8 @@ const Product: React.FC = () => {
       {selectedProduct ? (
         <div className="inner-container product-wrapper">
           <ProductHeader
+            id={selectedProduct.id}
+            addComparison={addComparison}
             onAdd={onAdd}
             photo={selectedProduct.photo}
             name={selectedProduct.name}

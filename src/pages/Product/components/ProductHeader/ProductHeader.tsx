@@ -1,9 +1,10 @@
-import { HeartOutlined, SyncOutlined } from '@ant-design/icons';
+import { SyncOutlined } from '@ant-design/icons';
 import { Button, Col, Divider, Form, Image, InputNumber, Rate, Row, Select, Typography } from 'antd';
 import { Formik } from 'formik';
 import * as React from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useContext, useMemo, useState } from 'react';
 import IconFont from '../../../../components/IconFont';
+import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import { ProductHeaderCarousel } from '../ProductHeaderCarousel';
 import './productHeader.scss';
 import { productHeaderValidationSchema } from './productHeader.validation';
@@ -13,10 +14,12 @@ type ProductHeaderProps = {
   name: string;
   price: string;
   rating: number;
+  id: string;
   description: string;
   sizeOptions?: { value: string; label: string }[];
   colorOptions?: { value: string; label: string }[];
   onAdd: () => void;
+  addComparison: () => void;
 };
 
 const ProductHeader: React.FC<ProductHeaderProps> = ({
@@ -27,10 +30,12 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
   description,
   sizeOptions,
   colorOptions,
+  id,
+  addComparison,
   onAdd
 }) => {
   const [countOfProduct, setCountOfProduct] = useState(1);
-
+  const { state } = useContext(GlobalContext);
   const inputNumberToggler = useCallback((onClick: () => void, content: string) => {
     return (
       <div className="input-toggler" onClick={onClick}>
@@ -38,6 +43,14 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
       </div>
     );
   }, []);
+
+  const hasInCart = useMemo(() => {
+    return state.productsInCart?.some(product => product.id === id);
+  }, [state.productsInCart, id]);
+
+  const hasInComparison = useMemo(() => {
+    return state.comparisonProducts?.some(product => product.id === id);
+  }, [state.comparisonProducts, id]);
 
   return (
     <div className="product-header-wrapper">
@@ -103,16 +116,20 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
                       <Button
                         htmlType="submit"
                         onClick={onAdd}
+                        disabled={hasInCart}
+                        style={{ backgroundColor: `${hasInCart ? 'rgba(87, 39, 39, 0.329)' : 'green'}` }}
                         icon={<IconFont className="icon" type="icon-shoppingcart" />}
                         className="button">
                         Add to Card
                       </Button>
                     </Col>
                     <Col>
-                      <Button icon={<HeartOutlined color="#000" />} />
-                    </Col>
-                    <Col>
-                      <Button icon={<SyncOutlined />} />
+                      <Button
+                        onClick={() => addComparison()}
+                        disabled={hasInComparison}
+                        style={{ backgroundColor: `${hasInComparison ? 'rgba(87, 39, 39, 0.329)' : ''}` }}
+                        icon={<SyncOutlined />}
+                      />
                     </Col>
                   </Row>
                 </Form>

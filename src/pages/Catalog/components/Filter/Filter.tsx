@@ -6,7 +6,11 @@ import { ButtonCheckbox, CheckboxComponent, RangeComponent } from './components'
 import './filter.scss';
 import { useFilterData } from './useFilter.hook';
 
-const Filter: React.FC<{ handleSearch: (values: any) => void }> = ({ handleSearch }) => {
+type FilterProps = {
+  handleSearch: (values: any) => void;
+};
+
+const Filter: React.FC<FilterProps> = ({ handleSearch }) => {
   const {
     onChangeCheckbox,
     handleMinRangeChange,

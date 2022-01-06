@@ -1,12 +1,12 @@
-import { createFromIconfontCN, HeartFilled, SyncOutlined } from '@ant-design/icons';
+import { createFromIconfontCN, SyncOutlined } from '@ant-design/icons';
 import { Button, Card, Rate } from 'antd';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
-import './productCard.scss';
 import { LocalStorageKeys } from '../../utils/types';
+import './productCard.scss';
 
 const IconFont = createFromIconfontCN({
   scriptUrl: [
@@ -19,7 +19,7 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
   product,
   styles
 }) => {
-  const { dispatch } = useContext(GlobalContext);
+  const { state, dispatch } = useContext(GlobalContext);
 
   const cartHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.stopPropagation();
@@ -37,28 +37,36 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
 
     if (!hasProduct) {
       dispatch({ type: ActionTypes.ADD_COMPARISON_PRODUCT, payload: product });
-      // localStorage.setItem(
-      //   LocalStorageKeys.comparison,
-      //   JSON.stringify(storageData ? JSON.parse(storageData).concat(product) : [product])
-      // );
     }
   };
+
+  const hasInCart = useMemo(() => {
+    return state.productsInCart?.some(item => item.id === product.id);
+  }, [state.productsInCart, product.id]);
+
+  const hasInComparison = useMemo(() => {
+    return state.comparisonProducts?.some(item => item.id === product.id);
+  }, [state.comparisonProducts, product.id]);
 
   const btns = (
     <div className="button-group">
       <Button
         className="button-group-btn"
         type="primary"
+        disabled={hasInCart}
+        style={{ backgroundColor: `${hasInCart ? 'rgba(87, 39, 39, 0.329)' : 'green'}` }}
         block
         onClick={cartHandler}
         icon={<IconFont type="icon-shoppingcart" />}
       />
-      <Button className="button-group-btn" type="primary" block icon={<HeartFilled color="#fff" />} />
+      {/* <Button className="button-group-btn" type="primary" block icon={<HeartFilled color="#fff" />} /> */}
       <Button
         onClick={addComparison}
         className="button-group-btn"
         type="primary"
         block
+        disabled={hasInComparison}
+        style={{ backgroundColor: `${hasInComparison ? 'rgba(87, 39, 39, 0.329)' : ''}` }}
         icon={<SyncOutlined color="#fff" />}
       />
     </div>
