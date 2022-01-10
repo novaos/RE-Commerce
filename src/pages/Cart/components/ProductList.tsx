@@ -25,6 +25,7 @@ const ProductList = () => {
     {
       title: 'Product',
       dataIndex: 'name',
+      key: 'name',
       render: (product: string, prodInfo: ProductType) => (
         <div className="product-cell">
           <img alt="example" width={80} height={100} src={prodInfo.photo} />
@@ -35,30 +36,35 @@ const ProductList = () => {
     {
       title: 'Color & Size',
       dataIndex: 'color',
+      key: 'color',
       align: 'center',
       colSpan: 2
     },
     {
       title: 'Color & Size',
       dataIndex: 'size',
+      key: 'size',
       align: 'center',
       colSpan: 0
     },
     {
       title: 'Quantity',
       dataIndex: 'quantity',
+      key: 'quantity',
       align: 'center',
       render: (_: string, product: ProductType) => <QuantityInput product={product} />
     },
     {
       title: 'Price',
       dataIndex: 'price',
+      key: 'price',
       align: 'center',
       render: (price: number) => <span>${price}</span>
     },
     {
       title: 'Total',
       align: 'center',
+      key: 'total',
       render: (product: ProductType) => (
         <div className="total-cell">
           <span>${(product.quantity ? +product.price * +product.quantity : +product.price).toFixed(2)}</span>

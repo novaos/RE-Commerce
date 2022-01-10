@@ -1,6 +1,7 @@
-import { SyncOutlined } from '@ant-design/icons';
-import { Badge, Col, Menu, Row } from 'antd';
+import { MenuOutlined, SyncOutlined } from '@ant-design/icons';
+import { Badge, Col, Menu, Row, Typography } from 'antd';
 import { Header } from 'antd/lib/layout/layout';
+import SubMenu from 'antd/lib/menu/SubMenu';
 import { default as React, useContext, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useClickAway } from '../../utils/hooks';
@@ -45,6 +46,7 @@ const Navigation: React.FC = () => {
   const { state } = useContext(GlobalContext);
   const [isVisibleAdditionalMenu, setIsVisibleAdditionalMenu] = React.useState(false);
   const additionalMenuRef = useRef(null);
+  const isTabletWidth = window.innerWidth < 800;
 
   useClickAway(
     additionalMenuRef,
@@ -57,43 +59,79 @@ const Navigation: React.FC = () => {
   return (
     <Header className="navigation">
       <div className="container">
-        <Link className="link" to="/">
-          <h4 className="logo">
-            Renoshop<span>bee</span>
-          </h4>
-        </Link>
-        <Menu className="menu" selectedKeys={['home']} mode="horizontal">
-          <nav className="nav">
-            <Row justify="space-between">
+        {isTabletWidth ? (
+          <>
+            <Link className="link" to="/">
+              <h4 className="logo">
+                R<span>b</span>
+              </h4>
+            </Link>
+            <Menu triggerSubMenuAction="click" expandIcon={false}>
+              <SubMenu key="sub1" icon={<MenuOutlined />}>
+                {navigation.map(({ title, to, exact }) => (
+                  <Menu.Item key={title}>
+                    <NavLink key={title} className="link" exact={exact} activeClassName="linkActive" to={to}>
+                      {title}
+                    </NavLink>
+                  </Menu.Item>
+                ))}
+
+                <Menu.Item>
+                  <Link className="link-wrapper" to="/cart">
+                    <Badge count={state.productsInCart?.length} size="small">
+                      <IconFont className="icon" type="icon-shoppingcart" />
+                    </Badge>
+                    <Typography.Link style={{ color: 'black', marginLeft: '10px' }}>Cart</Typography.Link>
+                  </Link>
+                </Menu.Item>
+                <Menu.Item>
+                  <Link className="link-wrapper" to="/comparison">
+                    <Badge count={state.comparisonProducts?.length} size="small">
+                      <SyncOutlined />
+                    </Badge>
+                    <Typography.Link style={{ color: 'black', marginLeft: '10px' }}>Comparison</Typography.Link>
+                  </Link>
+                </Menu.Item>
+              </SubMenu>
+            </Menu>
+          </>
+        ) : (
+          <>
+            <Link className="link" to="/">
+              <h4 className="logo">
+                Renoshop<span>bee</span>
+              </h4>
+            </Link>
+            <Menu className="menu" mode="horizontal">
               {navigation.map(({ title, to, exact }) => (
                 <Menu.Item className="link" key={title}>
-                  <NavLink className="link" exact={exact} activeClassName="linkActive" to={to}>
+                  <NavLink key={title} className="link" exact={exact} activeClassName="linkActive" to={to}>
                     {title}
                   </NavLink>
                 </Menu.Item>
               ))}
+            </Menu>
+            <Row justify="space-between">
+              <Col className="link">
+                <SearchInput />
+              </Col>
+              <Col className="link">
+                <Link to="/cart">
+                  <Badge count={state.productsInCart?.length} size="small">
+                    <IconFont className="icon" type="icon-shoppingcart" />
+                  </Badge>
+                </Link>
+              </Col>
+              <Col className="link">
+                <Link style={{ color: 'black', marginLeft: '15px' }} to="/comparison">
+                  <Badge count={state.comparisonProducts?.length} size="small">
+                    <SyncOutlined />
+                  </Badge>
+                </Link>
+              </Col>
             </Row>
-          </nav>
-        </Menu>
-        <Row justify="space-between">
-          <Col className="link">
-            <SearchInput />
-          </Col>
-          <Col className="link">
-            <Link to="/cart">
-              <Badge count={state.productsInCart?.length} size="small">
-                <IconFont className="icon" type="icon-shoppingcart" />
-              </Badge>
-            </Link>
-          </Col>
-          <Col className="link">
-            <Link style={{ color: 'black', marginLeft: '15px' }} to="/comparison">
-              <Badge count={state.comparisonProducts?.length} size="small">
-                <SyncOutlined />
-              </Badge>
-            </Link>
-          </Col>
-        </Row>
+          </>
+        )}
       </div>
     </Header>
   );

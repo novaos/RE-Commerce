@@ -32,7 +32,7 @@ const Filter: React.FC<FilterProps> = ({ handleSearch }) => {
           <Form onFinish={handleSubmit}>
             <section className="filter-section categories">
               {categories.map(({ title, options }) => (
-                <>
+                <React.Fragment key={title}>
                   <Typography.Title level={4} className="title">
                     {title}
                   </Typography.Title>
@@ -42,14 +42,14 @@ const Filter: React.FC<FilterProps> = ({ handleSearch }) => {
                       handleSubmit();
                     }}>
                     {options?.map(({ value, label }: { value: string; label: string }) => (
-                      <Row>
+                      <Row key={value}>
                         <Radio className="label" value={value}>
                           {label}
                         </Radio>
                       </Row>
                     ))}
                   </Radio.Group>
-                </>
+                </React.Fragment>
               ))}
             </section>
 

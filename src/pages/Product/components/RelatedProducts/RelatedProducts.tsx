@@ -41,9 +41,9 @@ const RelatedProducts: React.FC = () => {
                 draggable={true}
                 {...settings}>
                 {state?.products?.slice(0, 15).map(product => (
-                  <>
+                  <React.Fragment key={product.id}>
                     <ProductCard key={product.id} product={product} />
-                  </>
+                  </React.Fragment>
                 ))}
               </Carousel>
             </Col>

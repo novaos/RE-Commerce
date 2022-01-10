@@ -105,23 +105,25 @@ const Footer: React.FC = () => {
     <>
       <div className="inner-container">
         <Row justify='space-between' className='footer' gutter={[20, 20]}>
-          {data.map(section => (
-            <Col xs={24} sm={12} lg={6}>
-              <div className="footer-content">
+          {data.map((section, index) => (
+            <Col key={String(index)} xs={24} sm={12} lg={6}>
+              <div className="footer-column">
                 <h4 className="title">{section.title}</h4>
                 {section.links.map(({ name }) => (
-                  <p className="link">{name}</p>
+                  <p key={name} className="link">
+                    {name}
+                  </p>
                 ))}
               </div>
             </Col>
           ))}
 
-          {dataRight.map(section => (
-            <Col className="footer-right-content" xs={24} sm={12} lg={6}>
-              <div className="footer-content">
+          {dataRight.map((section, index) => (
+            <Col key={String(index)} className="footer-right-content" xs={24} sm={12} lg={6}>
+              <div className="footer-column">
                 <h4 className="title">{section.title}</h4>
-                {section.links.map(({ name, icon, href }) => (
-                  <div className="link-wrapper">
+                {section.links.map(({ name, icon, href }, index) => (
+                  <div key={String(index)} className="link-wrapper">
                     <div className="icon">{icon}</div>
                     <a rel="noreferrer" target="_blank" href={href} className="link">
                       {name}

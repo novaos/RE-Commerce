@@ -20,7 +20,7 @@ const CheckboxComponent: React.FC<{
   return (
     <div className="checkbox-wrapper">
       {items?.map(({ title, options }) => (
-        <>
+        <React.Fragment key={title}>
           <Typography.Title level={4} className="title">
             {title}
           </Typography.Title>
@@ -30,14 +30,14 @@ const CheckboxComponent: React.FC<{
               handleSubmit && handleSubmit();
             }}>
             {options?.map(({ value, label }) => (
-              <Row>
+              <Row key={value}>
                 <Checkbox className="label" value={value}>
                   {label}
                 </Checkbox>
               </Row>
             ))}
           </Checkbox.Group>
-        </>
+        </React.Fragment>
       ))}
     </div>
   );

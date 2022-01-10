@@ -87,7 +87,9 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
                         value={values?.size}
                         style={{ width: 150, marginBottom: '30px', textTransform: 'uppercase' }}>
                         {sizeOptions?.map(({ value, label }) => (
-                          <Select.Option value={value}>{label}</Select.Option>
+                          <Select.Option key={value} value={value}>
+                            {label}
+                          </Select.Option>
                         ))}
                       </Select>
                     </Col>
@@ -97,7 +99,9 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
                         value={values?.color}
                         style={{ width: 150, marginBottom: '30px', textTransform: 'uppercase' }}>
                         {colorOptions?.map(({ value, label }) => (
-                          <Select.Option value={value}>{label}</Select.Option>
+                          <Select.Option key={value} value={value}>
+                            {label}
+                          </Select.Option>
                         ))}
                       </Select>
                     </Col>
