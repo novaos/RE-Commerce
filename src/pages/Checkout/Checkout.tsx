@@ -17,8 +17,8 @@ const Checkout = () => {
   return (
     <div className='inner-container'>
       <Row gutter={[20, 20]} style={{marginBottom: '150px'}}>
-        <Col flex='1 0 300px'><LeftForm/></Col>
-        <Col flex='1 0 300px'><RightBill/></Col>
+        <Col xs={24} lg={12}><LeftForm/></Col>
+        <Col xs={24} lg={12}><RightBill/></Col>
       </Row>
     </div>
   );

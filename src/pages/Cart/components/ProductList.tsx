@@ -4,7 +4,6 @@ import { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import useLocalStorage from '../../../utils/hooks/useLocalStorage';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
-// import { ActionTypes } from '../../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../../utils/providers/GlobalContext/globalContext.types';
 
 const QuantityInput = ({ product }: { product: ProductType }) => {
@@ -63,7 +62,6 @@ const ProductList = () => {
       render: (product: ProductType) => (
         <div className="total-cell">
           <span>${(product.quantity ? +product.price * +product.quantity : +product.price).toFixed(2)}</span>
-          {/* <DeleteFilled onClick={() => dispatch({ type: ActionTypes.REMOVE_FROM_CART, payload: product.id })} /> */}
           <DeleteFilled onClick={() => removeFromCart(product)} />
         </div>
       )

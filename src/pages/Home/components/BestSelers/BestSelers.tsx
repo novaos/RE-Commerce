@@ -13,12 +13,12 @@ const BestSelers: React.FC = () => {
   return (
     <div className="best-selers-wrap">
       <div className="container">
-        <Row justify="space-between" gutter={[20, 20]}>
-          <Col flex="300px">
+        <Row  gutter={[20, 20]} >
+          <Col xs={24} sm={24} md={24} lg={8} xl={6} >
             <FirstCard />
           </Col>
           {productsToShow?.map(item => (
-            <Col flex="300px" key={item.id}>
+            <Col xs={24} sm={24} md={12} lg={8} xl={6} key={item.id}>
               <ProductCard product={item} />
             </Col>
           ))}

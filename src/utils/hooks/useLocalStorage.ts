@@ -15,8 +15,6 @@ const useLocalStorage = () => {
     state.productsInCart ? localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart)) : JSON.stringify([])
   },[state.productsInCart])
 
-
-
   const addToCart = (product: ProductType) => {
     let newArr = [];
 

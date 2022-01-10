@@ -1,5 +1,5 @@
 import { GlobalOutlined, MailOutlined, PayCircleOutlined, PhoneOutlined } from '@ant-design/icons';
-import { Layout } from 'antd';
+import { Col, Layout, Row } from 'antd';
 import * as React from 'react';
 import './footer.scss';
 
@@ -104,19 +104,20 @@ const Footer: React.FC = () => {
   return (
     <>
       <div className="inner-container">
-        <div className="footer">
-          <div className="footer-left-content">
-            {data.map(section => (
+        <Row justify='space-between' className='footer' gutter={[20, 20]}>
+          {data.map(section => (
+            <Col xs={24} sm={12} lg={6}>
               <div className="footer-content">
                 <h4 className="title">{section.title}</h4>
                 {section.links.map(({ name }) => (
                   <p className="link">{name}</p>
                 ))}
               </div>
-            ))}
-          </div>
-          <div className="footer-right-content">
-            {dataRight.map(section => (
+            </Col>
+          ))}
+
+          {dataRight.map(section => (
+            <Col className="footer-right-content" xs={24} sm={12} lg={6}>
               <div className="footer-content">
                 <h4 className="title">{section.title}</h4>
                 {section.links.map(({ name, icon, href }) => (
@@ -128,9 +129,10 @@ const Footer: React.FC = () => {
                   </div>
                 ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </Col>
+          ))}
+
+        </Row>
       </div>
       <Layout.Footer className="footer-line">
         <div className="footer-content">

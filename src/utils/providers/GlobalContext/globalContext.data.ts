@@ -1,6 +1,6 @@
 import { LocalStorageApi, LocalStorageKeys } from '../../types';
 import { WearTypes, SortTypes } from './globalContext.enums';
-import { ProductType, Context } from './globalContext.types';
+import { Context } from './globalContext.types';
 
 const globalContextData = () => {
   const handleFilter = (products: Context['products'], typeOfCategory: WearTypes) => {
@@ -36,36 +36,6 @@ const globalContextData = () => {
     return sortedProductsBy;
   };
 
-  const handleQuantity = (products: Context['products'], payload: { value: string; id: string }) => {
-    return products?.map(item => {
-      if (item.id === payload.id) {
-        return {
-          ...item,
-          quantity: Number(payload.value)
-        };
-      }
-      return item;
-    });
-  };
-
-  const addToCartHandle = (products: Context['products'], payload: ProductType) => {
-    if (products) {
-      if (products.find(item => item.id === payload.id)) {
-        return products.map(item =>
-          item.id === payload.id
-            ? {
-                ...payload,
-                quantity: item.quantity ? ++item.quantity : 1
-              }
-            : item
-        );
-      } else {
-        return [...products, { ...payload, quantity: 1 }];
-      }
-    }
-    return [{ ...payload, quantity: 1 }];
-  };
-
   const getDataForFilter = (products: Context['products']) => {
     if (!products) return;
     const category = Array.from(new Set(products?.map(({ category }) => category)))?.sort((a, b) => {
@@ -87,7 +57,7 @@ const globalContextData = () => {
 
   const storageData = LocalStorageApi.get(LocalStorageKeys.comparison);
 
-  return { getDataForFilter, addToCartHandle, handleQuantity, handleFilter, handleSort, storageData };
+  return { getDataForFilter, handleFilter, handleSort, storageData };
 };
 
 export { globalContextData };
