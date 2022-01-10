@@ -37,7 +37,9 @@ const CatalogHeader: React.FC<CatalogHeaderProps> = ({ pages, handleChange, from
       </p>
       <Select bordered={false} defaultValue={options[0].value} style={{ width: 150 }} onChange={handleChange}>
         {options.map(({ value, label }) => (
-          <Option value={value}>{label}</Option>
+          <Option key={value} value={value}>
+            {label}
+          </Option>
         ))}
       </Select>
     </div>

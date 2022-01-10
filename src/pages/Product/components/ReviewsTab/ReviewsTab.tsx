@@ -14,8 +14,8 @@ const ReviewsTab: React.FC<{ reviews: ReviewType[] }> = ({ reviews }) => {
       <Typography.Title style={{ marginBottom: '40px' }} level={5}>
         {reviews.length} reviews for {state.selectedProduct?.name}
       </Typography.Title>
-      {reviews.map(({ avatar, rating, body, date, name }) => (
-        <Row>
+      {reviews.map(({ avatar, rating, body, date, name, id }) => (
+        <Row key={id}>
           <Col span={3}>
             <Image
               width={'150px'}

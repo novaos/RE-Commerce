@@ -2,4 +2,7 @@
 
 .comparison-wrapper {
   padding: 50px;
+  @include for-tablet {
+    padding: 10px;
+  }
 }

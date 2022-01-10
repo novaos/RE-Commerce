@@ -40,6 +40,7 @@ const Product: React.FC = () => {
     if (selectedProduct) {
       dispatch({ type: ActionTypes.ADD_TO_CART, payload: selectedProduct });
     }
+    // eslint-disable-next-line
   }, [selectedProduct]);
 
   const addComparison = () => {

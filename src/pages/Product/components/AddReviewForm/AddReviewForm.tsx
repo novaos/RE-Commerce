@@ -80,10 +80,10 @@ const AddReviewForm: React.FC = () => {
                     );
                   }
                   return (
-                    <>
+                    <React.Fragment key={item}>
                       {arrayOfStars.map(row => row)}
                       <Divider type="vertical" />
-                    </>
+                    </React.Fragment>
                   );
                 })}
               </Col>

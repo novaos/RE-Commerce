@@ -37,7 +37,7 @@ const SearchInput: React.FC = () => {
               {state.products
                 ?.filter(({ name }) => name.toLocaleLowerCase().startsWith(query.toLocaleLowerCase()))
                 ?.map(({ id, name }) => (
-                  <Link to={`/product/${id}`}>
+                  <Link key={id} to={`/product/${id}`}>
                     <p key={id} className="item">
                       {name}
                     </p>

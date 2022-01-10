@@ -30,7 +30,7 @@ const ButtonCheckbox: React.FC<ButtonCheckboxProps> = ({
   return (
     <section className="button-checkbox-wrapper">
       {items?.map(({ title, options }) => (
-        <>
+        <React.Fragment key={title}>
           <h4 className="title">{title}</h4>
           <Checkbox.Group
             onChange={values => {
@@ -39,12 +39,12 @@ const ButtonCheckbox: React.FC<ButtonCheckboxProps> = ({
             }}
             className="custom-checkboxes">
             {options?.map(({ value, label }) => (
-              <Checkbox style={{ ...styles }} className="label" value={value}>
+              <Checkbox key={value} style={{ ...styles }} className="label" value={value}>
                 {label}
               </Checkbox>
             ))}
           </Checkbox.Group>
-        </>
+        </React.Fragment>
       ))}
     </section>
   );

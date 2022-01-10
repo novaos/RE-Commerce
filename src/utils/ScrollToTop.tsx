@@ -9,6 +9,7 @@ const ScrollToTop = ({ history }: { history: RouteComponentProps['history'] }) =
     return () => {
       unlisten();
     };
+    // eslint-disable-next-line
   }, []);
 
   return null;

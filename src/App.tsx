@@ -24,7 +24,7 @@ const App: React.FC = () => (
             <Content className="app-content">
               <Switch>
                 {routes.map((route, i) => (
-                  <Route exact={route.exact || false} path={route.path} component={route.component} key={i} />
+                  <Route exact={route.exact || false} path={route.path} component={route.component} key={String(i)} />
                 ))}
               </Switch>
             </Content>

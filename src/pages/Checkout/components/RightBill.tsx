@@ -3,16 +3,20 @@ import { Button, Card, Row, Col, Checkbox } from 'antd';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
 
 const Rightbill = () => {
-  const { state: {productsInCart} } = useContext(GlobalContext);
-  const total = productsInCart?.map(item => {
-    return +item.price * (item.quantity || 1)
-  }).reduce((a, b) => a + b)
+  const {
+    state: { productsInCart }
+  } = useContext(GlobalContext);
+  const total = productsInCart
+    ?.map(item => {
+      return +item.price * (item.quantity || 1);
+    })
+    .reduce((a, b) => a + b);
 
   return (
     <>
       <Card className="checkout-card">
         <h2 className="checkout-form-title">your order</h2>
-        <Row justify="space-between" className='checkout-row'>
+        <Row justify="space-between" className="checkout-row">
           <Col>
             <p>Product</p>
           </Col>
@@ -22,9 +26,11 @@ const Rightbill = () => {
         </Row>
         <hr />
         {productsInCart?.map(item => (
-          <Row justify="space-between" className='checkout-row'>
+          <Row key={item.id} justify="space-between" className="checkout-row">
             <Col>
-              <p>{item.name} x {item.quantity}</p>
+              <p>
+                {item.name} x {item.quantity}
+              </p>
             </Col>
             <Col>
               <p>${+item.price * (item.quantity || 1)}</p>
@@ -32,7 +38,7 @@ const Rightbill = () => {
           </Row>
         ))}
         <hr />
-        <Row justify="space-between" className='checkout-row'>
+        <Row justify="space-between" className="checkout-row">
           <Col>
             <p>Subtotal</p>
           </Col>
@@ -40,7 +46,7 @@ const Rightbill = () => {
             <p>${total}</p>
           </Col>
         </Row>
-        <Row justify="space-between" className='checkout-row'>
+        <Row justify="space-between" className="checkout-row">
           <Col>
             <p>Shipping</p>
           </Col>
@@ -49,7 +55,7 @@ const Rightbill = () => {
           </Col>
         </Row>
         <hr />
-        <Row justify="space-between" className='checkout-row checkout-total'>
+        <Row justify="space-between" className="checkout-row checkout-total">
           <Col>
             <p>Total</p>
           </Col>
@@ -73,13 +79,7 @@ const Rightbill = () => {
           </div>
         </div>
       </Card>
-      <Button
-        className="checkout-bill-btn"
-        size="large"
-        type="primary"
-        htmlType="submit"
-        form='checkout-form'
-      >
+      <Button className="checkout-bill-btn" size="large" type="primary" htmlType="submit" form="checkout-form">
         place order
       </Button>
     </>

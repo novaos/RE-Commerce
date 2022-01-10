@@ -16,6 +16,7 @@ const SimpleProductCard: React.FC<SimpleProductCardProps> = ({ product }) => {
     if (product) {
       dispatch({ type: ActionTypes.ADD_TO_CART, payload: product });
     }
+    // eslint-disable-next-line
   }, [product]);
 
   return (

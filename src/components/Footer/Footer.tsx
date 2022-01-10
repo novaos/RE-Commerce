@@ -106,21 +106,23 @@ const Footer: React.FC = () => {
       <div className="inner-container">
         <div className="footer">
           <div className="footer-left-content">
-            {data.map(section => (
-              <div className="footer-content">
+            {data.map((section, index) => (
+              <div key={String(index)} className="footer-content">
                 <h4 className="title">{section.title}</h4>
                 {section.links.map(({ name }) => (
-                  <p className="link">{name}</p>
+                  <p key={name} className="link">
+                    {name}
+                  </p>
                 ))}
               </div>
             ))}
           </div>
           <div className="footer-right-content">
-            {dataRight.map(section => (
-              <div className="footer-content">
+            {dataRight.map((section, index) => (
+              <div key={String(index)} className="footer-content">
                 <h4 className="title">{section.title}</h4>
-                {section.links.map(({ name, icon, href }) => (
-                  <div className="link-wrapper">
+                {section.links.map(({ name, icon, href }, index) => (
+                  <div key={String(index)} className="link-wrapper">
                     <div className="icon">{icon}</div>
                     <a rel="noreferrer" target="_blank" href={href} className="link">
                       {name}
