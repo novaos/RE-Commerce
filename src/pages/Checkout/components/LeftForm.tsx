@@ -39,7 +39,7 @@ const Leftform: React.FC = () => {
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required(),
     lastName: Yup.string().required(),
-    country: Yup.string().required(),
+    country: Yup.string(),
     companyName: Yup.string(),
     address: Yup.string().required(),
     postcode: Yup.number(),
@@ -52,7 +52,7 @@ const Leftform: React.FC = () => {
     message.success({
       content: 'We will contact you soon!',
       duration: 2,
-      onClose: () => dispatch({ type: ActionTypes.REMOVE_FROM_CART, payload: 'submit'} )
+      onClose: () => dispatch({ type: ActionTypes.UPDATE_CART, payload: []} )
     })
   }
 
@@ -92,7 +92,7 @@ const Leftform: React.FC = () => {
                 </Form.Item>
               </Col>
             </Row>
-            <Form.Item label="Country" name='country' >
+            <Form.Item label="Country" >
               <Select
                 placeholder='Select a country'
                 size="large"

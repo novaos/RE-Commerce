@@ -3,7 +3,7 @@ import { globalContextData } from './globalContext.data';
 import { ActionTypes, SortTypes, WearTypes } from './globalContext.enums';
 import { Action, Context } from './globalContext.types';
 
-const { getDataForFilter, addToCartHandle, handleQuantity, handleFilter, handleSort } = globalContextData();
+const { getDataForFilter, handleFilter, handleSort } = globalContextData();
 function reducer(state: Context, action: Action): Context {
   switch (action.type) {
     case ActionTypes.GET_PRODUCTS:
@@ -80,23 +80,6 @@ function reducer(state: Context, action: Action): Context {
         productsInCart: action.payload
       }
 
-    case ActionTypes.ADD_TO_CART:
-      return {
-        ...state,
-        productsInCart: addToCartHandle(state.productsInCart, action.payload)
-      };
-
-    case ActionTypes.REMOVE_FROM_CART:
-      return {
-        ...state,
-        productsInCart: (action.payload === 'submit') ? [] : state.productsInCart?.filter(({ id }) => id !== action.payload)
-      };
-
-    case ActionTypes.EDIT_QUANTITY:
-      return {
-        ...state,
-        productsInCart: handleQuantity(state.productsInCart, action.payload)
-      };
     case ActionTypes.ADD_COMPARISON_PRODUCT:
       LocalStorageApi.set(
         LocalStorageKeys.comparison,

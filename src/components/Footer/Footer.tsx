@@ -1,5 +1,5 @@
 import { GlobalOutlined, MailOutlined, PayCircleOutlined, PhoneOutlined } from '@ant-design/icons';
-import { Layout } from 'antd';
+import { Col, Layout, Row } from 'antd';
 import * as React from 'react';
 import './footer.scss';
 
@@ -104,10 +104,10 @@ const Footer: React.FC = () => {
   return (
     <>
       <div className="inner-container">
-        <div className="footer">
-          <div className="footer-left-content">
-            {data.map((section, index) => (
-              <div key={String(index)} className="footer-content">
+        <Row justify='space-between' className='footer' gutter={[20, 20]}>
+          {data.map((section, index) => (
+            <Col key={String(index)} xs={24} sm={12} lg={6}>
+              <div className="footer-column">
                 <h4 className="title">{section.title}</h4>
                 {section.links.map(({ name }) => (
                   <p key={name} className="link">
@@ -115,11 +115,12 @@ const Footer: React.FC = () => {
                   </p>
                 ))}
               </div>
-            ))}
-          </div>
-          <div className="footer-right-content">
-            {dataRight.map((section, index) => (
-              <div key={String(index)} className="footer-content">
+            </Col>
+          ))}
+
+          {dataRight.map((section, index) => (
+            <Col key={String(index)} className="footer-right-content" xs={24} sm={12} lg={6}>
+              <div className="footer-column">
                 <h4 className="title">{section.title}</h4>
                 {section.links.map(({ name, icon, href }, index) => (
                   <div key={String(index)} className="link-wrapper">
@@ -130,9 +131,10 @@ const Footer: React.FC = () => {
                   </div>
                 ))}
               </div>
-            ))}
-          </div>
-        </div>
+            </Col>
+          ))}
+
+        </Row>
       </div>
       <Layout.Footer className="footer-line">
         <div className="footer-content">

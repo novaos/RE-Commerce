@@ -80,7 +80,7 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
       <Card
         className="item-card"
         hoverable
-        style={{ width: 300, margin: '0 auto', height: 350, ...styles }}
+        style={{ ...styles }}
         bordered={false}
         bodyStyle={{ padding: '5px 2px' }}
         cover={<img style={{ objectFit: 'contain' }} alt="example" height={'auto'} src={product.photo} />}>

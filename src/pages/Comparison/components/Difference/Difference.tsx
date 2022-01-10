@@ -3,6 +3,7 @@ import { Image, Rate, Row, Table, Col } from 'antd';
 import * as React from 'react';
 import { useContext } from 'react';
 import IconFont from '../../../../components/IconFont';
+import useLocalStorage from '../../../../utils/hooks/useLocalStorage';
 import { ActionTypes, ProductType } from '../../../../utils/providers/GlobalContext';
 import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import './difference.scss';
@@ -10,6 +11,7 @@ import './difference.scss';
 const Difference: React.FC<{ products: ProductType[] }> = ({ products }) => {
   const [titles, setTitles] = React.useState<{ title: string; dataIndex: string }[]>([]);
   const { dispatch } = useContext(GlobalContext);
+  const { addToCart } = useLocalStorage();
 
   React.useLayoutEffect(() => {
     const unnecessaryTitles = ['createdAt', 'id', 'amount', 'wearType', 'description', 'about', 'reviews'];
@@ -32,7 +34,7 @@ const Difference: React.FC<{ products: ProductType[] }> = ({ products }) => {
   };
 
   const handleAdd = (product: ProductType) => {
-    dispatch({ type: ActionTypes.ADD_TO_CART, payload: product });
+    addToCart(product);
   };
 
   return (

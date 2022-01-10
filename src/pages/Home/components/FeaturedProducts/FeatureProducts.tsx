@@ -16,9 +16,9 @@ const FeatureProducts = () => {
           <h1 className="description-card-title">FEATURED PRODUCTS</h1>
           <p className="description-card-subtitle">Newest trends from top brands</p>
         </div>
-        <Row justify="space-between" gutter={[20, 20]} wrap={true}>
+        <Row gutter={[20, 20]}>
           {productsToShow?.map(item => (
-            <Col flex="300px" key={item.id}>
+            <Col xs={24} sm={24} md={12} lg={8} xl={6} key={item.id}>
               <ProductCard product={item} />
             </Col>
           ))}

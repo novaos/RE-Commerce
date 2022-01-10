@@ -29,7 +29,7 @@ const StaticBlocks: React.FC = () => {
   return (
     <Row gutter={[5, 5]}>
       {data.map((item, index) => (
-        <Col flex="1 1 150px" key={String(index)}>
+        <Col xs={24} sm={24} md={12}  lg={6} key={String(index)}>
           <div className="delivery-item">
             <div className="delivery-item-icon">{item.icon}</div>
             <h2 className="delivery-item-title">{item.title}</h2>
