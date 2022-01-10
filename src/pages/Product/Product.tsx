@@ -6,7 +6,7 @@ import Loader from '../../components/Loader';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
-import { LocalStorageKeys } from '../../utils/types';
+import { LocalStorageApi, LocalStorageKeys } from '../../utils/types';
 import { ProductHeader, ProductTabs, RelatedProducts } from './components';
 import './product.scss';
 const Product: React.FC = () => {
@@ -43,7 +43,7 @@ const Product: React.FC = () => {
   }, [selectedProduct]);
 
   const addComparison = () => {
-    const storageData = localStorage.getItem(LocalStorageKeys.comparison);
+    const storageData = LocalStorageApi.get(LocalStorageKeys.comparison);
     const hasProduct = storageData
       ? JSON.parse(storageData)?.some((item: ProductType) => {
           return item.id === id;

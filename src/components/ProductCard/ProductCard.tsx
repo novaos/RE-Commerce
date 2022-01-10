@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
-import { LocalStorageKeys } from '../../utils/types';
+import { LocalStorageApi, LocalStorageKeys } from '../../utils/types';
 import './productCard.scss';
 
 const IconFont = createFromIconfontCN({
@@ -28,7 +28,7 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
 
   const addComparison = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.stopPropagation();
-    const storageData = localStorage.getItem(LocalStorageKeys.comparison);
+    const storageData = LocalStorageApi.get(LocalStorageKeys.comparison);
     const hasProduct = storageData
       ? JSON.parse(storageData)?.some((item: ProductType) => {
           return item.id === product.id;
