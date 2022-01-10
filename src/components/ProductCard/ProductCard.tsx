@@ -2,6 +2,7 @@ import { createFromIconfontCN, SyncOutlined } from '@ant-design/icons';
 import { Button, Card, Rate } from 'antd';
 import { useContext, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
+import useLocalStorage from '../../utils/hooks/useLocalStorage';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
@@ -20,11 +21,12 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
   styles
 }) => {
   const { state, dispatch } = useContext(GlobalContext);
+  const {addToCart} = useLocalStorage();
 
-  const cartHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const cartHandler = (e: React.MouseEvent) => {
     e.stopPropagation();
-    dispatch({ type: ActionTypes.ADD_TO_CART, payload: product });
-  };
+    addToCart(product)
+  }
 
   const addComparison = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.stopPropagation();
@@ -54,7 +56,7 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
         className="button-group-btn"
         type="primary"
         disabled={hasInCart}
-        style={{ backgroundColor: `${hasInCart ? 'rgba(87, 39, 39, 0.329)' : 'green'}` }}
+        style={{ backgroundColor: `${hasInCart ? 'rgba(87, 39, 39, 0.329)' : ''}` }}
         block
         onClick={cartHandler}
         icon={<IconFont type="icon-shoppingcart" />}
@@ -78,10 +80,10 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
       <Card
         className="item-card"
         hoverable
-        style={{ width: 300, margin: '0 auto', height: 570, ...styles }}
+        style={{ width: 300, margin: '0 auto', height: 350, ...styles }}
         bordered={false}
         bodyStyle={{ padding: '5px 2px' }}
-        cover={<img style={{ objectFit: 'contain' }} alt="example" height={450} src={product.photo} />}>
+        cover={<img style={{ objectFit: 'contain' }} alt="example" height={'auto'} src={product.photo} />}>
         {btns}
         <p className="card-title">{product.name}</p>
         <p className="card-description">${product.price}</p>

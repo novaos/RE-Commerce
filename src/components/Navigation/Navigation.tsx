@@ -1,13 +1,14 @@
 import { SyncOutlined } from '@ant-design/icons';
 import { Badge, Col, Menu, Row } from 'antd';
 import { Header } from 'antd/lib/layout/layout';
-import React, { useContext, useRef } from 'react';
+import { default as React, useContext, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useClickAway } from '../../utils/hooks';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import IconFont from '../IconFont';
 import { SearchInput } from './componets';
 import './navigation.scss';
+
 const navigation = [
   {
     title: 'home',

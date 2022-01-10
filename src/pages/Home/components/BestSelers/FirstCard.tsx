@@ -4,7 +4,7 @@ const FirstCard: React.FC = () => {
   return (
     <Card
       className='description-card'
-      style={{width: 300, height: 570, margin: '0 auto'}}
+      style={{width: 300, height: 350, margin: '0 auto'}}
       bodyStyle={{padding: '5px 0'}}
       bordered={false}
     >

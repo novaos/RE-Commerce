@@ -1,19 +1,10 @@
 import { useContext } from 'react';
 import { Button, Card, Row, Col, Checkbox } from 'antd';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
-import { useHistory } from 'react-router-dom';
-
 
 const Rightbill = () => {
   const { state: {productsInCart} } = useContext(GlobalContext);
-  const history = useHistory();
-
-  if(!productsInCart) {
-    history.push('/cart')
-    return null;
-  }
-
-  const total = productsInCart.map(item => {
+  const total = productsInCart?.map(item => {
     return +item.price * (item.quantity || 1)
   }).reduce((a, b) => a + b)
 
@@ -30,7 +21,7 @@ const Rightbill = () => {
           </Col>
         </Row>
         <hr />
-        {productsInCart.map(item => (
+        {productsInCart?.map(item => (
           <Row justify="space-between" className='checkout-row'>
             <Col>
               <p>{item.name} x {item.quantity}</p>

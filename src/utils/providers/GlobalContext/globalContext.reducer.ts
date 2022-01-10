@@ -74,6 +74,12 @@ function reducer(state: Context, action: Action): Context {
         accessories: handleFilter(state.products, WearTypes.accessories)
       };
 
+    case ActionTypes.UPDATE_CART:
+      return {
+        ...state,
+        productsInCart: action.payload
+      }
+
     case ActionTypes.ADD_TO_CART:
       return {
         ...state,
@@ -83,7 +89,7 @@ function reducer(state: Context, action: Action): Context {
     case ActionTypes.REMOVE_FROM_CART:
       return {
         ...state,
-        productsInCart: state.productsInCart?.filter(({ id }) => id !== action.payload)
+        productsInCart: (action.payload === 'submit') ? [] : state.productsInCart?.filter(({ id }) => id !== action.payload)
       };
 
     case ActionTypes.EDIT_QUANTITY:

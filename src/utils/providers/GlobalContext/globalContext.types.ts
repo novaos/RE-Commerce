@@ -70,6 +70,7 @@ type Action =
   | { type: ActionTypes.SHOW_ONLY_KIDS }
   | { type: ActionTypes.SHOW_ONLY_ACCESSORIES }
   | { type: ActionTypes.SHOW_ONLY_JEWELLERY }
+  | { type: ActionTypes.UPDATE_CART; payload: Products }
   | { type: ActionTypes.ADD_TO_CART; payload: ProductType }
   | { type: ActionTypes.REMOVE_FROM_CART; payload: string }
   | { type: ActionTypes.EDIT_QUANTITY; payload: { value: string; id: string } }
