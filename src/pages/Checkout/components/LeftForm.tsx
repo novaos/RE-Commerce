@@ -5,14 +5,9 @@ import * as Yup from 'yup';
 import { ActionTypes } from '../../../utils/providers/GlobalContext';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
 
-// type props = {
-//   label: string
-//   props?: {
-//     name?: string | FieldHookConfig<any>
-//   }
-// }
 
-// const TestInput: React.FC<props> = ({label, ...props}) => {
+
+// const TestInput = ({label, ...props}: {label: string}) => {
 //   const [fields] = useField(props);
 //   return (
 //     <Form.Item label={label} >
@@ -21,7 +16,7 @@ import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalCont
 //         {...props} 
 //         {...fields}
 //       />
-//       {/* {meta.touched && meta.error ? (<div className='ant-form-item-explain-error'>{meta.error}</div>) : null} */}
+//       {meta.touched && meta.error ? (<div className='ant-form-item-explain-error'>{meta.error}</div>) : null}
 //     </Form.Item>
 //   )
 // }

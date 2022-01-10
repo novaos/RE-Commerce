@@ -16,6 +16,10 @@ const GlobalContextProvider = ({ children }: Props): JSX.Element => {
   useEffect(() => {
     const fetchProducts = (products: any) => dispatch({ type: ActionTypes.GET_PRODUCTS, payload: products });
     getProducts(fetchProducts);
+
+    if(!localStorage.getItem('productsInCart')) {
+      localStorage.setItem('productsInCart', JSON.stringify([]))
+    }
   }, []);
 
   return <GlobalContext.Provider value={{ state, dispatch }}>{children}</GlobalContext.Provider>;

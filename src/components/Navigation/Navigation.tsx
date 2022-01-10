@@ -1,8 +1,9 @@
 import { Badge, Col, Menu, Row } from 'antd';
 import { Header } from 'antd/lib/layout/layout';
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
+import useLocalStorage from '../../utils/hooks/useLocalStorage';
+// import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import IconFont from '../IconFont';
 import { SearchInput } from './componets';
 import './navigation.scss';
@@ -39,7 +40,9 @@ const navigation = [
 ];
 
 const Navigation: React.FC = () => {
-  const { state } = useContext(GlobalContext);
+  const { productsInCart } = useLocalStorage();
+  console.log("nav", productsInCart)
+
   return (
     <Header className="navigation">
       <div className="container">
@@ -70,7 +73,7 @@ const Navigation: React.FC = () => {
           </Col>
           <Col className="link">
             <Link to="/cart">
-              <Badge count={state.productsInCart?.length} size="small">
+              <Badge count={productsInCart.length} size="small">
                 <IconFont className="icon" type="icon-shoppingcart" />
               </Badge>
             </Link>
