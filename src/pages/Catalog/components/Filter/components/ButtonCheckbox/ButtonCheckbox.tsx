@@ -2,7 +2,7 @@ import { Checkbox } from 'antd';
 import * as React from 'react';
 import './buttonCheckbox.scss';
 
-const ButtonCheckbox: React.FC<{
+type ButtonCheckboxProps = {
   items?: {
     title: string;
     options?: {
@@ -17,7 +17,16 @@ const ButtonCheckbox: React.FC<{
   styles?: {
     [key: string]: string;
   };
-}> = ({ name, items, onChange, handleSubmit, setFieldValue, styles }) => {
+};
+
+const ButtonCheckbox: React.FC<ButtonCheckboxProps> = ({
+  name,
+  items,
+  onChange,
+  handleSubmit,
+  setFieldValue,
+  styles
+}) => {
   return (
     <section className="button-checkbox-wrapper">
       {items?.map(({ title, options }) => (

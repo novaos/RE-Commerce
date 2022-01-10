@@ -2,8 +2,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { Typography, Slider, InputNumber, Tooltip, Button } from 'antd';
 import * as React from 'react';
 import './rangeComponent.scss';
-
-const RangeComponent: React.FC<{
+type RangeComponentProps = {
   title: string;
   inputRangeValue: {
     min: number;
@@ -16,7 +15,8 @@ const RangeComponent: React.FC<{
   setFieldValue: (name: string, values: any) => void;
   handleSubmit?: () => void;
   values: any;
-}> = ({
+};
+const RangeComponent: React.FC<RangeComponentProps> = ({
   title,
   inputRangeValue,
   handleMinValueChange,

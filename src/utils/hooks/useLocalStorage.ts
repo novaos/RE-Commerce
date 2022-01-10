@@ -1,19 +1,19 @@
-import { useEffect, useState } from "react";
-import { ProductType } from "../providers/GlobalContext";
+import { useContext, useEffect } from "react";
+import { ActionTypes, ProductType } from "../providers/GlobalContext";
+import { GlobalContext } from "../providers/GlobalContext/GlobalContext";
 
 const useLocalStorage = () => {
+  const { state, dispatch } = useContext(GlobalContext);
+
   const actualList = (): ProductType[] => {
     const data = localStorage.getItem('productsInCart');
 
     return data !== null ? JSON.parse( data ) : [];
   }
 
-  const [productsInCart, setProductsArr] = useState<ProductType[]>(actualList());
-  console.log('productsInCart', productsInCart)
-
   useEffect(() => {
-    localStorage.setItem('productsInCart', JSON.stringify(productsInCart))
-  },[productsInCart])
+    state.productsInCart ? localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart)) : JSON.stringify([])
+  },[state.productsInCart])
 
 
 
@@ -33,13 +33,13 @@ const useLocalStorage = () => {
       newArr = [...actualList(), { ...product, quantity: 1 }];
     }
 
-    setProductsArr(newArr)
+    dispatch({ type: ActionTypes.UPDATE_CART, payload: newArr });
   }
 
   const removeFromCart = (product: ProductType) => {
     const newArr = actualList().filter((item: ProductType) => item.id !== product.id);
 
-    setProductsArr(newArr)
+    dispatch({ type: ActionTypes.UPDATE_CART, payload: newArr })
   }
 
   const editQuantity = (product: ProductType, value: string) => {
@@ -53,10 +53,10 @@ const useLocalStorage = () => {
       return item;
     });
 
-    setProductsArr(newArr)
+    dispatch({ type: ActionTypes.UPDATE_CART, payload: newArr })
   };
 
-  return { productsInCart, actualList, addToCart, removeFromCart, editQuantity };
+  return { addToCart, removeFromCart, editQuantity };
 }
 
 export default useLocalStorage;

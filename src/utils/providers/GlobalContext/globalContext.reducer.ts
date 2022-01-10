@@ -1,5 +1,6 @@
-import { ActionTypes, SortTypes, WearTypes } from './globalContext.enums';
+import { LocalStorageKeys } from '../../types';
 import { globalContextData } from './globalContext.data';
+import { ActionTypes, SortTypes, WearTypes } from './globalContext.enums';
 import { Action, Context } from './globalContext.types';
 
 const { getDataForFilter, addToCartHandle, handleQuantity, handleFilter, handleSort } = globalContextData();
@@ -73,6 +74,12 @@ function reducer(state: Context, action: Action): Context {
         accessories: handleFilter(state.products, WearTypes.accessories)
       };
 
+    case ActionTypes.UPDATE_CART:
+      return {
+        ...state,
+        productsInCart: action.payload
+      }
+
     case ActionTypes.ADD_TO_CART:
       return {
         ...state,
@@ -89,6 +96,24 @@ function reducer(state: Context, action: Action): Context {
       return {
         ...state,
         productsInCart: handleQuantity(state.productsInCart, action.payload)
+      };
+    case ActionTypes.ADD_COMPARISON_PRODUCT:
+      localStorage.setItem(
+        LocalStorageKeys.comparison,
+        JSON.stringify(state.comparisonProducts ? state.comparisonProducts.concat(action.payload) : [action.payload])
+      );
+      return {
+        ...state,
+        comparisonProducts: state.comparisonProducts ? [...state.comparisonProducts, action.payload] : [action.payload]
+      };
+    case ActionTypes.REMOVE_COMPARISON_PRODUCT:
+      localStorage.setItem(
+        LocalStorageKeys.comparison,
+        JSON.stringify(state.comparisonProducts?.filter(({ id }) => id !== action.payload))
+      );
+      return {
+        ...state,
+        comparisonProducts: state.comparisonProducts?.filter(({ id }) => id !== action.payload)
       };
     default:
       throw new Error('Unhandled action type.');
