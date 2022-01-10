@@ -8,6 +8,15 @@
   "Home": {
     "title": "Heim"
   },
+  "Navigation": {
+    "HomeTitle": "Heim",
+    "CatalogTitle": "Catalogus",
+    "WomenTitle": "Dames",
+    "MenTitle": "Mannen",
+    "KidsTitle": "Kinderen",
+    "JewelleryTitle": "Sieraden",
+    "AccessoriesTitle": "Accessoires"
+  },
   "Counter":{
     "title": "Schalter"
   },

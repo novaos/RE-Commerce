@@ -53,8 +53,6 @@ const Difference: React.FC<{ products: ProductType[] }> = ({ products }) => {
                 </Col>
                 <Col>
                   <IconFont onClick={() => handleAdd(item)} className="icon" type="icon-shoppingcart" />
-
-                  {/* <DeleteOutlined key={item.id} onClick={() => handleRemoveComparisonProduct(item.id)} /> */}
                 </Col>
               </Row>
             )

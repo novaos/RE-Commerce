@@ -5,6 +5,15 @@
       "incorrectEmail": "Incorrect email address"
     }
   },
+  "Navigation": {
+    "HomeTitle": "Home",
+    "CatalogTitle": "Catalog",
+    "WomenTitle": "Women",
+    "MenTitle": "Men",
+    "KidsTitle": "Kids",
+    "JewelleryTitle": "Jewellery",
+    "AccessoriesTitle": "Accessories"
+  },
   "Home": {
     "title": "Home"
   },
