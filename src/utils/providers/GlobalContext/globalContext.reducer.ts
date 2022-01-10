@@ -1,4 +1,4 @@
-import { LocalStorageKeys } from '../../types';
+import { LocalStorageApi, LocalStorageKeys } from '../../types';
 import { globalContextData } from './globalContext.data';
 import { ActionTypes, SortTypes, WearTypes } from './globalContext.enums';
 import { Action, Context } from './globalContext.types';
@@ -98,18 +98,18 @@ function reducer(state: Context, action: Action): Context {
         productsInCart: handleQuantity(state.productsInCart, action.payload)
       };
     case ActionTypes.ADD_COMPARISON_PRODUCT:
-      localStorage.setItem(
+      LocalStorageApi.set(
         LocalStorageKeys.comparison,
-        JSON.stringify(state.comparisonProducts ? state.comparisonProducts.concat(action.payload) : [action.payload])
+        state.comparisonProducts ? state.comparisonProducts.concat(action.payload) : [action.payload]
       );
       return {
         ...state,
         comparisonProducts: state.comparisonProducts ? [...state.comparisonProducts, action.payload] : [action.payload]
       };
     case ActionTypes.REMOVE_COMPARISON_PRODUCT:
-      localStorage.setItem(
+      LocalStorageApi.set(
         LocalStorageKeys.comparison,
-        JSON.stringify(state.comparisonProducts?.filter(({ id }) => id !== action.payload))
+        state.comparisonProducts?.filter(({ id }) => id !== action.payload)
       );
       return {
         ...state,

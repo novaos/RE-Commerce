@@ -2,4 +2,9 @@ enum LocalStorageKeys {
   comparison = 'comparison'
 }
 
-export { LocalStorageKeys };
+const LocalStorageApi = {
+  set: (name: LocalStorageKeys, data: any) => localStorage.setItem(name, JSON.stringify(data)),
+  get: (name: LocalStorageKeys) => localStorage.getItem(name)
+};
+
+export { LocalStorageKeys, LocalStorageApi };

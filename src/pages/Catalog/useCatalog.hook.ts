@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
-import { SortTypes, ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
+import { ActionTypes, SortTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { DataForFilterType } from '../../utils/providers/GlobalContext/globalContext.types';
 import { CatalogProps } from './catalog.types';
+import objectToQueryParam from '../../utils/parsers/objectToQueryParam';
+import parseParams from '../../utils/parsers/parseParams';
 
 const useCatalogData = ({ filter, products }: CatalogProps) => {
   const { state, dispatch } = React.useContext(GlobalContext);
   const [sortBy, setSortBy] = useState(SortTypes.newness);
   const [currentPage, setCurrentPage] = useState(1);
   const { location } = useHistory();
+
   React.useEffect(() => {
     if (!state.sortedProductsByRating) {
       dispatch({ type: ActionTypes.SORT_BY_RATING });
@@ -48,7 +51,13 @@ const useCatalogData = ({ filter, products }: CatalogProps) => {
   const showTo =
     state?.products && currentPage * 12 > state?.products?.length ? state.products?.length : currentPage * 12;
 
+  const history = useHistory();
   function handleSearch(values: DataForFilterType) {
+    const url = objectToQueryParam(values);
+    history.push(url);
+
+    console.log(parseParams(url));
+
     const filteredProducts = state?.products?.filter(product => {
       return (
         (values?.color?.[0] ? values?.color?.includes(product.color) : true) &&
