@@ -27,7 +27,7 @@ const Filter: React.FC<FilterProps> = ({ handleSearch }) => {
 
   return (
     <div>
-      <Formik initialValues={initialValues} onSubmit={values => handleSearch(values)}>
+      <Formik enableReinitialize initialValues={initialValues} onSubmit={values => handleSearch(values)}>
         {({ values, setFieldValue, handleSubmit }) => (
           <Form onFinish={handleSubmit}>
             <section className="filter-section categories">
@@ -37,6 +37,7 @@ const Filter: React.FC<FilterProps> = ({ handleSearch }) => {
                     {title}
                   </Typography.Title>
                   <Radio.Group
+                    value={values.category}
                     onChange={event => {
                       onChangeRadio('category', setFieldValue, event.target.value);
                       handleSubmit();
@@ -75,6 +76,7 @@ const Filter: React.FC<FilterProps> = ({ handleSearch }) => {
                 setFieldValue={setFieldValue}
                 onChange={onChangeCheckbox}
                 handleSubmit={handleSubmit}
+                values={values.size}
               />
             </section>
 
@@ -84,6 +86,7 @@ const Filter: React.FC<FilterProps> = ({ handleSearch }) => {
               name={'color'}
               onChange={onChangeCheckbox}
               handleSubmit={handleSubmit}
+              values={values.color}
             />
           </Form>
         )}

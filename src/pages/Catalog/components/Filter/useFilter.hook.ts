@@ -1,9 +1,13 @@
-import { useMemo, useState, useContext, useEffect } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import parseParams from '../../../../utils/parsers/parseParams';
 import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import { FormInputType } from './Filter.types';
 
 const useFilterData = () => {
   const { state } = useContext(GlobalContext);
+  const history = useHistory();
+
   const [inputRangeValue, setInputRangeValue] = useState({
     min: 0,
     max: 1500
@@ -12,7 +16,9 @@ const useFilterData = () => {
     if (state.dataForFilter) {
       const minPrice = Number(state.dataForFilter?.price?.[0]);
       const maxPrice = Number(state.dataForFilter?.price?.[1]);
-      setInputRangeValue({ min: minPrice, max: maxPrice });
+      if (minPrice && maxPrice) {
+        setInputRangeValue({ min: minPrice, max: maxPrice });
+      }
     }
   }, [state?.dataForFilter]);
 
@@ -89,11 +95,27 @@ const useFilterData = () => {
     });
     setFieldValue('price', values);
   };
+
+  const valuesFromQuery = parseParams(history.location.search) as {
+    category?: string;
+    size?: string;
+    color?: string;
+    price?: string;
+  };
+
+  useEffect(() => {
+    const rangeValueFromQuery = valuesFromQuery.price?.split(',') as [string, string];
+    if (rangeValueFromQuery?.[0]) {
+      setInputRangeValue({ min: Number(rangeValueFromQuery?.[0]), max: Number(rangeValueFromQuery?.[1]) });
+    }
+  }, []);
+
   const initialValues = {
-    category: [],
-    price: state.dataForFilter ? [+state.dataForFilter?.price?.[0], +state.dataForFilter?.price?.[1]] : [0, 0],
-    size: [],
-    color: []
+    category: valuesFromQuery.category ?? [],
+    // price: state.dataForFilter ? [+state.dataForFilter?.price?.[0], +state.dataForFilter?.price?.[1]] : [0, 0],
+    price: inputRangeValue ? [+inputRangeValue.min, +inputRangeValue.max] : [0, 0],
+    size: valuesFromQuery.size?.split(',') || [],
+    color: valuesFromQuery.color?.split(',') || []
   };
 
   return {

@@ -5,8 +5,96 @@
       "incorrectEmail": "Incorrect email address"
     }
   },
+  "Navigation": {
+    "HomeTitle": "Home",
+    "CatalogTitle": "Catalog",
+    "WomenTitle": "Women",
+    "MenTitle": "Men",
+    "KidsTitle": "Kids",
+    "JewelleryTitle": "Jewellery",
+    "AccessoriesTitle": "Accessories"
+  },
   "Home": {
-    "title": "Home"
+    "title": "Best Sellers",
+    "caption": "The best productions from us",
+    "offers": {
+      "1": {
+        "title": "Special offers",
+        "description": "Shop Big Save Big"
+      },
+      "2": {
+        "title": "Free delivery",
+        "description": "On Orders Above $99"
+      },
+      "3": {
+        "title": "30 days return",
+        "description": "Policy We Offers"
+      },
+      "4": {
+        "title": "Fastest Shipping",
+        "description": "2 Days Express"
+      }
+    },
+    "featured products": {
+      "title": "Featured products",
+      "description": "Newest trends from top brands"
+    }
+  },
+  "Footer": {
+    "title": "Copyright 2021 RenoshopBee all right reserved - Design by BeeStudios",
+    "information": {
+      "title": "Information",
+      "captions": {
+        "1": "Delivery Information",
+        "2": "Discount",
+        "3": "Sitemap",
+        "4": "Privacy Policy",
+        "5": "My Account"
+      }
+    },
+    "my account": {
+      "title": "My Account",
+      "captions": {
+        "1": "Sing In",
+        "2": "View Cart",
+        "3": "My Wishlist",
+        "4": "Check out",
+        "5": "Track My Order"
+      }
+    },
+    "help": {
+      "title": "Help",
+      "captions": {
+        "1": "F.A.Q.",
+        "2": "Shipping",
+        "3": "Contact Us",
+        "4": "Privacy Policy"
+      }
+    },
+    "contact info":{
+      "title": "Contact Info",
+      "captions": {
+        "1": "1234 Your address, Country",
+        "2": "+1 234 567 78",
+        "3": "mail@domain.com"
+      }
+    }
+  },
+  "Catalog": {
+    "header": {
+      "showing": "Showing",
+      "of": "of",
+      "results": "results"
+    },
+    "sort": {
+      "newness": "Sort by newness",
+      "oldest": "Sort by oldest",
+      "rating": "Sort by rating",
+      "price": "Sort by price"
+    }
+  },
+  "Top Rated": {
+    "title": "Top Rated"
   },
   "Counter":{
     "title": "Counter"

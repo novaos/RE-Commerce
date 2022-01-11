@@ -12,11 +12,12 @@ const CheckboxComponent: React.FC<{
       label: string;
     }[];
   }[];
+  values: string[];
   setFieldValue: (name: string, values: any) => void;
   name: string;
   handleSubmit?: () => void;
   onChange: (name: string, setFieldValue: (name: string, values: any) => void, values: any) => void;
-}> = ({ items, setFieldValue, name, handleSubmit, onChange }) => {
+}> = ({ values, items, setFieldValue, name, handleSubmit, onChange }) => {
   return (
     <div className="checkbox-wrapper">
       {items?.map(({ title, options }) => (
@@ -25,6 +26,7 @@ const CheckboxComponent: React.FC<{
             {title}
           </Typography.Title>
           <Checkbox.Group
+            defaultValue={values ?? []}
             onChange={values => {
               onChange(name, setFieldValue, values);
               handleSubmit && handleSubmit();

@@ -3,6 +3,7 @@ import { Badge, Col, Menu, Row, Typography } from 'antd';
 import { Header } from 'antd/lib/layout/layout';
 import SubMenu from 'antd/lib/menu/SubMenu';
 import { default as React, useContext, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, NavLink } from 'react-router-dom';
 import { useClickAway } from '../../utils/hooks';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
@@ -10,43 +11,44 @@ import IconFont from '../IconFont';
 import { SearchInput } from './componets';
 import './navigation.scss';
 
-const navigation = [
-  {
-    title: 'home',
-    to: '/',
-    exact: true
-  },
-  {
-    title: 'catalog',
-    to: '/catalog'
-  },
-  {
-    title: 'women',
-    to: '/women'
-  },
-  {
-    title: 'men',
-    to: '/men'
-  },
-  {
-    title: 'kids',
-    to: '/kids'
-  },
-  {
-    title: 'jewellery',
-    to: '/jewellery'
-  },
-  {
-    title: 'accessories',
-    to: '/accessories'
-  }
-];
-
 const Navigation: React.FC = () => {
   const { state } = useContext(GlobalContext);
   const [isVisibleAdditionalMenu, setIsVisibleAdditionalMenu] = React.useState(false);
   const additionalMenuRef = useRef(null);
   const isTabletWidth = window.innerWidth < 800;
+
+  const { t } = useTranslation();
+  const navigation = [
+    {
+      title: t('Navigation.HomeTitle'),
+      to: '/',
+      exact: true
+    },
+    {
+      title: t('Navigation.CatalogTitle'),
+      to: '/catalog'
+    },
+    {
+      title: t('Navigation.WomenTitle'),
+      to: '/women'
+    },
+    {
+      title: t('Navigation.MenTitle'),
+      to: '/men'
+    },
+    {
+      title: t('Navigation.KidsTitle'),
+      to: '/kids'
+    },
+    {
+      title: t('Navigation.JewelleryTitle'),
+      to: '/jewellery'
+    },
+    {
+      title: t('Navigation.AccessoriesTitle'),
+      to: '/accessories'
+    }
+  ];
 
   useClickAway(
     additionalMenuRef,

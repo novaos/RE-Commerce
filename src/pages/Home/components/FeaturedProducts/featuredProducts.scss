@@ -1,7 +1,11 @@
 .fu-products-header {
-    width: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 50px auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+
+  .description-card-title {
+    text-transform: uppercase;
+  }
 }

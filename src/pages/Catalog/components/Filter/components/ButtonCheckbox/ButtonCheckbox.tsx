@@ -10,6 +10,7 @@ type ButtonCheckboxProps = {
       value: string;
     }[];
   }[];
+  values?: string[];
   name: string;
   setFieldValue: (name: string, values: any) => void;
   onChange: (name: string, setFieldValue: (name: string, values: any) => void, values: any) => void;
@@ -25,7 +26,8 @@ const ButtonCheckbox: React.FC<ButtonCheckboxProps> = ({
   onChange,
   handleSubmit,
   setFieldValue,
-  styles
+  styles,
+  values
 }) => {
   return (
     <section className="button-checkbox-wrapper">
@@ -33,6 +35,7 @@ const ButtonCheckbox: React.FC<ButtonCheckboxProps> = ({
         <React.Fragment key={title}>
           <h4 className="title">{title}</h4>
           <Checkbox.Group
+            defaultValue={values ?? []}
             onChange={values => {
               onChange(name, setFieldValue, values);
               handleSubmit && handleSubmit();
