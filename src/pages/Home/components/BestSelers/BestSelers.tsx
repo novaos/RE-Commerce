@@ -7,14 +7,13 @@ import FirstCard from './FirstCard';
 
 const BestSelers: React.FC = () => {
   const { state } = useContext(GlobalContext);
-
   const productsToShow = useMemo(() => state?.sortedProductsByRating?.slice(0, 4), [state?.sortedProductsByRating]);
 
   return (
     <div className="best-selers-wrap">
       <div className="container">
-        <Row  gutter={[20, 20]} >
-          <Col xs={24} sm={24} md={24} lg={8} xl={6} >
+        <Row gutter={[20, 20]}>
+          <Col xs={24} sm={24} md={24} lg={8} xl={6}>
             <FirstCard />
           </Col>
           {productsToShow?.map(item => (

@@ -5,9 +5,6 @@
       "incorrectEmail": "[de] Incorrect email address"
     }
   },
-  "Home": {
-    "title": "Heim"
-  },
   "Navigation": {
     "HomeTitle": "Heim",
     "CatalogTitle": "Catalogus",
@@ -16,6 +13,88 @@
     "KidsTitle": "Kinderen",
     "JewelleryTitle": "Sieraden",
     "AccessoriesTitle": "Accessoires"
+  },
+  "Home": {
+    "title": "Bestsellers",
+    "caption": "De beste producties van ons",
+    "offers": {
+      "1": {
+        "title": "Speciale aanbiedingen",
+        "description": "Winkel groot Bespaar groot"
+      },
+      "2": {
+        "title": "Gratis bezorging",
+        "description": "Op bestellingen boven $99"
+      },
+      "3": {
+        "title": "30 dagen retour",
+        "description": "Beleid dat wij aanbieden"
+      },
+      "4": {
+        "title": "Snelste verzending",
+        "description": "2 Dagen Express"
+      }
+    },
+    "featured products": {
+      "title": "Aanbevolen producten",
+      "description": "Nieuwste trends van topmerken"
+    }
+  },
+  "Footer": {
+    "title": "Copyright 2021 RenoshopBee alle rechten voorbehouden - Ontwerp door BeeStudios",
+    "information": {
+      "title": "Informatie",
+      "captions": {
+        "1": "Leveringsinformatie:",
+        "2": "Korting",
+        "3": "Sitemap",
+        "4": "Privacybeleid",
+        "5": "Mijn rekening"
+      }
+    },
+    "my account": {
+      "title": "Mijn rekening",
+      "captions": {
+        "1": "Inloggen",
+        "2": "Bekijk winkelwagen",
+        "3": "mijn wenslijst",
+        "4": "Uitchecken",
+        "5": "Traceer mijn bestelling"
+      }
+    },
+    "help": {
+      "title": "Helpen",
+      "captions": {
+        "1": "F.A.Q.",
+        "2": "Verzenden",
+        "3": "Neem contact met ons op",
+        "4": "Privacybeleid"
+      }
+    },
+    "contact info":{
+      "title": "Contact informatie",
+      "captions": {
+        "1": "1234 Uw adres, land",
+        "2": "+1 234 567 78",
+        "3": "mail@domain.com"
+      }
+    }
+  },
+  "Catalog": {
+    "header": {
+      "showing": "Tonen",
+      "of": "van",
+      "results": "resultaten"
+    },
+    "sort": {
+      "newness": "Sorteren op nieuwheid",
+      "oldest": "Sorteren op oudste",
+      "rating": "Sorteren op beoordeling",
+      "price": "Sorteer op prijs"
+    }
+  },
+  "Top Rated": {
+    "title": "Best beoordeeld"
   },
   "Counter":{
     "title": "Schalter"
