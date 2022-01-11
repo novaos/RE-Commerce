@@ -1,14 +1,14 @@
+import Layout, { Content } from 'antd/lib/layout/layout';
 import React, { Suspense } from 'react';
 import { QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { routes } from './app.routes';
+import { Footer } from './components/Footer';
+import { HeaderTop } from './components/HeaderTop';
 import Loader from './components/Loader';
+import Navigation from './components/Navigation/Navigation';
 import GlobalContext from './utils/providers/GlobalContext/GlobalContext';
 import { queryClient } from './utils/react-query-client';
-import Navigation from './components/Navigation/Navigation';
-import Layout, { Content } from 'antd/lib/layout/layout';
-import { HeaderTop } from './components/HeaderTop';
-import { Footer } from './components/Footer';
 import ScrollToTop from './utils/ScrollToTop';
 
 const App: React.FC = () => (
