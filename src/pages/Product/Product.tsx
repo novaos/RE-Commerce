@@ -3,6 +3,7 @@ import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSelectedProduct } from '../../business-logic';
 import Loader from '../../components/Loader';
+import useLocalStorage from '../../utils/hooks/useLocalStorage';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
@@ -15,6 +16,7 @@ const Product: React.FC = () => {
   const [colorOptions, setColorOptions] = React.useState<{ label: string; value: string }[]>([]);
   const { id } = useParams<{ id: string }>();
   const { selectedProduct } = state;
+  const { addToCart } = useLocalStorage();
 
   React.useEffect(() => {
     const callback = (product: ProductType) => dispatch({ type: ActionTypes.GET_SELECTED_PRODUCT, payload: product });
@@ -38,7 +40,7 @@ const Product: React.FC = () => {
 
   const onAdd = useCallback(() => {
     if (selectedProduct) {
-      dispatch({ type: ActionTypes.ADD_TO_CART, payload: selectedProduct });
+      addToCart(selectedProduct);
     }
     // eslint-disable-next-line
   }, [selectedProduct]);
