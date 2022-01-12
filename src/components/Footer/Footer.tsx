@@ -6,7 +6,6 @@ import './footer.scss';
 
 const Footer: React.FC = () => {
   const { t } = useTranslation();
-  console.log(t);
 
   const data = [
     {

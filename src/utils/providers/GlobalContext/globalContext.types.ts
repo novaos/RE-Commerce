@@ -1,5 +1,7 @@
+import { Languages } from '../../../locales/types';
 import { ActionTypes, WearTypes } from './globalContext.enums';
 interface Context {
+  language: Languages;
   products?: Products;
   sortedProductsByRating?: Products;
   sortedProductsByNewness?: Products;
@@ -75,6 +77,7 @@ type Action =
   | { type: ActionTypes.REMOVE_FROM_CART; payload: string }
   | { type: ActionTypes.EDIT_QUANTITY; payload: { value: string; id: string } }
   | { type: ActionTypes.ADD_COMPARISON_PRODUCT; payload: ProductType }
-  | { type: ActionTypes.REMOVE_COMPARISON_PRODUCT; payload: string };
+  | { type: ActionTypes.REMOVE_COMPARISON_PRODUCT; payload: string }
+  | { type: ActionTypes.LANGUAGE_CHANGE };
 
 export type { ProductType, ReviewType, DataForFilterType, Props, Context, Action };

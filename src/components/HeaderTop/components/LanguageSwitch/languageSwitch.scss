@@ -1,0 +1,19 @@
+@import 'src/variables.scss';
+
+.language-switch-wrapper {
+  .ant-switch {
+    margin-left: 50px;
+    background: url('./Flag_of_Germany.svg.png');
+    background-size: cover;
+    background-position: center;
+    &-inner {
+      font-weight: 600;
+      // color: black;
+    }
+  }
+  .ant-switch-checked {
+    background: url('./great-britain-flag.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+}

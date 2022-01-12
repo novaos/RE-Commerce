@@ -1,3 +1,4 @@
+import { Languages } from '../../../locales/types';
 import { LocalStorageApi, LocalStorageKeys } from '../../types';
 import { globalContextData } from './globalContext.data';
 import { ActionTypes, SortTypes, WearTypes } from './globalContext.enums';
@@ -78,7 +79,7 @@ function reducer(state: Context, action: Action): Context {
       return {
         ...state,
         productsInCart: action.payload
-      }
+      };
 
     case ActionTypes.ADD_COMPARISON_PRODUCT:
       LocalStorageApi.set(
@@ -97,6 +98,11 @@ function reducer(state: Context, action: Action): Context {
       return {
         ...state,
         comparisonProducts: state.comparisonProducts?.filter(({ id }) => id !== action.payload)
+      };
+    case ActionTypes.LANGUAGE_CHANGE:
+      return {
+        ...state,
+        language: state.language === Languages.EN ? Languages.GE : Languages.EN
       };
     default:
       throw new Error('Unhandled action type.');
