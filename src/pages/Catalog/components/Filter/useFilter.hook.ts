@@ -108,7 +108,7 @@ const useFilterData = () => {
     if (rangeValueFromQuery?.[0]) {
       setInputRangeValue({ min: Number(rangeValueFromQuery?.[0]), max: Number(rangeValueFromQuery?.[1]) });
     }
-  }, []);
+  }, [valuesFromQuery.price]);
 
   const initialValues = {
     category: valuesFromQuery.category ?? [],

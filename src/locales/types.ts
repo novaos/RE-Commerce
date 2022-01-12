@@ -16,3 +16,10 @@ export type ConvertedToObjectType<T> = {
 
 // Selecting the json file that our intellisense would pick from
 export type TranslationJsonType = typeof import('./en/translation.json');
+
+enum Languages {
+  EN = 'en',
+  GE = 'ge'
+}
+
+export { Languages };
