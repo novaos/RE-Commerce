@@ -25,7 +25,7 @@ export const i18n = i18next
   .init({
     lng: 'en', // default language
     resources: translationsJson,
-    fallbackLng: 'en',
+    fallbackLng: 'de',
     debug: process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test',
 
     interpolation: {
