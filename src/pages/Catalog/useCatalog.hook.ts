@@ -1,47 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
-import { ActionTypes, SortTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
-import { DataForFilterType } from '../../utils/providers/GlobalContext/globalContext.types';
-import { CatalogProps } from './catalog.types';
+import { useHistory, useParams } from 'react-router-dom';
+import { handleFilter, handleSort as globalSort } from '../../utils/functions';
 import objectToQueryParam from '../../utils/parsers/objectToQueryParam';
 import parseParams from '../../utils/parsers/parseParams';
+import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
+import { SortTypes, WearTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
+import { DataForFilterType } from '../../utils/providers/GlobalContext/globalContext.types';
 
-const useCatalogData = ({ filter, products }: CatalogProps) => {
+const useCatalogData = () => {
   const { state, dispatch } = React.useContext(GlobalContext);
   const [sortBy, setSortBy] = useState(SortTypes.newness);
   const [currentPage, setCurrentPage] = useState(1);
   const { location } = useHistory();
+  const [productsToShow, setProductsToShow] = useState(state.products);
 
-  React.useEffect(() => {
-    if (!state.sortedProductsByRating) {
-      dispatch({ type: ActionTypes.SORT_BY_RATING });
-    }
-  }, [dispatch, state.sortedProductsByRating]);
+  const { wearType } = useParams<{ wearType?: WearTypes }>();
 
   React.useEffect(() => {
     switch (sortBy) {
       case SortTypes.newness:
-        dispatch({ type: ActionTypes.SORT_BY_NEWNESS });
+        setProductsToShow(globalSort(state.products, SortTypes.newness));
         break;
       case SortTypes.rating:
-        dispatch({ type: ActionTypes.SORT_BY_RATING });
+        setProductsToShow(globalSort(state.products, SortTypes.rating));
         break;
       case SortTypes.price:
-        dispatch({ type: ActionTypes.SORT_BY_PRICE });
+        setProductsToShow(globalSort(state.products, SortTypes.price));
         break;
       default:
         break;
     }
-    if (filter) {
-      dispatch({ type: filter });
+    if (wearType) {
+      handleFilter(productsToShow, WearTypes[wearType]);
     }
-  }, [filter, dispatch, location.pathname, sortBy]);
-  const [productsToShow, setProductsToShow] = useState(products ? state[products] : state.products);
+  }, [wearType, dispatch, location.pathname, sortBy, state.products]);
 
   useEffect(() => {
-    setProductsToShow(products ? state[products] : state.products);
-  }, [products, state]);
+    setProductsToShow(state.products);
+  }, [state.products]);
 
   const handleSort = (value: SortTypes) => {
     setSortBy(value);

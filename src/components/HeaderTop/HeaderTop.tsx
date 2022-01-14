@@ -4,7 +4,7 @@ import './headerTop.scss';
 import { Row, Typography, Col } from 'antd';
 import { LanguageSwitch } from './components';
 
-const HeaderTop: React.FC = () => {
+export const HeaderTop: React.FC = () => {
   return (
     <div className="header-top">
       <div className="container">
@@ -38,4 +38,4 @@ const HeaderTop: React.FC = () => {
   );
 };
 
-export { HeaderTop };
+// export { HeaderTop };

@@ -1,24 +1,25 @@
 import { Row } from 'antd';
 import * as React from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { handleSort } from '../../../../utils/functions';
+import { ProductType } from '../../../../utils/providers/GlobalContext';
 import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
-import { ActionTypes } from '../../../../utils/providers/GlobalContext/globalContext.enums';
+import { SortTypes } from '../../../../utils/providers/GlobalContext/globalContext.enums';
 import { SmallProductCard } from '../SmallProductCard';
 import './topRated.scss';
 
 const TopRated: React.FC = () => {
-  const { state, dispatch } = React.useContext(GlobalContext);
-  const { t } = useTranslation();
-  React.useEffect(() => {
-    if (!state.sortedProductsByRating) {
-      dispatch({ type: ActionTypes.SORT_BY_RATING });
-    }
-  }, [dispatch, state.sortedProductsByRating]);
+  const { state } = React.useContext(GlobalContext);
+  const [topRatedProducts, setTopRatedProducts] = useState<ProductType[]>([]);
 
-  const productsToShow = React.useMemo(
-    () => state?.sortedProductsByRating?.slice(0, 3),
-    [state?.sortedProductsByRating]
-  );
+  const { t } = useTranslation();
+
+  React.useEffect(() => {
+    setTopRatedProducts(handleSort(state.products, SortTypes.rating));
+  }, [state.products]);
+
+  const productsToShow = React.useMemo(() => topRatedProducts?.slice(0, 3), []);
 
   return (
     <div className="top-rated-wrapper">

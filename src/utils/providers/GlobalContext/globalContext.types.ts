@@ -2,16 +2,7 @@ import { Languages } from '../../../locales/types';
 import { ActionTypes, WearTypes } from './globalContext.enums';
 interface Context {
   language: Languages;
-  products?: Products;
-  sortedProductsByRating?: Products;
-  sortedProductsByNewness?: Products;
-  sortedProductsByOldest?: Products;
-  sortedProductsByPrice?: Products;
-  women?: Products;
-  men?: Products;
-  kids?: Products;
-  jewellery?: Products;
-  accessories?: Products;
+  products: Products;
   dataForFilter?: DataForFilterType;
   productsInCart?: Products;
   selectedProduct?: ProductType;

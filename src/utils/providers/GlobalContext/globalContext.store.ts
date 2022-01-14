@@ -5,6 +5,7 @@ import { Context, ProductType } from './globalContext.types';
 const storageCartProducts = localStorage.getItem('productsInCart');
 const storageComparisonProducts = LocalStorageApi.get(LocalStorageKeys.comparison);
 const initialContext: Context = {
+  products: [],
   productsInCart: storageCartProducts ? (JSON.parse(storageCartProducts) as ProductType[]) : [],
   comparisonProducts: storageComparisonProducts ? (JSON.parse(storageComparisonProducts) as ProductType[]) : [],
   countOfComparison: storageComparisonProducts ? JSON.parse(storageComparisonProducts).length : 0,

@@ -30,23 +30,23 @@ const Navigation: React.FC = () => {
     },
     {
       title: t('Navigation.WomenTitle'),
-      to: '/women'
+      to: '/catalog/women'
     },
     {
       title: t('Navigation.MenTitle'),
-      to: '/men'
+      to: '/catalog/men'
     },
     {
       title: t('Navigation.KidsTitle'),
-      to: '/kids'
+      to: '/catalog/kids'
     },
     {
       title: t('Navigation.JewelleryTitle'),
-      to: '/jewellery'
+      to: '/catalog/jewellery'
     },
     {
       title: t('Navigation.AccessoriesTitle'),
-      to: '/accessories'
+      to: '/catalog/accessories'
     }
   ];
 
