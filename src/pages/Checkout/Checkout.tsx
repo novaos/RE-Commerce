@@ -10,7 +10,7 @@ const Checkout = () => {
   const { state: {productsInCart} } = useContext(GlobalContext);
   const history = useHistory();
 
-  if(!productsInCart?.length) {
+  if(productsInCart.length === 0) {
     history.push('/catalog')
     return null;
   }

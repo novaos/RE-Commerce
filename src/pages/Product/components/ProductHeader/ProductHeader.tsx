@@ -12,7 +12,7 @@ import { productHeaderValidationSchema } from './productHeader.validation';
 type ProductHeaderProps = {
   photo: string;
   name: string;
-  price: string;
+  price: number;
   rating: number;
   id: string;
   description: string;
@@ -43,10 +43,6 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
       </div>
     );
   }, []);
-
-  const hasInCart = useMemo(() => {
-    return state.productsInCart?.some(product => product.id === id);
-  }, [state.productsInCart, id]);
 
   const hasInComparison = useMemo(() => {
     return state.comparisonProducts?.some(product => product.id === id);
@@ -120,8 +116,6 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
                       <Button
                         htmlType="submit"
                         onClick={onAdd}
-                        disabled={hasInCart}
-                        style={{ backgroundColor: `${hasInCart ? 'rgba(87, 39, 39, 0.329)' : 'green'}` }}
                         icon={<IconFont className="icon" type="icon-shoppingcart" />}
                         className="button">
                         Add to Card

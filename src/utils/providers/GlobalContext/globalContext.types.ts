@@ -1,8 +1,9 @@
 import { Languages } from '../../../locales/types';
 import { ActionTypes, WearTypes } from './globalContext.enums';
+
 interface Context {
   language: Languages;
-  products?: Products;
+  products: ProductType[];
   sortedProductsByRating?: Products;
   sortedProductsByNewness?: Products;
   sortedProductsByOldest?: Products;
@@ -13,10 +14,10 @@ interface Context {
   jewellery?: Products;
   accessories?: Products;
   dataForFilter?: DataForFilterType;
-  productsInCart?: Products;
+  productsInCart: ProductType[];
   selectedProduct?: ProductType;
   countOfComparison?: number;
-  comparisonProducts?: ProductType[];
+  comparisonProducts: ProductType[];
 }
 
 type Props = {
@@ -36,7 +37,7 @@ type ProductType = {
   createdAt: Date;
   name: string;
   photo: string;
-  price: string;
+  price: number;
   rating: number;
   amount: string;
   category: string;
@@ -61,8 +62,7 @@ type DataForFilterType = {
 };
 
 type Action =
-  | { type: ActionTypes.GET_PRODUCTS; payload: Products }
-  | { type: ActionTypes.GET_SELECTED_PRODUCT; payload: ProductType }
+  | { type: ActionTypes.GET_PRODUCTS; payload: ProductType[] }
   | { type: ActionTypes.SORT_BY_RATING }
   | { type: ActionTypes.SORT_BY_PRICE }
   | { type: ActionTypes.SORT_BY_NEWNESS }
@@ -72,10 +72,7 @@ type Action =
   | { type: ActionTypes.SHOW_ONLY_KIDS }
   | { type: ActionTypes.SHOW_ONLY_ACCESSORIES }
   | { type: ActionTypes.SHOW_ONLY_JEWELLERY }
-  | { type: ActionTypes.UPDATE_CART; payload: Products }
-  | { type: ActionTypes.ADD_TO_CART; payload: ProductType }
-  | { type: ActionTypes.REMOVE_FROM_CART; payload: string }
-  | { type: ActionTypes.EDIT_QUANTITY; payload: { value: string; id: string } }
+  | { type: ActionTypes.UPDATE_CART; payload: ProductType[] }
   | { type: ActionTypes.ADD_COMPARISON_PRODUCT; payload: ProductType }
   | { type: ActionTypes.REMOVE_COMPARISON_PRODUCT; payload: string }
   | { type: ActionTypes.LANGUAGE_CHANGE };

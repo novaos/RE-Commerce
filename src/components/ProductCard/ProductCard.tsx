@@ -1,8 +1,8 @@
 import { createFromIconfontCN, SyncOutlined } from '@ant-design/icons';
 import { Button, Card, Rate } from 'antd';
-import { useContext, useMemo } from 'react';
+import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import useLocalStorage from '../../utils/hooks/useLocalStorage';
+import useProductCart from '../../utils/hooks/useProductCart';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
@@ -21,7 +21,8 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
   styles
 }) => {
   const { state, dispatch } = useContext(GlobalContext);
-  const {addToCart} = useLocalStorage();
+  const {addToCart} = useProductCart();
+  const history = useHistory();
 
   const cartHandler = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -42,21 +43,13 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
     }
   };
 
-  const hasInCart = useMemo(() => {
-    return state.productsInCart?.some(item => item.id === product.id);
-  }, [state.productsInCart, product.id]);
-
-  const hasInComparison = useMemo(() => {
-    return state.comparisonProducts?.some(item => item.id === product.id);
-  }, [state.comparisonProducts, product.id]);
+  const hasInComparison = state.comparisonProducts.some(item => item.id === product.id);
 
   const btns = (
     <div className="button-group">
       <Button
         className="button-group-btn"
         type="primary"
-        disabled={hasInCart}
-        style={{ backgroundColor: `${hasInCart ? 'rgba(87, 39, 39, 0.329)' : ''}` }}
         block
         onClick={cartHandler}
         icon={<IconFont type="icon-shoppingcart" />}
@@ -67,13 +60,11 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
         className="button-group-btn"
         type="primary"
         block
-        disabled={hasInComparison}
         style={{ backgroundColor: `${hasInComparison ? 'rgba(87, 39, 39, 0.329)' : ''}` }}
         icon={<SyncOutlined color="#fff" />}
       />
     </div>
   );
-  const history = useHistory();
 
   return (
     <div onClick={() => history.push(`/product/${product.id}`)}>

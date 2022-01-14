@@ -1,27 +1,21 @@
 import * as React from 'react';
-import { useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import { getSelectedProduct } from '../../business-logic';
 import Loader from '../../components/Loader';
-import useLocalStorage from '../../utils/hooks/useLocalStorage';
+import useProductCart from '../../utils/hooks/useProductCart';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
 import { LocalStorageApi, LocalStorageKeys } from '../../utils/types';
 import { ProductHeader, ProductTabs, RelatedProducts } from './components';
 import './product.scss';
+
 const Product: React.FC = () => {
   const { state, dispatch } = React.useContext(GlobalContext);
   const [sizeOptions, setSizeOptions] = React.useState<{ label: string; value: string }[]>([]);
   const [colorOptions, setColorOptions] = React.useState<{ label: string; value: string }[]>([]);
   const { id } = useParams<{ id: string }>();
-  const { selectedProduct } = state;
-  const { addToCart } = useLocalStorage();
-
-  React.useEffect(() => {
-    const callback = (product: ProductType) => dispatch({ type: ActionTypes.GET_SELECTED_PRODUCT, payload: product });
-    getSelectedProduct(id, callback);
-  }, [dispatch, id]);
+  const { addToCart } = useProductCart();
+  const selectedProduct = state.products.find(item => item.id === id);
 
   React.useEffect(() => {
     setSizeOptions([
@@ -38,12 +32,11 @@ const Product: React.FC = () => {
     ]);
   }, [id, selectedProduct?.size, selectedProduct?.color]);
 
-  const onAdd = useCallback(() => {
+  const onAdd = () => {
     if (selectedProduct) {
       addToCart(selectedProduct);
     }
-    // eslint-disable-next-line
-  }, [selectedProduct]);
+  }
 
   const addComparison = () => {
     const storageData = LocalStorageApi.get(LocalStorageKeys.comparison);
@@ -62,27 +55,22 @@ const Product: React.FC = () => {
 
   return (
     <>
-      {selectedProduct ? (
-        <div className="inner-container product-wrapper">
-          <ProductHeader
-            id={selectedProduct.id}
-            addComparison={addComparison}
-            onAdd={onAdd}
-            photo={selectedProduct.photo}
-            name={selectedProduct.name}
-            price={selectedProduct.price}
-            rating={selectedProduct.rating}
-            description={selectedProduct.description}
-            sizeOptions={sizeOptions}
-            colorOptions={colorOptions}
-          />
-
-          <ProductTabs about={selectedProduct.about} reviews={selectedProduct.reviews} />
-          <RelatedProducts />
-        </div>
-      ) : (
-        <Loader />
-      )}
+      <div className="inner-container product-wrapper">
+        <ProductHeader
+          id={selectedProduct.id}
+          addComparison={addComparison}
+          onAdd={onAdd}
+          photo={selectedProduct.photo}
+          name={selectedProduct.name}
+          price={selectedProduct.price}
+          rating={selectedProduct.rating}
+          description={selectedProduct.description}
+          sizeOptions={sizeOptions}
+          colorOptions={colorOptions}
+        />
+        <ProductTabs about={selectedProduct.about} reviews={selectedProduct.reviews} />
+        <RelatedProducts />
+      </div>
     </>
   );
 };

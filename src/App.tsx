@@ -7,7 +7,7 @@ import { Footer } from './components/Footer';
 import { HeaderTop } from './components/HeaderTop';
 import Loader from './components/Loader';
 import Navigation from './components/Navigation/Navigation';
-import GlobalContext from './utils/providers/GlobalContext/GlobalContext';
+import GlobalContextProvider from './utils/providers/GlobalContext/GlobalContext';
 import { queryClient } from './utils/react-query-client';
 import ScrollToTop from './utils/ScrollToTop';
 
@@ -17,7 +17,7 @@ const App: React.FC = () => (
     <Router>
       <ScrollToTop />
       <Suspense fallback={<Loader />}>
-        <GlobalContext>
+        <GlobalContextProvider>
           <Layout style={{ background: '#fff', overflow: 'hidden' }}>
             <HeaderTop />
             <Navigation />
@@ -30,7 +30,7 @@ const App: React.FC = () => (
             </Content>
             <Footer />
           </Layout>
-        </GlobalContext>
+        </GlobalContextProvider>
       </Suspense>
     </Router>
   </QueryClientProvider>

@@ -3,7 +3,7 @@
  */
 
 import 'whatwg-fetch';
-import { request } from '../request';
+import { request } from '../../business-logic/request';
 
 declare let window: { fetch: jest.Mock };
 

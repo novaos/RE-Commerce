@@ -2,13 +2,13 @@ import { DeleteFilled } from '@ant-design/icons';
 import { Button, Input, Table } from 'antd';
 import { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import useLocalStorage from '../../../utils/hooks/useLocalStorage';
+import useProductCart from '../../../utils/hooks/useProductCart';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
 import { ProductType } from '../../../utils/providers/GlobalContext/globalContext.types';
 
 const QuantityInput = ({ product }: { product: ProductType }) => {
   const [quan, setQuan] = useState<number | undefined>(product.quantity);
-  const { editQuantity } = useLocalStorage();
+  const { editQuantity } = useProductCart();
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuan(+e.target.value);
@@ -19,8 +19,9 @@ const QuantityInput = ({ product }: { product: ProductType }) => {
 };
 
 const ProductList = () => {
-  const { removeFromCart } = useLocalStorage();
+  const { removeFromCart } = useProductCart();
   const { state } = useContext(GlobalContext);
+
   const columns: any = [
     {
       title: 'Product',
@@ -67,7 +68,7 @@ const ProductList = () => {
       key: 'total',
       render: (product: ProductType) => (
         <div className="total-cell">
-          <span>${(product.quantity ? +product.price * +product.quantity : +product.price).toFixed(2)}</span>
+          <span>${(product.quantity ? product.price * +product.quantity : product.price).toFixed(2)}</span>
           <DeleteFilled onClick={() => removeFromCart(product)} />
         </div>
       )

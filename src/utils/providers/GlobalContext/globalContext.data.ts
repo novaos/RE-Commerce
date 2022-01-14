@@ -16,20 +16,20 @@ const globalContextData = () => {
   };
 
   const handleSort = (products: Context['products'], sortBy: SortTypes) => {
-    if (!products) return;
+    // if (!products) return;
     const sortedProductsBy = {
-      [SortTypes.rating]: [...products]?.sort((currProduct, nextProduct) => {
+      [SortTypes.rating]: [...products].sort((currProduct, nextProduct) => {
         return nextProduct.rating - currProduct.rating;
       }),
-      [SortTypes.newness]: [...products]?.sort(
+      [SortTypes.newness]: [...products].sort(
         (currProduct, nextProduct) =>
           new Date(nextProduct.createdAt).getTime() - new Date(currProduct.createdAt).getTime()
       ),
-      [SortTypes.oldest]: [...products]?.sort(
+      [SortTypes.oldest]: [...products].sort(
         (currProduct, nextProduct) =>
           new Date(currProduct.createdAt).getTime() - new Date(nextProduct.createdAt).getTime()
       ),
-      [SortTypes.price]: [...products]?.sort((curr, next) => {
+      [SortTypes.price]: [...products].sort((curr, next) => {
         return Number(curr.price) - Number(next.price);
       })
     }[sortBy];

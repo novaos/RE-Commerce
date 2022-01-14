@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { ActionTypes, ProductType } from "../providers/GlobalContext";
 import { GlobalContext } from "../providers/GlobalContext/GlobalContext";
 
-const useLocalStorage = () => {
+const useProductCart = () => {
   const { state, dispatch } = useContext(GlobalContext);
 
   const actualList = (): ProductType[] => {
@@ -12,7 +12,7 @@ const useLocalStorage = () => {
   }
 
   useEffect(() => {
-    state.productsInCart ? localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart)) : JSON.stringify([])
+    localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart))
   },[state.productsInCart])
 
   const addToCart = (product: ProductType) => {
@@ -57,4 +57,4 @@ const useLocalStorage = () => {
   return { addToCart, removeFromCart, editQuantity };
 }
 
-export default useLocalStorage;
+export default useProductCart;
