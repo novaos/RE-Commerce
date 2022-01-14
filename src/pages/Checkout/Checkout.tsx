@@ -6,7 +6,7 @@ import './checkout.scss';
 import LeftForm from './components/LeftForm';
 import RightBill from './components/RightBill';
 
-const Checkout = () => {
+export default function Checkout() {
   const { state: {productsInCart} } = useContext(GlobalContext);
   const history = useHistory();
 
@@ -22,6 +22,4 @@ const Checkout = () => {
       </Row>
     </div>
   );
-};
-
-export default Checkout;
+}

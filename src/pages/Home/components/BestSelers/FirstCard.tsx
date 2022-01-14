@@ -1,7 +1,7 @@
 import { Card } from 'antd';
 import { useTranslation } from 'react-i18next';
 
-const FirstCard: React.FC = () => {
+export default function FirstCard() {
   const { t } = useTranslation();
 
   return (
@@ -18,6 +18,4 @@ const FirstCard: React.FC = () => {
       </p>
     </Card>
   );
-};
-
-export default FirstCard;
+}

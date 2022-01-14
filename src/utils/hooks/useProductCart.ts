@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { ActionTypes, ProductType } from "../providers/GlobalContext";
 import { GlobalContext } from "../providers/GlobalContext/GlobalContext";
 
-const useProductCart = () => {
+export default function useProductCart() {
   const { state, dispatch } = useContext(GlobalContext);
 
   const actualList = (): ProductType[] => {
@@ -56,5 +56,3 @@ const useProductCart = () => {
 
   return { addToCart, removeFromCart, editQuantity };
 }
-
-export default useProductCart;

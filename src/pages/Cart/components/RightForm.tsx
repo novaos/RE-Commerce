@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
 
-const RightForm = () => {
+export default function RightForm() {
   const { state } = useContext(GlobalContext);
   const coupon = 50;
   const subtotal = state.productsInCart.map(product => {
@@ -76,6 +76,4 @@ const RightForm = () => {
       </Form.Item>
     </Form>
   );
-};
-
-export default RightForm;
+}

@@ -4,7 +4,7 @@ import LeftForm from './components/LeftForm';
 import ProductList from './components/ProductList';
 import RightForm from './components/RightForm';
 
-const Cart = () => {
+export default function Cart() {
   return (
     <div className='inner-container'>
       <ProductList />
@@ -14,6 +14,4 @@ const Cart = () => {
       </Row>
     </div>
   );
-};
-
-export default Cart;
+}

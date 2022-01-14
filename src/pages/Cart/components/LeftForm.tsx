@@ -1,6 +1,6 @@
 import { Form, Input, Button, Select } from 'antd';
 
-const LeftForm = () => {
+export default function LeftForm() {
   return (
     <Form layout="vertical">
       <h2 className="form-title">use coupon code</h2>
@@ -36,6 +36,4 @@ const LeftForm = () => {
       </Form.Item>
     </Form>
   );
-};
-
-export default LeftForm;
+}

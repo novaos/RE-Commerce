@@ -18,7 +18,7 @@ const QuantityInput = ({ product }: { product: ProductType }) => {
   return <Input value={quan} onChange={inputHandler} style={{ width: '50px' }} />;
 };
 
-const ProductList = () => {
+export default function ProductList() {
   const { removeFromCart } = useProductCart();
   const { state } = useContext(GlobalContext);
 
@@ -91,6 +91,4 @@ const ProductList = () => {
       )}
     />
   );
-};
-
-export default ProductList;
+}

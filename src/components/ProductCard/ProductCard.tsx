@@ -16,10 +16,7 @@ const IconFont = createFromIconfontCN({
   ]
 });
 
-const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: string | number } }> = ({
-  product,
-  styles
-}) => {
+export default function ProductCard({ product,styles }: { product: ProductType; styles?: { [key: string]: string | number } }) {
   const { state, dispatch } = useContext(GlobalContext);
   const {addToCart} = useProductCart();
   const history = useHistory();
@@ -82,6 +79,4 @@ const ProductCard: React.FC<{ product: ProductType; styles?: { [key: string]: st
       </Card>
     </div>
   );
-};
-
-export default ProductCard;
+}
