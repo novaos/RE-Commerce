@@ -1,20 +1,21 @@
 import { Languages } from '../../../locales/types';
 import { ActionTypes, WearTypes } from './globalContext.enums';
-interface Context {
+
+export interface Context {
   language: Languages;
-  products: Products;
+  products: ProductType[];
   dataForFilter?: DataForFilterType;
-  productsInCart?: Products;
+  productsInCart?: ProductType[];
   selectedProduct?: ProductType;
   countOfComparison?: number;
   comparisonProducts?: ProductType[];
 }
 
-type Props = {
+export type Props = {
   children: React.ReactNode;
 };
 
-type ReviewType = {
+export type ReviewType = {
   id: string;
   body: string;
   date: Date;
@@ -23,7 +24,7 @@ type ReviewType = {
   avatar: string;
 };
 
-type ProductType = {
+export type ProductType = {
   createdAt: Date;
   name: string;
   photo: string;
@@ -42,17 +43,15 @@ type ProductType = {
   reviews: ReviewType[];
 };
 
-type Products = ProductType[];
-
-type DataForFilterType = {
+export type DataForFilterType = {
   category: string[];
   color: string[];
   price: string[] | number[];
   size: string[];
 };
 
-type Action =
-  | { type: ActionTypes.GET_PRODUCTS; payload: Products }
+export type Action =
+  | { type: ActionTypes.GET_PRODUCTS; payload: ProductType[] }
   | { type: ActionTypes.GET_SELECTED_PRODUCT; payload: ProductType }
   | { type: ActionTypes.SORT_BY_RATING }
   | { type: ActionTypes.SORT_BY_PRICE }
@@ -63,12 +62,10 @@ type Action =
   | { type: ActionTypes.SHOW_ONLY_KIDS }
   | { type: ActionTypes.SHOW_ONLY_ACCESSORIES }
   | { type: ActionTypes.SHOW_ONLY_JEWELLERY }
-  | { type: ActionTypes.UPDATE_CART; payload: Products }
+  | { type: ActionTypes.UPDATE_CART; payload: ProductType[] }
   | { type: ActionTypes.ADD_TO_CART; payload: ProductType }
   | { type: ActionTypes.REMOVE_FROM_CART; payload: string }
   | { type: ActionTypes.EDIT_QUANTITY; payload: { value: string; id: string } }
   | { type: ActionTypes.ADD_COMPARISON_PRODUCT; payload: ProductType }
   | { type: ActionTypes.REMOVE_COMPARISON_PRODUCT; payload: string }
   | { type: ActionTypes.LANGUAGE_CHANGE };
-
-export type { ProductType, ReviewType, DataForFilterType, Props, Context, Action };

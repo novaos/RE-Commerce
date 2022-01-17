@@ -8,7 +8,7 @@ const http = axios.create({
   responseType: 'json'
 });
 
-const getProducts = async (fetchProducts: (data: ProductType[]) => void) => {
+export const getProducts = async (fetchProducts: (data: ProductType[]) => void) => {
   try {
     const response = await http.get(`${PRODUCT_URL}`);
 
@@ -20,7 +20,7 @@ const getProducts = async (fetchProducts: (data: ProductType[]) => void) => {
   }
 };
 
-const getSelectedProduct = async (id: string, callback: (data: ProductType) => void) => {
+export const getSelectedProduct = async (id: string, callback: (data: ProductType) => void) => {
   try {
     const response = await http.get(`${PRODUCT_URL}/${id}`);
     callback(response.data);
@@ -29,7 +29,7 @@ const getSelectedProduct = async (id: string, callback: (data: ProductType) => v
   }
 };
 
-const addReview = async (id: number | string, data: any) => {
+export const addReview = async (id: number | string, data: any) => {
   try {
     const response = await http.put(`${PRODUCT_URL}/${id}`, data);
     console.log({ response });
@@ -37,5 +37,3 @@ const addReview = async (id: number | string, data: any) => {
     console.log(error);
   }
 };
-
-export { getProducts, getSelectedProduct, addReview };

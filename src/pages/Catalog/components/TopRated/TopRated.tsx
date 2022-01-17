@@ -19,7 +19,7 @@ const TopRated: React.FC = () => {
     setTopRatedProducts(handleSort(state.products, SortTypes.rating));
   }, [state.products]);
 
-  const productsToShow = React.useMemo(() => topRatedProducts?.slice(0, 3), []);
+  const productsToShow = React.useMemo(() => topRatedProducts?.slice(0, 3), [topRatedProducts]);
 
   return (
     <div className="top-rated-wrapper">
