@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import { handleFilter, handleSort as globalSort } from '../../utils/functions';
 import objectToQueryParam from '../../utils/parsers/objectToQueryParam';
-import parseParams from '../../utils/parsers/parseParams';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { SortTypes, WearTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { DataForFilterType } from '../../utils/providers/GlobalContext/globalContext.types';
@@ -52,7 +51,7 @@ const useCatalogData = () => {
     const url = objectToQueryParam(values);
     history.push(url);
 
-    console.log(parseParams(url));
+    // console.log(parseParams(url));
 
     const filteredProducts = state?.products?.filter(product => {
       return (

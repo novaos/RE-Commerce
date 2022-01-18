@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import parseParams from '../../../../utils/parsers/parseParams';
+import { parseParams } from '../../../../utils/parsers/parseParams';
 import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import { FormInputType } from './Filter.types';
 

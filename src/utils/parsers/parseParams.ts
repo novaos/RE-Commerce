@@ -1,20 +1,12 @@
-const parseParams = (params: string) => {
-  // @ts-ignore
-  const output = {};
+export const parseParams = (params: string) => {
   const searchParams = new URLSearchParams(params);
 
-  // Set will return only unique keys()
-  // @ts-ignore
-  new Set([...searchParams.keys()]).forEach((key: string) => {
-    // @ts-ignore
-    output[key] =
-      searchParams.getAll(key).length > 1
-        ? searchParams.getAll(key) // get multiple values
-        : searchParams.get(key); // get single value
-  });
+  return Array.from(searchParams.keys()).reduce((acc, item) => {
+    const value = searchParams.get(item);
 
-  // @ts-ignore
-  return output;
+    return {
+      ...acc,
+      [item]: value
+    };
+  }, {});
 };
-
-export default parseParams;

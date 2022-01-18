@@ -9,6 +9,7 @@ import { useCatalogData } from './useCatalog.hook';
 
 const Catalog: React.FC<CatalogProps> = () => {
   const { productsToShow, showFrom, showTo, handleSearch, setCurrentPage, currentPage, handleSort } = useCatalogData();
+
   return (
     <div className="inner-container">
       <div className="catalog-wrapper">
