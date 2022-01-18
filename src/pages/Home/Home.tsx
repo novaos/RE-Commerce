@@ -6,7 +6,7 @@ import { data2 } from './test2';
 const Home: React.FC = () => {
   return (
     <>
-      {JSON.stringify(data2?.[0]?.options)}
+      <div>{JSON.stringify(data2)}</div>
       <BestSelers />
       <Delivery />
       <FeatureProducts />
