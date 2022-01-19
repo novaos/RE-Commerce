@@ -21,7 +21,7 @@ import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalCont
 //   )
 // }
 
-const Leftform: React.FC = () => {
+export default function Leftform() {
   const { dispatch } = useContext(GlobalContext)
 
   const initialValues = {
@@ -164,6 +164,4 @@ const Leftform: React.FC = () => {
     </Formik>
   )
   
-};
-
-export default Leftform;
+}

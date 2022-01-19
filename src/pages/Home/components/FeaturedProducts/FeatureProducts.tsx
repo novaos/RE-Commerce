@@ -7,7 +7,7 @@ import { ProductType, SortTypes } from '../../../../utils/providers/GlobalContex
 import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import './featuredProducts.scss';
 
-const FeatureProducts = () => {
+export default function FeatureProducts() {
   const { state } = useContext(GlobalContext);
   const { t } = useTranslation();
   const [newnessProducts, setNewnessProducts] = useState<ProductType[]>([]);
@@ -33,6 +33,4 @@ const FeatureProducts = () => {
       </div>
     </div>
   );
-};
-
-export default FeatureProducts;
+}

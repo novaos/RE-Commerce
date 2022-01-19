@@ -2,7 +2,7 @@ import BestSelers from './components/BestSelers/BestSelers';
 import FeatureProducts from './components/FeaturedProducts/FeatureProducts';
 import Delivery from './components/SaticBlocks/StaticBlocks';
 
-const Home: React.FC = () => {
+export default function Home() {
   return (
     <>
       {/* <div>{JSON.stringify(data2)}</div> */}
@@ -12,6 +12,4 @@ const Home: React.FC = () => {
       <div className="inner-container"></div>
     </>
   );
-};
-
-export default Home;
+}

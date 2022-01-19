@@ -7,7 +7,7 @@ import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalC
 import './bestSelers.scss';
 import FirstCard from './FirstCard';
 
-const BestSelers: React.FC = () => {
+export default function BestSelers() {
   const { state } = useContext(GlobalContext);
   const [topRatedProducts, setTopRatedProducts] = useState<ProductType[]>([]);
 
@@ -31,6 +31,4 @@ const BestSelers: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default BestSelers;
+}

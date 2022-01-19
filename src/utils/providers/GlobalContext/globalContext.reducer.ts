@@ -25,22 +25,19 @@ function reducer(state: Context, action: Action): Context {
       };
 
     case ActionTypes.ADD_COMPARISON_PRODUCT:
-      LocalStorageApi.set(
-        LocalStorageKeys.comparison,
-        state.comparisonProducts ? state.comparisonProducts.concat(action.payload) : [action.payload]
-      );
+      LocalStorageApi.set(LocalStorageKeys.comparison, state.comparisonProducts.concat(action.payload));
       return {
         ...state,
-        comparisonProducts: state.comparisonProducts ? [...state.comparisonProducts, action.payload] : [action.payload]
+        comparisonProducts: [...state.comparisonProducts, action.payload]
       };
     case ActionTypes.REMOVE_COMPARISON_PRODUCT:
       LocalStorageApi.set(
         LocalStorageKeys.comparison,
-        state.comparisonProducts?.filter(({ id }) => id !== action.payload)
+        state.comparisonProducts.filter(({ id }) => id !== action.payload)
       );
       return {
         ...state,
-        comparisonProducts: state.comparisonProducts?.filter(({ id }) => id !== action.payload)
+        comparisonProducts: state.comparisonProducts.filter(({ id }) => id !== action.payload)
       };
     case ActionTypes.LANGUAGE_CHANGE:
       return {

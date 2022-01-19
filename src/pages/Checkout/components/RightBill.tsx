@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Button, Card, Row, Col, Checkbox } from 'antd';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
 
-const Rightbill = () => {
+export default function Rightbill() {
   const {
     state: { productsInCart }
   } = useContext(GlobalContext);
@@ -84,6 +84,4 @@ const Rightbill = () => {
       </Button>
     </>
   );
-};
-
-export default Rightbill;
+}

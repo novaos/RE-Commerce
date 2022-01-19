@@ -5,10 +5,10 @@ export interface Context {
   language: Languages;
   products: ProductType[];
   dataForFilter?: DataForFilterType;
-  productsInCart?: ProductType[];
+  productsInCart: ProductType[];
   selectedProduct?: ProductType;
   countOfComparison?: number;
-  comparisonProducts?: ProductType[];
+  comparisonProducts: ProductType[];
 }
 
 export type Props = {
@@ -28,7 +28,7 @@ export type ProductType = {
   createdAt: Date;
   name: string;
   photo: string;
-  price: string;
+  price: number;
   rating: number;
   amount: string;
   category: string;
