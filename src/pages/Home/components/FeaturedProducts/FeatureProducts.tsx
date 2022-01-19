@@ -5,7 +5,7 @@ import ProductCard from '../../../../components/ProductCard/ProductCard';
 import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalContext';
 import './featuredProducts.scss';
 
-const FeatureProducts = () => {
+export default function FeatureProducts() {
   const { state } = useContext(GlobalContext);
   const { t } = useTranslation();
   const productsToShow = useMemo(() => state?.sortedProductsByNewness?.slice(0, 10), [state?.sortedProductsByNewness]);
@@ -27,6 +27,4 @@ const FeatureProducts = () => {
       </div>
     </div>
   );
-};
-
-export default FeatureProducts;
+}

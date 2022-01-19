@@ -5,7 +5,7 @@ import { GlobalContext } from '../../../../utils/providers/GlobalContext/GlobalC
 import './bestSelers.scss';
 import FirstCard from './FirstCard';
 
-const BestSelers: React.FC = () => {
+export default function BestSelers() {
   const { state } = useContext(GlobalContext);
   const productsToShow = useMemo(() => state?.sortedProductsByRating?.slice(0, 4), [state?.sortedProductsByRating]);
 
@@ -25,6 +25,4 @@ const BestSelers: React.FC = () => {
       </div>
     </div>
   );
-};
-
-export default BestSelers;
+}

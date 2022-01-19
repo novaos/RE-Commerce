@@ -3,12 +3,11 @@ import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
 
-const RightForm = () => {
+export default function RightForm() {
   const { state } = useContext(GlobalContext);
   const coupon = 50;
-  const subtotal = state.productsInCart
-    ?.map(product => {
-      return product.quantity ? product.quantity * +product.price : +product.price;
+  const subtotal = state.productsInCart.map(product => {
+      return product.quantity ? product.quantity * product.price : product.price;
     })
     .reduce((a, b) => a + b, 0);
 
@@ -68,7 +67,7 @@ const RightForm = () => {
           <Button 
             className='cart-form-btn' 
             size='large'
-            disabled={state.productsInCart?.length ? false : true}
+            disabled={state.productsInCart.length === 0}
             type='primary' 
             style={{width: 'fit-content', float: 'right'}} 
             htmlType="submit">PROCEED TO CHECKOUT
@@ -77,6 +76,4 @@ const RightForm = () => {
       </Form.Item>
     </Form>
   );
-};
-
-export default RightForm;
+}

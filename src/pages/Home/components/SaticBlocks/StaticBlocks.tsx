@@ -3,7 +3,7 @@ import './staticBlocks.scss';
 import { RocketFilled, FireFilled, SyncOutlined, LikeFilled } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
 
-const StaticBlocks: React.FC = () => {
+export default function StaticBlocks() {
   const { t } = useTranslation();
   const data = [
     {
@@ -40,6 +40,4 @@ const StaticBlocks: React.FC = () => {
       ))}
     </Row>
   );
-};
-
-export default StaticBlocks;
+}
