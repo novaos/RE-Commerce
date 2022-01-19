@@ -27,7 +27,12 @@ const Filter: React.FC<FilterProps> = ({ handleSearch }) => {
 
   return (
     <div>
-      <Formik enableReinitialize initialValues={initialValues} onSubmit={values => handleSearch(values)}>
+      <Formik
+        enableReinitialize
+        initialValues={initialValues}
+        onSubmit={values => {
+          handleSearch(values);
+        }}>
         {({ values, setFieldValue, handleSubmit }) => (
           <Form onFinish={handleSubmit}>
             <section className="filter-section categories">
