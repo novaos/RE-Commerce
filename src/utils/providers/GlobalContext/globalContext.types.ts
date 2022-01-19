@@ -5,7 +5,7 @@ export interface Context {
   language: Languages;
   products: ProductType[];
   dataForFilter?: DataForFilterType;
-  productsInCart?: ProductType[];
+  productsInCart: ProductType[];
   selectedProduct?: ProductType;
   countOfComparison?: number;
   comparisonProducts: ProductType[];
