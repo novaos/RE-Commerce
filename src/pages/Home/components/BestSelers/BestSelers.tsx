@@ -12,7 +12,7 @@ export default function BestSelers() {
   const [topRatedProducts, setTopRatedProducts] = useState<ProductType[]>([]);
 
   useEffect(() => {
-    setTopRatedProducts(handleSort(state.products, SortTypes.rating));
+    setTopRatedProducts(handleSort(state.products, SortTypes.rating).slice(0,4));
   }, [state.products]);
 
   return (
@@ -22,7 +22,7 @@ export default function BestSelers() {
           <Col xs={24} sm={24} md={24} lg={8} xl={6}>
             <FirstCard />
           </Col>
-          {topRatedProducts?.map(item => (
+          {topRatedProducts.map(item => (
             <Col xs={24} sm={24} md={12} lg={8} xl={6} key={item.id}>
               <ProductCard product={item} />
             </Col>

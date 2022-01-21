@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { routes } from './app.routes';
 import { Footer } from './components/Footer';
 import { HeaderTop } from './components/HeaderTop';
-import Loader from './components/Loader';
+import Spinner from './components/Spinner';
 import Navigation from './components/Navigation/Navigation';
 import GlobalContextProvider from './utils/providers/GlobalContext/GlobalContext';
 import { queryClient } from './utils/react-query-client';
@@ -16,7 +16,7 @@ const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
     <Router>
       <ScrollToTop />
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Spinner />}>
         <GlobalContextProvider>
           <Layout style={{ background: '#fff', overflow: 'hidden' }}>
             <HeaderTop />

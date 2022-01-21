@@ -80,7 +80,7 @@ const Navigation: React.FC = () => {
 
                 <Menu.Item>
                   <Link className="link-wrapper" to="/cart">
-                    <Badge count={state.productsInCart?.length} size="small">
+                    <Badge count={state.productsInCart.length} size="small">
                       <IconFont className="icon" type="icon-shoppingcart" />
                     </Badge>
                     <Typography.Link style={{ color: 'black', marginLeft: '10px' }}>Cart</Typography.Link>
@@ -88,7 +88,7 @@ const Navigation: React.FC = () => {
                 </Menu.Item>
                 <Menu.Item>
                   <Link className="link-wrapper" to="/comparison">
-                    <Badge count={state.comparisonProducts?.length} size="small">
+                    <Badge count={state.comparisonProducts.length} size="small">
                       <SyncOutlined />
                     </Badge>
                     <Typography.Link style={{ color: 'black', marginLeft: '10px' }}>Comparison</Typography.Link>

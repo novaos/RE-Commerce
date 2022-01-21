@@ -1,16 +1,16 @@
 import loadable from '@loadable/component';
-import Loader from './components/Loader';
+import Spinner from './components/Spinner';
 
 type Props = {
   page: 'Home' | 'Cart' | 'Catalog' | 'Checkout' | 'Comparison' | 'Product';
 };
 
 const LazyPage = loadable((props: Props) => import(`./pages/${props.page}/${props.page}`), {
-  fallback: <Loader />,
+  fallback: <Spinner />,
   cacheKey: props => props.page
 });
 
-const LazyNotFound = loadable(() => import('./components/NotFound'), { fallback: <Loader /> });
+const LazyNotFound = loadable(() => import('./components/NotFound'), { fallback: <Spinner/> });
 
 export const routes = [
   {
