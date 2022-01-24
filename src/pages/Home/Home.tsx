@@ -9,7 +9,6 @@ export default function Home() {
       <BestSelers />
       <Delivery />
       <FeatureProducts />
-      <div className="inner-container"></div>
     </>
   );
 }

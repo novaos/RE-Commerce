@@ -13,11 +13,13 @@ $line-width: 15px;
   .container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 64px;
   }
 
   .logo {
     color: $primary-green;
+    margin: 0;
     text-transform: uppercase;
     font-weight: 600;
     font-size: 24px;
