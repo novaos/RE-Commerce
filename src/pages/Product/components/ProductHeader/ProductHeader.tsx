@@ -104,7 +104,12 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
                   </Row>
                   <InputNumber
                     min={0}
-                    addonBefore={inputNumberToggler(() => setCountOfProduct(prev => prev - 1), '-')}
+                    addonBefore={inputNumberToggler(() => {
+                      if (countOfProduct === 1) {
+                        return;
+                      }
+                      setCountOfProduct(prev => prev - 1);
+                    }, '-')}
                     addonAfter={inputNumberToggler(() => setCountOfProduct(prev => prev + 1), '+')}
                     defaultValue={countOfProduct}
                     value={countOfProduct}

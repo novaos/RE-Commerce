@@ -11,6 +11,44 @@ export interface Context {
   comparisonProducts: ProductType[];
 }
 
+export type ProductType = {
+  createdAt: Date;
+  name: string;
+  avatar: string;
+  quantity: number; // temporary
+  photo: string; //temporary
+  color: string; // temporary
+  size: string; // temporary
+  price: string | any;
+  category: string;
+  description: string;
+  about: string;
+  properties: {
+    key: string;
+    value: string;
+  }[];
+  reviews: {
+    id: string;
+    body: string;
+    date: Date;
+    name: string;
+    rating: number;
+    avatar: string;
+  }[];
+  options: {
+    id: string;
+    amount: number;
+    photosUrl: string[];
+    colorName: string;
+    color: string;
+    sizes: string[];
+    price?: string | null;
+  }[];
+  id: string;
+  rating: number;
+  wearType: WearTypes;
+};
+
 export type Props = {
   children: React.ReactNode;
 };
@@ -24,7 +62,7 @@ export type ReviewType = {
   avatar: string;
 };
 
-export type ProductType = {
+export type ProductType1 = {
   createdAt: Date;
   name: string;
   photo: string;

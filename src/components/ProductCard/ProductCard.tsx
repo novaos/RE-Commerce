@@ -16,15 +16,21 @@ const IconFont = createFromIconfontCN({
   ]
 });
 
-export default function ProductCard({ product,styles }: { product: ProductType; styles?: { [key: string]: string | number } }) {
+export default function ProductCard({
+  product,
+  styles
+}: {
+  product: ProductType;
+  styles?: { [key: string]: string | number };
+}) {
   const { state, dispatch } = useContext(GlobalContext);
-  const {addToCart} = useProductCart();
+  const { addToCart } = useProductCart();
   const history = useHistory();
 
   const cartHandler = (e: React.MouseEvent) => {
     e.stopPropagation();
-    addToCart(product)
-  }
+    addToCart(product);
+  };
 
   const addComparison = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.stopPropagation();
@@ -71,7 +77,7 @@ export default function ProductCard({ product,styles }: { product: ProductType; 
         style={{ ...styles }}
         bordered={false}
         bodyStyle={{ padding: '5px 2px' }}
-        cover={<img style={{ objectFit: 'contain' }} alt="example" height={'auto'} src={product.photo} />}>
+        cover={<img style={{ objectFit: 'contain' }} alt="example" height={'auto'} src={product.avatar} />}>
         {btns}
         <p className="card-title">{product.name}</p>
         <p className="card-description">${product.price}</p>
