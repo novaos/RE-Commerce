@@ -77,7 +77,7 @@ export default function ProductCard({
         style={{ ...styles }}
         bordered={false}
         bodyStyle={{ padding: '5px 2px' }}
-        cover={<img style={{ objectFit: 'contain' }} alt="example" height={'auto'} src={product.avatar} />}>
+        cover={<img style={{ objectFit: 'contain' }} alt="example" height={'auto'} src={'http://placeimg.com/640/480'} />}>
         {btns}
         <p className="card-title">{product.name}</p>
         <p className="card-description">${product.price}</p>

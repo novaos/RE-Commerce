@@ -3,14 +3,8 @@ import { Button, Card, Row, Col, Checkbox } from 'antd';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
 
 export default function Rightbill() {
-  const {
-    state: { productsInCart }
-  } = useContext(GlobalContext);
-  const total = productsInCart
-    ?.map(item => {
-      return +item.price * (item.quantity || 1);
-    })
-    .reduce((a, b) => a + b);
+  const {state: { productsInCart }} = useContext(GlobalContext);
+  const total = productsInCart.map(item => item.price).reduce((a, b) => a + b, 0);
 
   return (
     <>
@@ -25,15 +19,15 @@ export default function Rightbill() {
           </Col>
         </Row>
         <hr />
-        {productsInCart?.map(item => (
+        {productsInCart.map(item => (
           <Row key={item.id} justify="space-between" className="checkout-row">
             <Col>
               <p>
-                {item.name} x {item.quantity}
+                {item.name} x {productsInCart.filter(product => product.id === item.id).length}
               </p>
             </Col>
             <Col>
-              <p>${+item.price * (item.quantity || 1)}</p>
+              <p>${item.price * productsInCart.filter(product => product.id === item.id).length}</p>
             </Col>
           </Row>
         ))}

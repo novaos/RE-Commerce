@@ -119,7 +119,7 @@ const Navigation: React.FC = () => {
               </Col>
               <Col className="link">
                 <Link to="/cart">
-                  <Badge count={state.productsInCart?.length} size="small">
+                  <Badge count={state.productsInCart.length} size="small">
                     <IconFont className="icon" type="icon-shoppingcart" />
                   </Badge>
                 </Link>

@@ -5,54 +5,34 @@ import { GlobalContext } from "../providers/GlobalContext/GlobalContext";
 export default function useProductCart() {
   const { state, dispatch } = useContext(GlobalContext);
 
-  const actualList = (): ProductType[] => {
-    const data = localStorage.getItem('productsInCart');
-
-    return data !== null ? JSON.parse( data ) : [];
-  }
-
   useEffect(() => {
     localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart))
   },[state.productsInCart])
 
   const addToCart = (product: ProductType) => {
-    let newArr = [];
-
-    if (actualList().find(item => item.id === product.id)) {
-      newArr = actualList().map(item =>
-        item.id === product.id
-          ? {
-              ...product,
-              quantity: item.quantity ? ++item.quantity : 1
-            }
-          : item
-      );
-    } else {
-      newArr = [...actualList(), { ...product, quantity: 1 }];
-    }
-
+    const newArr = [...state.productsInCart, product];
     dispatch({ type: ActionTypes.UPDATE_CART, payload: newArr });
   }
 
   const removeFromCart = (product: ProductType) => {
-    const newArr = actualList().filter((item: ProductType) => item.id !== product.id);
+    const newArr = state.productsInCart.filter((item: ProductType) => item.id !== product.id);
 
     dispatch({ type: ActionTypes.UPDATE_CART, payload: newArr })
   }
 
-  const editQuantity = (product: ProductType, value: string) => {
-    const newArr = actualList().map(item => {
-      if (item.id === product.id) {
-        return {
-          ...item,
-          quantity: Number(value)
-        };
-      }
-      return item;
-    });
+  // const editQuantity = (product: ProductType, value: string) => {
+  //   const newArr = state.productsInCart.map(item => {
+  //     if (item.id === product.id) {
+  //       return {
+  //         ...item,
+  //         quantity: Number(value)
+  //       };
+  //     }
+  //     return item;
+  //   });
 
-    dispatch({ type: ActionTypes.UPDATE_CART, payload: newArr })
-  };
+  //   dispatch({ type: ActionTypes.UPDATE_CART, payload: newArr })
+  // };
 
-  return { addToCart, removeFromCart, editQuantity };
+  return { addToCart, removeFromCart };
 }

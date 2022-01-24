@@ -15,11 +15,11 @@ export type ProductType = {
   createdAt: Date;
   name: string;
   avatar: string;
-  quantity: number; // temporary
+  // quantity: number; // temporary
   photo: string; //temporary
   color: string; // temporary
   size: string; // temporary
-  price: string | any;
+  price: number;
   category: string;
   description: string;
   about: string;
