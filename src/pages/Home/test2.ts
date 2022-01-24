@@ -7066,9 +7066,14 @@ export const data2 = data.map(item => {
     rating,
     category,
     wearType,
+    price: Math.floor(Math.random() * 1000),
     options: item.options.reduce((acc, option, i) => {
       if (i >= colors.length) {
         return acc;
+      }
+      if (option.price) {
+        // @ts-ignore
+        delete option.price;
       }
       acc = [...acc, { ...option, sizes, color: colors[i], colorName: colors[i] }];
       return acc;

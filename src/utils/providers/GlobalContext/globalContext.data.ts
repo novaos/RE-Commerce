@@ -23,7 +23,7 @@ const globalContextData = () => {
 
   const storageData = LocalStorageApi.get(LocalStorageKeys.comparison);
 
-  return { getDataForFilter, /* handleFilter, handleSort, */ storageData };
+  return { getDataForFilter, storageData };
 };
 
 export { globalContextData };
