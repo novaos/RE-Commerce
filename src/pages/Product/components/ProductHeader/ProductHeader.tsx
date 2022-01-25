@@ -17,10 +17,8 @@ type ProductHeaderProps = {
  rating: number;
  id: string;
  description: string;
- sizeOptions?: { value: string; label: string }[];
- colorOptions?: { value: string; label: string }[];
- onAdd: () => void;
- addComparison: () => void;
+ handleAddProductToCart: () => void;
+ handleAddComparison: () => void;
  productOptions: ProductType['options'];
  properties: ProductType['properties'];
 };
@@ -30,11 +28,9 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
  price,
  rating,
  description,
- sizeOptions,
- colorOptions,
  id,
- addComparison,
- onAdd,
+ handleAddComparison,
+ handleAddProductToCart,
  productOptions,
  properties
 }) => {
@@ -45,7 +41,8 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
 
  useEffect(() => {
   setSelectedProductOption(productOptions[0]);
- }, []);
+ }, [productOptions]);
+
  const inputNumberToggler = useCallback((onClick: () => void, content: string) => {
   return (
    <div className="input-toggler" onClick={onClick}>
@@ -91,7 +88,11 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
       <Formik
        validationSchema={productHeaderValidationSchema}
        enableReinitialize
-       initialValues={{ size: sizeOptions?.[0]?.value, color: colorOptions?.[0]?.value, count: 1 }}
+       initialValues={{
+        size: filteredProperties('size')[0].value,
+        color: filteredProperties('color')[0]?.value,
+        count: 1
+       }}
        onSubmit={() => {}}>
        {({ errors, touched, values, setFieldValue }) => (
         <Form>
@@ -142,7 +143,7 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
           <Col>
            <Button
             htmlType="submit"
-            onClick={onAdd}
+            onClick={handleAddProductToCart}
             icon={<IconFont className="icon" type="icon-shoppingcart" />}
             className="button">
             Add to Card
@@ -150,7 +151,7 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
           </Col>
           <Col>
            <Button
-            onClick={() => addComparison()}
+            onClick={() => handleAddComparison()}
             disabled={hasInComparison}
             style={{ backgroundColor: `${hasInComparison ? 'rgba(87, 39, 39, 0.329)' : ''}` }}
             icon={<SyncOutlined />}

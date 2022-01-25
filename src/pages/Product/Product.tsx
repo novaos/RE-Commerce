@@ -11,34 +11,17 @@ import './product.scss';
 
 const Product: React.FC = () => {
  const { state, dispatch } = React.useContext(GlobalContext);
- const [sizeOptions, setSizeOptions] = React.useState<{ label: string; value: string }[]>([]);
- const [colorOptions, setColorOptions] = React.useState<{ label: string; value: string }[]>([]);
  const { id } = useParams<{ id: string }>();
  const { addToCart } = useProductCart();
  const selectedProduct = state.products.find(item => item.id === id);
 
- React.useEffect(() => {
-  setSizeOptions([
-   {
-    label: selectedProduct?.size ?? '',
-    value: selectedProduct?.size ?? ''
-   }
-  ]);
-  setColorOptions([
-   {
-    label: selectedProduct?.color ?? '',
-    value: selectedProduct?.color ?? ''
-   }
-  ]);
- }, [id, selectedProduct?.size, selectedProduct?.color]);
-
- const onAdd = () => {
+ const handleAddProductToCart = () => {
   if (selectedProduct) {
    addToCart(selectedProduct);
   }
  };
 
- const addComparison = () => {
+ const handleAddComparison = () => {
   const storageData = LocalStorageApi.get(LocalStorageKeys.comparison);
   const hasProduct = storageData
    ? JSON.parse(storageData)?.some((item: ProductType) => {
@@ -58,17 +41,14 @@ const Product: React.FC = () => {
    <div className="inner-container product-wrapper">
     <ProductHeader
      id={selectedProduct.id}
-     addComparison={addComparison}
-     onAdd={onAdd}
-     //  photo={selectedProduct.photo}
+     handleAddComparison={handleAddComparison}
+     handleAddProductToCart={handleAddProductToCart}
      properties={selectedProduct.properties}
      productOptions={selectedProduct.options}
      name={selectedProduct.name}
      price={selectedProduct.price}
      rating={selectedProduct.rating}
      description={selectedProduct.description}
-     sizeOptions={sizeOptions}
-     colorOptions={colorOptions}
     />
     <ProductTabs about={selectedProduct.about} reviews={selectedProduct.reviews} />
     <RelatedProducts />
