@@ -1,0 +1,33 @@
+{
+  "size": [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL"
+  ],
+  "color": [
+    "black",
+    "white",
+    "blue",
+    "yellow",
+    "orange"
+  ],
+  "wearTypes": [
+    "women",
+    "men",
+    "kids",
+    "jewellery",
+    "accessories"
+  ],
+  "category": [
+    "accessories",
+    "dresses",
+    "women",
+    "men",
+    "watch",
+    "clothing",
+    "bags"
+  ]
+}
