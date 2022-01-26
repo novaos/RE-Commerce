@@ -46,6 +46,8 @@ export default function ProductCard({
     }
   };
 
+  // const hasInCart = state.productsInCart.some(item => item.id === product.id);
+
   const hasInComparison = state.comparisonProducts.some(item => item.id === product.id);
 
   const btns = (

@@ -1,6 +1,6 @@
 import { DeleteFilled } from '@ant-design/icons';
 import { Button, Input, Table } from 'antd';
-import { useState, useContext } from 'react';
+import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useProductCart from '../../../utils/hooks/useProductCart';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
@@ -10,11 +10,21 @@ interface IProductInCart extends ProductType {
   quantity: number
 }
 
-const QuantityInput = ({ quantity }: { quantity: number }) => {
-  const [quan, setQuan] = useState(quantity);
+const QuantityInput = ({ quantity, id, productToShow, setProductToShow }: { quantity: number, id: string, productToShow: IProductInCart[], setProductToShow: any}) => {
+  const [quan, setQuan] = useState(quantity)
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuan(+e.target.value);
+    const arrToShow = productToShow.map(item => {
+      if(item.id === id) {
+        return {
+          ...item,
+          quantity: +e.target.value
+        }
+      }
+      return item;
+    })
+    setProductToShow(arrToShow)
   };
 
   return <Input value={quan} onChange={inputHandler} style={{ width: '50px' }} />;
@@ -23,31 +33,30 @@ const QuantityInput = ({ quantity }: { quantity: number }) => {
 export default function ProductList() {
   const { removeFromCart } = useProductCart();
   const { state } = useContext(GlobalContext);
+  const [productToShow, setProductToShow] = useState(getProd());
 
-  const productsToShow: IProductInCart[] = [];
-  state.productsInCart.forEach(product => {
-    if(productsToShow.find(item => item.id === product.id)) {
+  function getProd() {
+    const newArr: IProductInCart[] = [];
 
-      productsToShow.map(item => {
-        if(item.id === product.id) {
-          return {
-            ...item,
-            quantity: item.quantity++
+    state.productsInCart.forEach(product => {
+      if(newArr.find(item => item.id === product.id)) {
+
+        newArr.map(item => {
+          if(item.id === product.id) {
+            return {
+              ...item,
+              quantity: item.quantity++
+            }
           }
-        }
-        return item
-      })
+          return item
+        })
+      } else {
+        newArr.push({...product, quantity: 1})
+      }
+    });
 
-    } else {
-      productsToShow.push({...product, quantity: 1})
-    }
-
-   
-    //  {
-    //   ...product,
-    //   quantity: state.productsInCart.filter(item => item.id === product.id).length
-    // }
-  });
+    return newArr;
+  }
 
   const columns: any = [
     {
@@ -84,7 +93,14 @@ export default function ProductList() {
       dataIndex: 'quantity',
       key: 'quantity',
       align: 'center',
-      render: ( quantity: number) => <QuantityInput quantity={quantity} />
+      render: ( quantity: number, product: IProductInCart) => (
+        <QuantityInput 
+          quantity={quantity} 
+          id={product.id} 
+          productToShow={productToShow} 
+          setProductToShow={setProductToShow} 
+        />
+      )
     },
     {
       title: 'Price',
@@ -108,7 +124,7 @@ export default function ProductList() {
   return (
     <Table
       bordered
-      dataSource={productsToShow}
+      dataSource={productToShow}
       columns={columns}
       footer={() => (
         <div className="cart-buttons">
