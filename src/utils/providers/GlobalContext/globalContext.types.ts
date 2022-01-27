@@ -5,7 +5,7 @@ export interface Context {
   language: Languages;
   products: ProductType[];
   dataForFilter?: DataForFilterType;
-  productsInCart: ProductType[];
+  productsInCart: IProductInCart[];
   selectedProduct?: ProductType;
   countOfComparison?: number;
   comparisonProducts: ProductType[];
@@ -14,8 +14,6 @@ export interface Context {
 export type ProductType = {
   createdAt: Date;
   name: string;
-  avatar: string;
-  // quantity: number; // temporary
   photo: string; //temporary
   color: string; // temporary
   size: string; // temporary
@@ -48,6 +46,11 @@ export type ProductType = {
   rating: number;
   wearType: WearTypes;
 };
+
+export interface IProductInCart extends ProductType {
+  quantity: number;
+  option: {size: string, color: string, count: number}
+}
 
 export type Props = {
   children: React.ReactNode;
@@ -100,10 +103,7 @@ export type Action =
   | { type: ActionTypes.SHOW_ONLY_KIDS }
   | { type: ActionTypes.SHOW_ONLY_ACCESSORIES }
   | { type: ActionTypes.SHOW_ONLY_JEWELLERY }
-  | { type: ActionTypes.UPDATE_CART; payload: ProductType[] }
-  | { type: ActionTypes.ADD_TO_CART; payload: ProductType }
-  | { type: ActionTypes.REMOVE_FROM_CART; payload: string }
-  | { type: ActionTypes.EDIT_QUANTITY; payload: { value: string; id: string } }
+  | { type: ActionTypes.UPDATE_CART; payload: IProductInCart[] }
   | { type: ActionTypes.ADD_COMPARISON_PRODUCT; payload: ProductType }
   | { type: ActionTypes.REMOVE_COMPARISON_PRODUCT; payload: string }
   | { type: ActionTypes.LANGUAGE_CHANGE };

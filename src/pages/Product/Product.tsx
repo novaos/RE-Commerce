@@ -15,9 +15,9 @@ const Product: React.FC = () => {
  const { addToCart } = useProductCart();
  const selectedProduct = state.products.find(item => item.id === id);
 
- const handleAddProductToCart = () => {
+ const handleAddProductToCart = (option: {size: string, color: string, count: number}) => {
   if (selectedProduct) {
-   addToCart(selectedProduct);
+   addToCart(selectedProduct, option);
   }
  };
 

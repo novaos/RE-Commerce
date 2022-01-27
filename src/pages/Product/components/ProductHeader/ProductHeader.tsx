@@ -17,7 +17,7 @@ type ProductHeaderProps = {
  rating: number;
  id: string;
  description: string;
- handleAddProductToCart: () => void;
+ handleAddProductToCart: (options: {size: string, color: string, count: number}) => void;
  handleAddComparison: () => void;
  productOptions: ProductType['options'];
  properties: ProductType['properties'];
@@ -143,7 +143,7 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
           <Col>
            <Button
             htmlType="submit"
-            onClick={handleAddProductToCart}
+            onClick={() => handleAddProductToCart(values)}
             icon={<IconFont className="icon" type="icon-shoppingcart" />}
             className="button">
             Add to Card

@@ -4,27 +4,15 @@ import { useContext, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useProductCart from '../../../utils/hooks/useProductCart';
 import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalContext';
-import { ProductType } from '../../../utils/providers/GlobalContext/globalContext.types';
+import { IProductInCart } from '../../../utils/providers/GlobalContext/globalContext.types';
 
-interface IProductInCart extends ProductType {
-  quantity: number
-}
-
-const QuantityInput = ({ quantity, id, productToShow, setProductToShow }: { quantity: number, id: string, productToShow: IProductInCart[], setProductToShow: any}) => {
-  const [quan, setQuan] = useState(quantity)
+const QuantityInput = ({ quantity, product }: { quantity: number, product: IProductInCart}) => {
+  const [quan, setQuan] = useState(quantity);
+  const { editQuantity } = useProductCart();
 
   const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuan(+e.target.value);
-    const arrToShow = productToShow.map(item => {
-      if(item.id === id) {
-        return {
-          ...item,
-          quantity: +e.target.value
-        }
-      }
-      return item;
-    })
-    setProductToShow(arrToShow)
+    editQuantity(+e.target.value, product)
   };
 
   return <Input value={quan} onChange={inputHandler} style={{ width: '50px' }} />;
@@ -33,74 +21,41 @@ const QuantityInput = ({ quantity, id, productToShow, setProductToShow }: { quan
 export default function ProductList() {
   const { removeFromCart } = useProductCart();
   const { state } = useContext(GlobalContext);
-  const [productToShow, setProductToShow] = useState(getProd());
-
-  function getProd() {
-    const newArr: IProductInCart[] = [];
-
-    state.productsInCart.forEach(product => {
-      if(newArr.find(item => item.id === product.id)) {
-
-        newArr.map(item => {
-          if(item.id === product.id) {
-            return {
-              ...item,
-              quantity: item.quantity++
-            }
-          }
-          return item
-        })
-      } else {
-        newArr.push({...product, quantity: 1})
-      }
-    });
-
-    return newArr;
-  }
 
   const columns: any = [
     {
       title: 'Product',
       dataIndex: 'name',
       key: 'name',
-      render: (product: string) => (
+      render: (name: string) => (
         <div className="product-cell">
           <img alt="example" width={80} height={100} src={'http://placeimg.com/640/480'} />
-          <p>{product}</p>
+          <p>{name}</p>
         </div>
       )
     },
     {
       title: 'Color & Size',
+      dataIndex: ['option', 'color'],
       key: 'color',
       align: 'center',
       colSpan: 2,
-      render: (product: any) => (
-        <>
-          <span>{product.options[0].color}</span>, <span>{product.options[0].sizes[0]}</span>
-        </>
-      )
+      render: (color: string) => <span>{color}</span>
     },
     {
       title: 'Color & Size',
-      dataIndex: 'size',
+      dataIndex: ['option', 'size'],
       key: 'size',
       align: 'center',
-      colSpan: 0
+      colSpan: 0,
+      render: (size: string) => <span>{size}</span>
     },
     {
       title: 'Quantity',
       dataIndex: 'quantity',
       key: 'quantity',
       align: 'center',
-      render: ( quantity: number, product: IProductInCart) => (
-        <QuantityInput 
-          quantity={quantity} 
-          id={product.id} 
-          productToShow={productToShow} 
-          setProductToShow={setProductToShow} 
-        />
-      )
+      render: ( quantity: number, product: IProductInCart) => <QuantityInput quantity={quantity} product={product}/>
     },
     {
       title: 'Price',
@@ -124,7 +79,7 @@ export default function ProductList() {
   return (
     <Table
       bordered
-      dataSource={productToShow}
+      dataSource={state.productsInCart}
       columns={columns}
       footer={() => (
         <div className="cart-buttons">

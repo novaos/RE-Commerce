@@ -6,7 +6,7 @@ import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalCont
 export default function RightForm() {
   const { state } = useContext(GlobalContext);
   const coupon = 50;
-  const subtotal = state.productsInCart.map(item => item.price).reduce((a, b) => a + b, 0);
+  const subtotal = state.productsInCart.map(item => item.price * item.quantity).reduce((a, b) => a + b, 0);
 
   return (
     <Form layout="vertical">
