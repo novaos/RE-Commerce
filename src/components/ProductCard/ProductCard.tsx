@@ -2,7 +2,6 @@ import { createFromIconfontCN, SyncOutlined } from '@ant-design/icons';
 import { Button, Card, Rate } from 'antd';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-// import useProductCart from '../../utils/hooks/useProductCart';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { ActionTypes } from '../../utils/providers/GlobalContext/globalContext.enums';
 import { ProductType } from '../../utils/providers/GlobalContext/globalContext.types';
@@ -24,14 +23,7 @@ export default function ProductCard({
   styles?: { [key: string]: string | number };
 }) {
   const { state, dispatch } = useContext(GlobalContext);
-  // const { addToCart } = useProductCart();
   const history = useHistory();
-
-  // const cartHandler = (e: React.MouseEvent) => {
-  //   e.stopPropagation();
-  //   history.push(`/product/${product.id}`)
-  //   // addToCart(product);
-  // };
 
   const addComparison = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     e.stopPropagation();
@@ -47,8 +39,6 @@ export default function ProductCard({
     }
   };
 
-  // const hasInCart = state.productsInCart.some(item => item.id === product.id);
-
   const hasInComparison = state.comparisonProducts.some(item => item.id === product.id);
 
   const btns = (
@@ -57,7 +47,6 @@ export default function ProductCard({
         className="button-group-btn"
         type="primary"
         block
-        // onClick={cartHandler}
         icon={<IconFont type="icon-shoppingcart" />}
       />
       {/* <Button className="button-group-btn" type="primary" block icon={<HeartFilled color="#fff" />} /> */}

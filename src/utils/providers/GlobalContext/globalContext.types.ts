@@ -12,11 +12,9 @@ export interface Context {
 }
 
 export type ProductType = {
-  createdAt: Date;
+  createdAt: string;
   name: string;
-  photo: string; //temporary
-  color: string; // temporary
-  size: string; // temporary
+  avatar: string;
   price: number;
   category: string;
   description: string;
@@ -66,7 +64,7 @@ export type ReviewType = {
 };
 
 export type ProductType1 = {
-  createdAt: Date;
+  createdAt: string;
   name: string;
   photo: string;
   price: number;
@@ -92,7 +90,7 @@ export type DataForFilterType = {
 };
 
 export type Action =
-  | { type: ActionTypes.GET_PRODUCTS; payload: any } // need to change type any to ProductType[] after fix issues with data structure
+  | { type: ActionTypes.GET_PRODUCTS; payload: any}// ProductType[]
   | { type: ActionTypes.GET_SELECTED_PRODUCT; payload: ProductType }
   | { type: ActionTypes.SORT_BY_RATING }
   | { type: ActionTypes.SORT_BY_PRICE }

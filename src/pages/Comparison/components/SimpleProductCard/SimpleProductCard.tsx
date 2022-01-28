@@ -1,24 +1,12 @@
 import { DeleteOutlined } from '@ant-design/icons';
 import { Button, Col, Image, Rate, Row, Typography } from 'antd';
 import * as React from 'react';
-import { useCallback } from 'react';
 import IconFont from '../../../../components/IconFont';
-// import useProductCart from '../../../../utils/hooks/useProductCart';
-import { ProductType } from '../../../../utils/providers/GlobalContext';
+// import { ProductType } from '../../../../utils/providers/GlobalContext';
 import './simpleProductCard.scss';
-type SimpleProductCardProps = {
-  product?: ProductType;
-};
-const SimpleProductCard: React.FC<SimpleProductCardProps> = ({ product }) => {
-  // const { addToCart } = useProductCart();
 
-  const onAdd = useCallback(() => {
-    if (product) {
-      // addToCart(product);
-    }
-    // eslint-disable-next-line
-  }, [product]);
 
+const SimpleProductCard: React.FC = () => {
   return (
     <div className={'simple-product-card-wrapper'}>
       <div className="image-wrapper">
@@ -34,7 +22,6 @@ const SimpleProductCard: React.FC<SimpleProductCardProps> = ({ product }) => {
       <Row justify="space-between">
         <Col>
           <Button
-            onClick={onAdd}
             icon={<IconFont className="icon" type="icon-shoppingcart" />}
             className="button"></Button>
         </Col>
