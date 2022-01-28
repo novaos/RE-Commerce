@@ -1,44 +1,42 @@
 @import 'src/variables.scss';
 
 .search-input-wrapper {
-  .input {
-    border: 0;
-    input {
-      width: 0px;
-      transition: all 400ms ease-in-out;
+ .input {
+  border: 0;
+  input {
+   width: 0px;
+   transition: all 400ms ease-in-out;
 
-      &:focus,
-      &:active,
-      &:focus,
-      &:active {
-        border-radius: 30px;
-        width: 320px;
-      }
-    }
+   &:focus,
+   &:active {
+    border-radius: 30px;
+    width: 320px;
+   }
   }
+ }
 
-  .input-wrapper {
-    position: relative;
-    .popup {
-      width: 100%;
-      height: 300px;
-      overflow-y: auto;
-      background-color: #fff;
-      border-radius: 6px;
-      -webkit-box-shadow: 5px 5px 15px 5px #cfcfcf;
-      box-shadow: 5px 5px 15px 5px #cfcfcf;
-      position: absolute;
-      top: 70px;
-      bottom: 0;
+ .input-wrapper {
+  position: relative;
+  .popup {
+   width: 100%;
+   height: 300px;
+   overflow-y: auto;
+   background-color: #fff;
+   border-radius: 6px;
+   -webkit-box-shadow: 5px 5px 15px 5px #cfcfcf;
+   box-shadow: 5px 5px 15px 5px #cfcfcf;
+   position: absolute;
+   top: 70px;
+   bottom: 0;
 
-      .item {
-        padding: 5px 15px;
+   .item {
+    padding: 5px 15px;
 
-        &:hover {
-          background-color: $primary-green;
-          color: white;
-        }
-      }
+    &:hover {
+     background-color: $primary-green;
+     color: white;
     }
+   }
   }
+ }
 }

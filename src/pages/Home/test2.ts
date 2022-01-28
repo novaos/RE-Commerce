@@ -7060,7 +7060,7 @@ export const data2 = data.map(item => {
    //   };
    //  }),
    ...colors.reduce((acc: { key: string; value: string }[], color, id) => {
-    if (item.options.length < id) {
+    if (item.options.length <= id) {
      return acc;
     }
     const newAcc = [

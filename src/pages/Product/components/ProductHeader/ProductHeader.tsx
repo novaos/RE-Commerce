@@ -17,7 +17,7 @@ type ProductHeaderProps = {
  rating: number;
  id: string;
  description: string;
- handleAddProductToCart: (options: {size: string, color: string, count: number}) => void;
+ handleAddProductToCart: (options: { size: string; color: string; count: number }) => void;
  handleAddComparison: () => void;
  productOptions: ProductType['options'];
  properties: ProductType['properties'];
@@ -96,6 +96,7 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
        onSubmit={() => {}}>
        {({ errors, touched, values, setFieldValue }) => (
         <Form>
+         {<div style={{ color: 'red' }}>{JSON.stringify(values)}</div>}
          <Row gutter={40}>
           <Col>
            <Select
@@ -132,8 +133,12 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
             return;
            }
            setCountOfProduct(prev => prev - 1);
+           setFieldValue('count', values.count - 1);
           }, '-')}
-          addonAfter={inputNumberToggler(() => setCountOfProduct(prev => prev + 1), '+')}
+          addonAfter={inputNumberToggler(() => {
+           setCountOfProduct(prev => prev + 1);
+           setFieldValue('count', values.count + 1);
+          }, '+')}
           defaultValue={countOfProduct}
           value={countOfProduct}
           style={{ marginBottom: '30px', borderColor: `${touched.count && errors.count ? 'red' : ''}` }}
