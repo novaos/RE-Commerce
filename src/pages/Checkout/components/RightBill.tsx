@@ -4,7 +4,7 @@ import { GlobalContext } from '../../../utils/providers/GlobalContext/GlobalCont
 
 export default function Rightbill() {
   const {state: { productsInCart }} = useContext(GlobalContext);
-  const total = productsInCart.map(item => item.price * item.quantity).reduce((a, b) => a + b, 0);
+  const total = productsInCart.map(item => item.price * item.option.count).reduce((a, b) => a + b, 0);
 
   return (
     <>
@@ -23,11 +23,11 @@ export default function Rightbill() {
           <Row key={item.id} justify="space-between" className="checkout-row">
             <Col>
               <p>
-                {item.name} x {item.quantity}
+                {item.name} x {item.option.count}
               </p>
             </Col>
             <Col>
-              <p>${item.price * item.quantity}</p>
+              <p>${item.price * item.option.count}</p>
             </Col>
           </Row>
         ))}

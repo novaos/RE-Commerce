@@ -52,7 +52,7 @@ export default function ProductList() {
     },
     {
       title: 'Quantity',
-      dataIndex: 'quantity',
+      dataIndex: ['option', 'count'],
       key: 'quantity',
       align: 'center',
       render: ( quantity: number, product: IProductInCart) => <QuantityInput quantity={quantity} product={product}/>
@@ -70,7 +70,7 @@ export default function ProductList() {
       key: 'total',
       render: (product: IProductInCart) => (
         <div className="total-cell">
-          <span>${(product.price * product.quantity).toFixed(2)}</span>
+          <span>${(product.price * product.option.count).toFixed(2)}</span>
           <DeleteFilled onClick={() => removeFromCart(product)} />
         </div>
       )

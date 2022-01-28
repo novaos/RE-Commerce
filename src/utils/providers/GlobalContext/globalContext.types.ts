@@ -46,7 +46,6 @@ export type ProductType = {
 };
 
 export interface IProductInCart extends ProductType {
-  quantity: number;
   option: {size: string, color: string, count: number}
 }
 
@@ -61,25 +60,6 @@ export type ReviewType = {
   name: string;
   rating: number;
   avatar: string;
-};
-
-export type ProductType1 = {
-  createdAt: string;
-  name: string;
-  photo: string;
-  price: number;
-  rating: number;
-  amount: string;
-  category: string;
-  size: string;
-  color: string;
-  id: string;
-  colors: string;
-  wearType: WearTypes;
-  quantity?: number;
-  description: string;
-  about: string;
-  reviews: ReviewType[];
 };
 
 export type DataForFilterType = {

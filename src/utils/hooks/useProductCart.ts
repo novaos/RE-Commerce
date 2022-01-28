@@ -10,22 +10,29 @@ export default function useProductCart() {
     localStorage.setItem('productsInCart', JSON.stringify(state.productsInCart))
   },[state.productsInCart])
 
+
   const addToCart = (product: ProductType, option: {size: string, color: string, count: number}) => {
     let newArr: IProductInCart[] = [];
 
-    if(state.productsInCart.find(item => item.id === product.id && JSON.stringify(item.option) === JSON.stringify(option))) {
-      console.log('here')
+    if(state.productsInCart.find(item => {
+      return item.id === product.id &&
+              item.option.color === option.color &&
+              item.option.size === option.size
+    })) {
       newArr = state.productsInCart.map(item => {
         if(item.id === product.id) {
           return {
             ...item,
-            quantity: ++item.quantity
+            option: {
+            ...item.option,
+            count: ++item.option.count
+          }
           }
         }
         return item;
       })
     } else {
-      newArr = [...state.productsInCart, {...product, quantity: 1,  option: option}]
+      newArr = [...state.productsInCart, {...product, option: option}]
     }
 
     dispatch({ type: ActionTypes.UPDATE_CART, payload: newArr });
@@ -41,7 +48,10 @@ export default function useProductCart() {
       if(JSON.stringify(item) === JSON.stringify(product)) {
         return {
           ...item,
-          quantity: value
+          option: {
+            ...item.option,
+            count: value
+          }
         }
       }
       return item;
@@ -49,6 +59,7 @@ export default function useProductCart() {
 
     dispatch({ type: ActionTypes.UPDATE_CART, payload: newArr });
   }
+
 
   const removeFromCart = (product: IProductInCart) => {
     const newArr = state.productsInCart.filter((item: IProductInCart) => JSON.stringify(item) !== JSON.stringify(product));
