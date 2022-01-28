@@ -13,9 +13,9 @@ const Product: React.FC = () => {
  const { state, dispatch } = React.useContext(GlobalContext);
  const { id } = useParams<{ id: string }>();
  const { addToCart } = useProductCart();
- const selectedProduct = state.products.find(item => item.id === id);
+ const selectedProduct = state.products.find(item => item.id === id) as ProductType;
 
- const handleAddProductToCart = (option: {size: string, color: string, count: number}) => {
+ const handleAddProductToCart = (option: { size: string; color: string; count: number }) => {
   if (selectedProduct) {
    addToCart(selectedProduct, option);
   }

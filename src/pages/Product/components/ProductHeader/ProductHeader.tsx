@@ -89,8 +89,8 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
        validationSchema={productHeaderValidationSchema}
        enableReinitialize
        initialValues={{
-        size: filteredProperties('size')[0].value,
-        color: filteredProperties('color')[0]?.value,
+        size: filteredProperties('size')[0].value as string,
+        color: filteredProperties('color')[0].value as string,
         count: 1
        }}
        onSubmit={() => {}}>
@@ -102,7 +102,7 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
             onChange={value => setFieldValue('size', value)}
             value={values?.size}
             style={{ width: 150, marginBottom: '30px', textTransform: 'uppercase' }}>
-            {filteredProperties('size')?.map(({ value }) => (
+            {filteredProperties('size').map(({ value }) => (
              <Select.Option key={value} value={value}>
               {value}
              </Select.Option>
@@ -111,13 +111,13 @@ const ProductHeader: React.FC<ProductHeaderProps> = ({
           </Col>
           <Col>
            <Select
-            onChange={value => {
+            onChange={(value: string) => {
              setFieldValue('color', value);
              handleSelectProductOption(value);
             }}
-            value={values?.color}
+            value={String(values.color)}
             style={{ width: 150, marginBottom: '30px', textTransform: 'uppercase' }}>
-            {filteredProperties('color')?.map(({ value }) => (
+            {filteredProperties('color').map(({ value }) => (
              <Select.Option key={value} value={value}>
               {value}
              </Select.Option>

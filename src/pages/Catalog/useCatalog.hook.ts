@@ -62,9 +62,7 @@ const useCatalogData = () => {
           .indexOf(someProduct) > -1
        )
      : true) &&
-    // (values?.color?.[0] ? values?.color?.includes(product.color) : true) &&
     (values?.category?.[0] ? values?.category.includes(product.category) : true) &&
-    // (values?.size?.[0] ? values?.size.includes(product.size) : true) &&
     (values?.size?.[0]
      ? values?.size?.some(
         someProduct =>
