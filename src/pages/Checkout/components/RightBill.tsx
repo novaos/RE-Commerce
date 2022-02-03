@@ -20,7 +20,7 @@ export default function Rightbill() {
         </Row>
         <hr />
         {productsInCart.map(item => (
-          <Row key={item.id} justify="space-between" className="checkout-row">
+          <Row key={JSON.stringify(item)} justify="space-between" className="checkout-row">
             <Col>
               <p>
                 {item.name} x {item.option.count}

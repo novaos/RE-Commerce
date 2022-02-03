@@ -11,6 +11,7 @@ export default function Checkout() {
   const history = useHistory();
 
   if(productsInCart.length === 0) {
+    localStorage.setItem('productsInCart', JSON.stringify(productsInCart))
     history.push('/catalog')
     return null;
   }

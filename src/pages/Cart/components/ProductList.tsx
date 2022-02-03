@@ -81,6 +81,8 @@ export default function ProductList() {
       bordered
       dataSource={state.productsInCart}
       columns={columns}
+      pagination={false}
+      rowKey={product => JSON.stringify({...product, option: {...product.option, count:0}})}
       footer={() => (
         <div className="cart-buttons">
           <Button className="cart-buttons-update">update cart</Button>
