@@ -5,29 +5,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital@0;1&display=swap');
 html,
 body {
-  font-family: 'Poppins', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  height: 100%;
-  background: #ffffff;
+ font-family: 'Poppins', sans-serif;
+ font-size: 16px;
+ line-height: 1.5;
+ height: 100%;
+ background: #ffffff;
 }
 
 .app-content {
-  // margin-top: $header-height;
-  color: $primary-dark;
-  min-height: calc(100vh - 500px);
+ // margin-top: $header-height;
+ color: $primary-dark;
+ min-height: calc(100vh - 500px);
 }
 
 .container {
-  max-width: 1670px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 10px;
+ max-width: 1670px;
+ width: 100%;
+ margin: 0 auto;
+ padding: 10px;
 }
 
 .inner-container {
-  max-width: 1170px;
-  width: 100%;
-  margin: 50px auto;
-  padding: 0 10px;
+ max-width: 1170px;
+ width: 100%;
+ margin: 50px auto;
+ padding: 0 10px;
 }
