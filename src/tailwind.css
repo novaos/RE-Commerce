@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .card-icon {
+    @apply hidden w-8 h-8 rounded-md right-2 top-3 duration-200 group-hover:flex m-0 justify-center items-center bg-green-600 hover:bg-green-500 shadow-md cursor-pointer absolute animate-[slide_150ms_ease-out_1]
+  }
+}

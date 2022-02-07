@@ -12,21 +12,16 @@ import { IoIosCart } from 'react-icons/io';
 import { /* Link,  */ Link, NavLink } from 'react-router-dom';
 import { useClickAway } from '../../utils/hooks';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
+import { Logo, SearchInput2 } from './componets';
 import './navigation.scss';
 
 const Navigation: React.FC = () => {
  const { state } = useContext(GlobalContext);
  const [isVisibleAdditionalMenu, setIsVisibleAdditionalMenu] = useState(false);
  const additionalMenuRef = useRef(null);
- const searchRef = useRef(null);
- const isTabletWidth = window.innerWidth < 800;
  const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
 
- console.log(state, isTabletWidth, setIsOpenBurgerMenu);
-
  const [isOpenSearch, setIsOpenSearch] = useState(false);
- const [isOpenSearchSelect, setIsOpenSearchSelect] = useState(false);
- const [query, setQuery] = useState('');
 
  const { t } = useTranslation();
  const navigation = [
@@ -69,24 +64,11 @@ const Navigation: React.FC = () => {
   isVisibleAdditionalMenu
  );
 
- useClickAway(
-  searchRef,
-  () => {
-   setIsOpenSearch(false);
-  },
-  isOpenSearch
- );
-
  return (
   <>
    <div className="container border-b-2 border-b-silver">
-    <div className="flex justify-between bg-white  lg:py-3 lg:mx-auto">
-     <div className="logo">
-      <h2 className="lg:text-3xl lg:font-medium">
-       <span className="text-green-500">RENOSHOP</span>
-       <span>BEE</span>
-      </h2>
-     </div>
+    <div className="flex justify-between bg-white  lg:py-2 lg:mx-auto">
+     <Logo />
      <div onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)} className="lg:hidden sm:block cursor-pointer z-20">
       <div className="mb-1 w-6 h-0.5 bg-green-900 relative"></div>
       <div className="mb-1 w-6 h-0.5 bg-green-900 relative"></div>
@@ -107,7 +89,7 @@ const Navigation: React.FC = () => {
      </nav>
      <div className="icons lg:flex lg:justify-evenly lg:items-center sm:hidden">
       <div className="icon relative">
-       <BiSearchAlt2 onClick={() => setIsOpenSearch(true)} className="mr-3 text-xl" />
+       <BiSearchAlt2 onClick={() => setIsOpenSearch(true)} className="mr-3 text-xl cursor-pointer" />
       </div>
       <Link to="/cart">
        <div className="icon relative">
@@ -127,38 +109,7 @@ const Navigation: React.FC = () => {
       </Link>
      </div>
     </div>
-    {isOpenSearch && (
-     <div
-      ref={searchRef}
-      className="flex justify-center items-center -translate-y-1/2 -translate-x-1/2 left-2/4 top-48 z-10 fixed w-10/12 h-36 border-2 border-silver-400 rounded-md shadow-[#50d71e] bg-white animate-[wiggle_1s_ease-in-out_1] origin-[top_left]">
-      <input
-       className="h-10 w-1/2 px-2 focus:border-silver bg-red-700 backdrop-opacity-10 backdrop-invert bg-white/70"
-       type="text"
-       onFocus={() => setIsOpenSearchSelect(true)}
-       onChange={event => setQuery(event.target.value)}
-      />
-      {isOpenSearchSelect && (
-       <div className="popup max-h-[300px] overflow-auto absolute w-2/4 left-[50%] -translate-x-1/2 border-silver border-2 rounded-md bg-white top-[80%]">
-        {state.products
-         ?.filter(({ name }) => name.toLocaleLowerCase().startsWith(query.toLocaleLowerCase()))
-         ?.map(({ id, name }) => (
-          <Link
-           className=" block px-2 py-1 hover:bg-green-200 hover:text-green-800 text-xl"
-           key={id}
-           onClick={() => {
-            setIsOpenSearch(false);
-            setQuery('');
-           }}
-           to={`/product/${id}`}>
-           <p key={id} className="item">
-            {name}
-           </p>
-          </Link>
-         ))}
-       </div>
-      )}{' '}
-     </div>
-    )}
+    {isOpenSearch && <SearchInput2 setIsOpen={setIsOpenSearch} isOpen={isOpenSearch} />}
    </div>
    {/* <Header className="navigation">
     <div className="container">
