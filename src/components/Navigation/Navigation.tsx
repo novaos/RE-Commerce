@@ -1,11 +1,5 @@
-// import { MenuOutlined, SyncOutlined } from '@ant-design/icons';
-// import { Badge, Col, Menu, Row, Typography } from 'antd';
-// import { Header } from 'antd/lib/layout/layout';
-// import SubMenu from 'antd/lib/menu/SubMenu';
 import { useContext, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-// import IconFont from '../IconFont';
-// import { SearchInput } from './componets';
 import { BiSearchAlt2 } from 'react-icons/bi';
 import { GoGitCompare } from 'react-icons/go';
 import { IoIosCart } from 'react-icons/io';
@@ -67,12 +61,17 @@ const Navigation: React.FC = () => {
  return (
   <>
    <div className="container border-b-2 border-b-silver">
-    <div className="flex justify-between bg-white  lg:py-2 lg:mx-auto">
+    <div className="flex justify-between items-center bg-white  lg:py-2 lg:mx-auto">
      <Logo />
-     <div onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)} className="lg:hidden sm:block cursor-pointer z-20">
-      <div className="mb-1 w-6 h-0.5 bg-green-900 relative"></div>
-      <div className="mb-1 w-6 h-0.5 bg-green-900 relative"></div>
-      <div className="mb-1 w-6 h-0.5 bg-green-900 relative"></div>
+     <div
+      onClick={() => setIsOpenBurgerMenu(!isOpenBurgerMenu)}
+      className={`lg:hidden sm:block cursor-pointer z-20 ${isOpenBurgerMenu && 'fixed top-10 right-5'}`}>
+      <div className={`mb-1 w-6 h-0.5 bg-green-900 relative ${isOpenBurgerMenu && 'rotate-45'}`}></div>
+      <div className={`mb-1 w-6 h-0.5 bg-green-900 relative ${isOpenBurgerMenu && 'hidden'}`}></div>
+      <div
+       className={`mb-1 w-6 h-0.5 bg-green-900 relative ${
+        isOpenBurgerMenu && '-rotate-45 -translate-y-[5.5px]'
+       }`}></div>
      </div>
      <nav
       className={`lg:flex lg:items-center ${
@@ -93,7 +92,10 @@ const Navigation: React.FC = () => {
       </div>
       <Link to="/cart">
        <div className="icon relative">
-        <div className="flex justify-center items-center absolute -top-[8px] right-[2px] border border-white  bg-red-600 rounded-full w-4 h-4">
+        <div
+         className={`flex justify-center items-center absolute -top-[8px] right-[2px] border border-white  bg-red-600 rounded-full w-4 h-4 ${
+          state.productsInCart.length ? 'block' : 'hidden'
+         }`}>
          <span className="text-xs text-center text-white">{state.productsInCart.length}</span>
         </div>
         <IoIosCart className="mr-3 text-xl" />
@@ -101,7 +103,10 @@ const Navigation: React.FC = () => {
       </Link>
       <Link to="/comparison">
        <div className="icon relative">
-        <div className="flex justify-center items-center absolute -top-[8px] right-[2px] border border-white  bg-red-600 rounded-full w-4 h-4">
+        <div
+         className={`${
+          state.comparisonProducts.length ? 'block' : 'hidden'
+         } flex justify-center items-center absolute -top-[8px] right-[2px] border border-white  bg-red-600 rounded-full w-4 h-4`}>
          <span className="text-xs text-center text-white">{state.comparisonProducts.length}</span>
         </div>
         <GoGitCompare className="mr-3 text-xl" />
@@ -111,6 +116,7 @@ const Navigation: React.FC = () => {
     </div>
     {isOpenSearch && <SearchInput2 setIsOpen={setIsOpenSearch} isOpen={isOpenSearch} />}
    </div>
+   {/* BELOW MADE WITH USING ANT DESIGN */}
    {/* <Header className="navigation">
     <div className="container">
      {isTabletWidth ? (

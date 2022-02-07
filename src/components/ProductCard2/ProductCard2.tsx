@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { GoGitCompare } from 'react-icons/go';
 import { IoIosCart } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { ActionTypes, ProductType } from '../../utils/providers/GlobalContext';
 import { GlobalContext } from '../../utils/providers/GlobalContext/GlobalContext';
 import { LocalStorageApi, LocalStorageKeys } from '../../utils/types';
@@ -70,13 +70,13 @@ export default function ProductCard2({ product }: { product: ProductType }) {
  };
 
  const hasInComparison = state.comparisonProducts.some(item => item.id === product.id);
-
- console.log({ product });
-
+ const history = useHistory();
  return (
-  <Link
-   to={`/product/${product.id}`}
-   className={'relative group w-60 h-72 overflow-hidden bg-slate-100 rounded-md hover:shadow-lg duration-150'}>
+  <div
+   onClick={() => history.push(`/product/${product.id}`)}
+   className={
+    'relative group w-60 h-72 overflow-hidden bg-slate-100 rounded-md hover:shadow-lg duration-150 hover:text-slate-900'
+   }>
    <div className="card-icon">
     <IoIosCart className="text-xl text-white" />
    </div>
@@ -88,13 +88,12 @@ export default function ProductCard2({ product }: { product: ProductType }) {
      backgroundImage: `url(${product.options[0].photosUrl[0]})`
     }}
     className="bg-cover bg-centers w-auto h-2/3"
-    /* w-auto h-2/3 mx-auto */
    />
    <div className="product-info p-2">
     <p className="text-sm font-medium">{product.name}</p>
     <p className="text-md my-2 text-green-600">${product.price}</p>
     <Rating rating={product.rating} />
    </div>
-  </Link>
+  </div>
  );
 }
