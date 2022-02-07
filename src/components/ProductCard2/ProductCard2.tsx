@@ -80,7 +80,7 @@ export default function ProductCard2({ product }: { product: ProductType }) {
    <div className="card-icon">
     <IoIosCart className="text-xl text-white" />
    </div>
-   <div onClick={addComparison} className={`card-icon top-14 ${hasInComparison ? 'divide-solid' : ''}`}>
+   <div onClick={addComparison} className={`card-icon top-14 ${hasInComparison ? 'bg:silver' : ''}`}>
     <GoGitCompare className="text-xl text-white" />
    </div>
    <div

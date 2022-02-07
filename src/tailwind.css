@@ -4,6 +4,6 @@
 
 @layer components {
   .card-icon {
-    @apply hidden w-8 h-8 rounded-md right-2 top-3 duration-200 group-hover:flex m-0 justify-center items-center bg-green-600 hover:bg-green-500 shadow-md cursor-pointer absolute animate-[slide_150ms_ease-out_1]
+    @apply flex translate-x-[50px] w-8 h-8 rounded-md right-2 top-3 duration-200 group-hover:flex m-0 justify-center items-center bg-green-600 hover:bg-green-500 shadow-md cursor-pointer absolute group-hover:animate-[slide_150ms_ease-out_1_forwards] animate-[slideOut_150ms_ease-out_1_forwards]
   }
 }

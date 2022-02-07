@@ -18,11 +18,16 @@ module.exports = {
         slide: {
           '0%': { transform: 'translateX(100%)'},
           '100%': { transform: 'translateX(0%)'},
+        },
+        slideOut: {
+          '0%': { transform: 'translateX(0%)'},
+          '100%': { transform: 'translateX(130%) opacity-0'},
         }
       },
       animation: {
         wiggle: 'wiggle 2s ease-in-out 1',
         slide: 'slide 2s ease-in-out 1',
+        slideOut: 'slideOut 2s ease-in-out 1',
       },
     },
   },
